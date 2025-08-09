@@ -1,0 +1,7 @@
+win + v ==> paste multiple
+win + ctrl + o ==> on screen key board
+win  + i  ==> start search
+F5 ==> Refresh
+win + r ==> run 
+win + r + cmd(type and enter) ==> command prompt
+win + r + mstsc(type and enter) ==> rdp server

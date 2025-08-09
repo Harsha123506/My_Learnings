@@ -1,0 +1,41 @@
+1. .NET Core fundamentals
+Explain the key benefits and differences between .NET Core (now simply .NET) and the legacy .NET Framework.
+How does the .NET Core runtime (CoreCLR) enable cross-platform development?
+What is the role of the dotnet CLI, and can you provide examples of common commands? 
+2. ASP.NET Core concepts
+Elaborate on the ASP.NET Core request processing pipeline and the role of middleware.
+How does ASP.NET Core handle Dependency Injection, and what are the different service lifetimes (transient, scoped, singleton)?
+Explain the difference between Kestrel and IIS as web servers for ASP.NET Core, and when you'd use a reverse proxy.
+Discuss the difference between Middleware and Action Filters in ASP.NET Core MVC.
+What are Razor Pages in ASP.NET Core, and how do they differ from traditional MVC? 
+3. Data access and persistence
+Describe Entity Framework Core, including its purpose, key features, and performance considerations.
+How do you optimize database queries using EF Core, and when would you consider using a micro-ORM like Dapper?
+Explain the process of handling database migrations with Entity Framework Core.
+How do you manage concurrency conflicts in a multi-user application using Entity Framework Core? 
+4. Design patterns and architecture
+Discuss the importance of SOLID principles in .NET development.
+Explain Dependency Injection and how it promotes loose coupling and testability.
+What are some common design patterns you've implemented in .NET Core projects, and how did they benefit the application?
+How do you implement the Repository pattern with .NET Core and Entity Framework Core?
+Discuss the concept of CQRS (Command Query Responsibility Segregation) and how you would implement it in .NET Core. 
+5. Performance and scalability
+Explain asynchronous programming with async and await in .NET Core, including best practices and potential pitfalls.
+How do you implement caching (in-memory and distributed) in ASP.NET Core to improve performance?
+What strategies do you use for optimizing performance in high-traffic .NET Core applications?
+Describe how you would troubleshoot a performance bottleneck in a .NET application. 
+6. Microservices and cloud-native development
+Explain the concept of microservices architecture and its advantages over a monolithic approach.
+How do microservices communicate with each other, and what are some common communication patterns?
+What is the role of Docker and Kubernetes in a .NET Core microservices architecture?
+How do you handle distributed transactions in a microservices environment using patterns like Saga?
+Discuss the importance of logging, monitoring, and distributed tracing in a microservices architecture. 
+7. Security
+How do you secure ASP.NET Core Web APIs using JWT (JSON Web Tokens) or other authentication mechanisms?
+What are some common security vulnerabilities in web applications, and how do you prevent them in .NET Core?
+Explain the difference between authorization and authentication in ASP.NET Core. 
+8. Practical experience and problem-solving
+Describe a challenging .NET Core project you've worked on and how you approached it.
+Tell us about a time you had to troubleshoot and fix a critical bug in a production .NET application.
+How do you stay up-to-date with the latest developments in the .NET ecosystem?
+Can you discuss your approach to modeling, including domain-driven design (DDD)? 

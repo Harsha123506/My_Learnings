@@ -1,0 +1,2 @@
+jQuery -- > Used to Manage the Application to be compatible to all the type of Browsers.
+

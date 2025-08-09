@@ -1,0 +1,210 @@
+ BASIC LEVEL (Core Angular Concepts)
+1. What is Angular?
+Answer:
+Angular is a TypeScript-based open-source web application framework developed by Google. It's used to build single-page applications (SPAs) with features like two-way binding, dependency injection, routing, and component-based architecture.
+
+2. What are Components in Angular?
+Answer:
+Components are the basic building blocks of an Angular app. Each component has:
+
+A class (.ts)
+
+A template (.html)
+
+Styles (.css or .scss)
+
+Metadata via @Component decorator
+
+ts
+Copy
+Edit
+@Component({
+  selector: 'app-example',
+  templateUrl: './example.component.html'
+})
+export class ExampleComponent { }
+3. What is a Module in Angular?
+Answer:
+A module organizes related components, directives, pipes, and services. The root module is AppModule.
+
+ts
+Copy
+Edit
+@NgModule({
+  declarations: [...],
+  imports: [...],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+4. What is Two-Way Data Binding?
+Answer:
+Two-way binding binds data from component to template and vice versa using [(ngModel)].
+
+html
+Copy
+Edit
+<input [(ngModel)]="name">
+5. What is Dependency Injection in Angular?
+Answer:
+Angular's DI system injects services into components, making them loosely coupled and testable.
+
+ts
+Copy
+Edit
+constructor(private userService: UserService) { }
+🟡 INTERMEDIATE LEVEL (Routing, Services, Forms)
+6. What is Routing in Angular?
+Answer:
+Routing enables navigation between views/components.
+
+ts
+Copy
+Edit
+const routes: Routes = [
+  { path: 'home', component: HomeComponent },
+  { path: '**', redirectTo: 'home' }
+];
+Use <router-outlet></router-outlet> in template.
+
+7. Difference between Template-driven and Reactive Forms?
+Feature	Template-driven	Reactive
+Setup	In HTML	In Component (TypeScript)
+Flexibility	Simple, less control	Complex, more control
+Validation	Uses directives	Uses form control objects
+
+8. What are Observables in Angular?
+Answer:
+Observables (from RxJS) are used for async data streams, like HTTP calls and form changes.
+
+ts
+Copy
+Edit
+this.http.get('api/data').subscribe(data => { ... });
+9. What is a Service in Angular?
+Answer:
+Services contain business logic and shared code. They are typically injected via DI.
+
+ts
+Copy
+Edit
+@Injectable({ providedIn: 'root' })
+export class DataService { }
+10. How to Handle HTTP Calls in Angular?
+Answer:
+Using HttpClient service.
+
+ts
+Copy
+Edit
+this.http.get<User[]>('/api/users').subscribe(...);
+Use HttpInterceptor to handle common logic like headers, error handling.
+
+🔵 ADVANCED LEVEL (Performance, Architecture, RxJS, Testing)
+11. What are Lifecycle Hooks in Angular?
+Answer:
+Hooks like:
+
+ngOnInit(): Called after data-bound properties are initialized
+
+ngOnChanges()
+
+ngOnDestroy()
+Used to hook into component lifecycle events.
+
+12. Explain Change Detection in Angular.
+Answer:
+Angular detects changes to data-bound properties and updates the DOM. It uses Zone.js to track async events and trigger change detection.
+
+Use ChangeDetectionStrategy.OnPush to optimize performance for immutable data.
+
+13. What are Angular Pipes?
+Answer:
+Transform displayed values in the template.
+
+html
+Copy
+Edit
+{{ dateValue | date:'shortDate' }}
+You can also create custom pipes.
+
+14. What are Directives?
+Answer:
+
+Structural: *ngIf, *ngFor (change DOM layout)
+
+Attribute: [ngClass], [ngStyle] (change appearance)
+
+You can create custom directives using @Directive().
+
+15. What is Lazy Loading in Angular?
+Answer:
+Load feature modules only when needed to improve performance.
+
+ts
+Copy
+Edit
+{ path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) }
+16. How to Improve Angular App Performance?
+Answer:
+
+Use OnPush change detection
+
+Lazy load modules
+
+Use trackBy in *ngFor
+
+Avoid unnecessary DOM bindings
+
+Use pure pipes and unsubscribing observables
+
+17. What is NgRx?
+Answer:
+NgRx is a state management library for Angular using Redux principles and RxJS.
+
+Components dispatch actions → Reducers → Store updates → Selectors read state.
+
+18. How to Implement Unit Testing in Angular?
+Answer:
+Use Karma and Jasmine.
+
+ts
+Copy
+Edit
+describe('MyComponent', () => {
+  it('should render title', () => {
+    ...
+  });
+});
+Use TestBed for component testing:
+
+ts
+Copy
+Edit
+TestBed.configureTestingModule({
+  declarations: [MyComponent],
+  providers: [MyService]
+});
+19. What is Ahead-of-Time (AOT) Compilation?
+Answer:
+AOT compiles Angular templates at build time (instead of run-time), reducing load time and improving performance.
+
+Use with:
+
+bash
+Copy
+Edit
+ng build --prod
+20. What’s new in Angular 14–17 (if applicable)?
+Answer:
+Recent features include:
+
+Standalone components
+
+Typed reactive forms
+
+Signals (in preview)
+
+Enhanced SSR & hydration
+
+Enhanced CLI and developer ergonomics
+

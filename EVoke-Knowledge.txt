@@ -1,0 +1,12 @@
+In angular.json
+1> schematics -- we can declare the components , interfaces, services to be created in specific folder.
+2> Provide Types
+3> Keyword shouldn't be variable name 
+4> No hardcode values in ts
+5>clopay-icons : we can declare icons logic as per bootstrap and use it like a class.
+6>In Index.ts we can declare components and can be utilized in widgets
+7>Make use of routing paths in routes in app-routes
+8>widgets --  reusable components 
+9>no commit - directly without message, instead 
+10> Use Lint - will check the declarations and prettier - check formats.
+11>

@@ -1,0 +1,181 @@
+1. What is SQL?
+Answer:
+SQL (Structured Query Language) is a language used to manage and manipulate relational databases. It supports querying, inserting, updating, deleting, and managing data.
+
+2. What are the different types of SQL statements?
+Answer:
+
+DDL (Data Definition Language): CREATE, ALTER, DROP
+
+DML (Data Manipulation Language): SELECT, INSERT, UPDATE, DELETE
+
+DCL (Data Control Language): GRANT, REVOKE
+
+TCL (Transaction Control Language): COMMIT, ROLLBACK, SAVEPOINT
+
+3. What is the difference between WHERE and HAVING?
+Answer:
+
+WHERE filters rows before grouping.
+
+HAVING filters groups after aggregation.
+
+sql
+Copy
+Edit
+SELECT department, COUNT(*) FROM employees
+GROUP BY department
+HAVING COUNT(*) > 5;
+4. What is a Primary Key?
+Answer:
+A Primary Key uniquely identifies each record in a table. It:
+
+Cannot be NULL
+
+Must be unique
+
+5. What is a Foreign Key?
+Answer:
+A Foreign Key is a field in one table that refers to the Primary Key in another table. It enforces referential integrity.
+
+🟡 INTERMEDIATE LEVEL (Joins, Subqueries, Functions)
+6. What are the types of joins in SQL?
+Answer:
+
+INNER JOIN: Matches records in both tables
+
+LEFT JOIN: All records from left table + matched ones from right
+
+RIGHT JOIN: All records from right table + matched ones from left
+
+FULL OUTER JOIN: All records from both tables
+
+SELF JOIN: Joining a table to itself
+
+CROSS JOIN: Cartesian product
+
+7. What is the difference between DELETE, TRUNCATE, and DROP?
+Operation	Description	Can Rollback?	Removes Table Structure?
+DELETE	Removes rows with WHERE	✅ Yes	❌ No
+TRUNCATE	Removes all rows, faster	❌ No	❌ No
+DROP	Deletes table completely	❌ No	✅ Yes
+
+8. What is a subquery?
+Answer:
+A subquery is a query inside another query. It can be used in SELECT, FROM, or WHERE.
+
+sql
+Copy
+Edit
+SELECT * FROM employees
+WHERE salary > (SELECT AVG(salary) FROM employees);
+9. What are Aggregate Functions?
+Answer:
+
+COUNT(), SUM(), AVG(), MIN(), MAX()
+Used to perform calculations on data.
+
+10. What is the difference between RANK(), DENSE_RANK(), and ROW_NUMBER()?
+Answer:
+Used in window functions:
+
+Function	Gaps in ranking?	Duplicates?
+ROW_NUMBER()	No	No
+RANK()	Yes	Yes
+DENSE_RANK()	No	Yes
+
+🔵 ADVANCED LEVEL (Indexes, Optimization, Transactions)
+11. What are indexes in SQL?
+Answer:
+Indexes improve read performance. Types:
+
+Clustered: Alters table structure. Only one per table.
+
+Non-Clustered: Separate from data. Can have multiple.
+
+sql
+Copy
+Edit
+CREATE INDEX idx_name ON employees(name);
+12. What is normalization?
+Answer:
+Normalization organizes data to reduce redundancy. Normal Forms:
+
+1NF: Atomic values
+
+2NF: No partial dependency
+
+3NF: No transitive dependency
+
+13. What are transactions and ACID properties?
+Answer:
+A transaction is a group of SQL operations. ACID ensures reliability:
+
+Atomicity: All or none
+
+Consistency: Maintains DB state
+
+Isolation: Transactions don't interfere
+
+Durability: Changes persist after commit
+
+14. What is a CTE (Common Table Expression)?
+Answer:
+A CTE is a temporary result set used within a WITH clause.
+
+sql
+Copy
+Edit
+WITH top_sales AS (
+  SELECT * FROM sales WHERE amount > 1000
+)
+SELECT * FROM top_sales;
+15. What are Window Functions?
+Answer:
+Functions like RANK(), LEAD(), LAG() that operate over a window (partition of rows).
+
+sql
+Copy
+Edit
+SELECT name, salary, RANK() OVER (ORDER BY salary DESC) AS rank FROM employees;
+16. How do you optimize a slow SQL query?
+Answer:
+
+Use EXPLAIN PLAN or Query Analyzer
+
+Avoid SELECT *
+
+Use proper indexes
+
+Limit joins/subqueries
+
+Use WHERE filtering early
+
+Avoid functions on indexed columns
+
+17. What is the difference between EXISTS and IN?
+Answer:
+
+IN: Better for small subquery results.
+
+EXISTS: Better for checking if rows exist — faster with larger datasets.
+
+18. What is a Stored Procedure?
+Answer:
+A saved SQL block that can be executed with parameters.
+
+sql
+Copy
+Edit
+CREATE PROCEDURE GetEmployees @DeptId INT AS
+BEGIN
+  SELECT * FROM Employees WHERE DeptId = @DeptId;
+END
+19. What is a Trigger?
+Answer:
+A trigger is an automatic action that runs in response to events (INSERT, UPDATE, DELETE) on a table.
+
+20. What is the difference between OLTP and OLAP?
+Type	Purpose	Example
+OLTP	Transactional (insert/update)	Banking systems
+OLAP	Analytical (reporting)	BI dashboards
