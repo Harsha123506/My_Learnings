@@ -1,0 +1,136 @@
+Custom Data Validation  :
+-------------------------
+
+Using ACtionFilterATtribute class 
+public class CustomModelValidation: ActionFilterAttribute
+{
+    public override void OnActionExecuting(ActionExecutingContext context)
+    {
+       if(context.ModelState.IsValid == false)
+        {
+            context.Result = new BadRequestResult();
+        }
+   }
+}
+
+Filtering ::
+------------
+
+public async Task<IActionResult> GetAll([FromQuery] string? filterOn, [FromQuery] string? filterQuery)
+
+ Walks = Walks.Where(x => x.Name.ToLower().Contains(filterQuery.ToLower()));
+
+sorting ::
+------------
+
+ Walks = isAscending == true ? Walks.OrderBy(x => x.Name) : Walks.OrderByDescending(x => x.Name);
+
+Pagination ::
+-------------
+
+ var skipResults = (pageNumber - 1) * pageSize;     //pagination
+ Walks = Walks.Skip(skipResults).Take(pageSize);
+
+Authentication and Authorization : 
+----------------------------------
+
+Authentication : To determine the user identity 
+
+Authorization : check if user can able to access specific resource.
+
+JWT ::
+
+Install :: Microsoft.AspNetCore.Authentication.JwtBearer  ::  TO set Up the JWT set Up In program.cs
+IdentityModel.Tokens :: To allow us to use sevices from OAUth2.o , identity server
+System.IdentityModel.Tokens.Jwt ::  Used to create TOkens and define signing credentials 
+
+HTTP SEcure COOCKIE ONLY ::
+
+string jwt = GenerateJwt(model.Username);
+
+        var cookieOptions = new CookieOptions
+        {
+            HttpOnly = true,
+            Secure = true, // HTTPS only
+            SameSite = SameSiteMode.Strict, // Or Lax
+            Expires = DateTimeOffset.UtcNow.AddHours(1)
+        };
+
+        Response.Cookies.Append("jwt-token", jwt, cookieOptions);
+
+In Program.cs
+
+        options.Events = new JwtBearerEvents
+        {
+            OnMessageReceived = context =>
+            {
+                // Read token from cookie
+                context.Token = context.HttpContext.Request.Cookies["jwt-token"];
+                return Task.CompletedTask;
+            }
+        };
+
+
+Identity DbContext ::
+==================
+
+Similar to the dbcontext create a new DBAuthcontext which is inherited from identitycontext.
+
+will occur error while registering so give type to context options in the constructor.
+
+Add-Migration [name] -Context [contextName] :::== to specify the name of the context
+
+Seed Roles ::
+==========
+
+[Authorize(Roles = "roleName")]
+
+builder.Services.AddIdentityCore<IdentityUser>()
+    .AddRoles<IdentityRole>()
+
+create identityrole object and see it in onmodelcreating method.
+
+Swagger Implementation to handle JWT Token ::
+==========================================
+builder.Services.AddSwaggerGen( opt =>
+{
+    opt.SwaggerDoc("v1", new OpenApiInfo { Title = "My_new_API_v1", Version = "v1" });
+    opt.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme { Name = "Authorization", In = ParameterLocation.Header, Type = SecuritySchemeType.ApiKey, Scheme = JwtBearerDefaults.AuthenticationScheme });
+    opt.AddSecurityRequirement(new OpenApiSecurityRequirement {{ new OpenApiSecurityScheme
+    {
+        Reference = new OpenApiReference
+        {
+            Type = ReferenceType.SecurityScheme,
+            Id = JwtBearerDefaults.AuthenticationScheme
+        },
+        Scheme = "Oauth2",
+        Name = JwtBearerDefaults.AuthenticationScheme,
+        In = ParameterLocation.Header
+    },
+    new List<string>()
+        }
+    });
+});
+
+Upload Image ::
+===============
+[NotMapped] ==> attribute to ignore the property in the database
+IFormFile ==> Type used to upload the file
+ModelState.AddModelError ==> To add custom error message to model state.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
