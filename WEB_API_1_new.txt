@@ -117,6 +117,10 @@ Upload Image ::
 [NotMapped] ==> attribute to ignore the property in the database
 IFormFile ==> Type used to upload the file
 ModelState.AddModelError ==> To add custom error message to model state.
+var stream = new FileStream(localFilePath, FileMode.Create) ==> use to create a file stream to store the image in local system.
+Path.Combine ==> to combine the path
+IhttpContextAccessor ==> to access the httpcontext in the service class. (we cant use httpcontext apart from controller)
+[RequestSizeLimit(50_000_000)] ==> to set the limit for the file size to be uploaded.
 
 
 
