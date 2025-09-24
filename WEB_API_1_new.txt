@@ -121,20 +121,32 @@ var stream = new FileStream(localFilePath, FileMode.Create) ==> use to create a 
 Path.Combine ==> to combine the path
 IhttpContextAccessor ==> to access the httpcontext in the service class. (we cant use httpcontext apart from controller)
 [RequestSizeLimit(50_000_000)] ==> to set the limit for the file size to be uploaded.
+.net core by default doesnt serve the static files for that we need to add dependency.
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Images")), ==> path to check to fetch static files
+    RequestPath = "/Images" ==> prefix used by client. Eg: http://localhost:5000/Images/cat.png for C:\MyApp\Images\cat.png
+});
+to make it available for others we need to set the application url as "http://0.0.0.0:5000" and if it is running in ur machine u need to replace it with ur ip.
 
+Logging :: 
+========================
 
+Built In :: ILogger<type> 
+         :: LogInformation, LogWarning, LogError, LogDebug, LogCritical
+External :: Serilog
+1> capturing imformation
+2> serilog, serilog.sink.console, serilog.aspnetcore
+3> in program.cs
+    Log.Logger = new LoggerConfiguration()
+        .MinimumLevel.Debug() ==> to set the minimum level of logging
+        .WriteTo.Console() ==> to write the log to console
+        .CreateLogger();
+    builder.Logging.ClearProviders(); ==> to clear the default logging given by framework.
+    builder.Host.UseSerilog();
 
-
-
-
-
-
-
-
-
-
-
-
+GlobalExceptionHandling ::
+========================
 
 
 
