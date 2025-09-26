@@ -147,6 +147,32 @@ External :: Serilog
 
 GlobalExceptionHandling ::
 ========================
+1> To Repeat the same try catch block in every method we can use global exception handling.
 
+Process :
 
+Create a middleware class
+Use invokeAsync method which return delegate as httpcontext parameter to handle the exception globally.
+Call the middleware in program.cs using app.usemiddleware<type>();
 
+Versioning ::
+========================
+Url-based versioning
+Query parameter-based versioning
+Header-based versioning
+
+1> Create Seperate controller for each version and give the version in route attribute. give version in route attribute. [Route("v1/[controller]")]]
+
+2> Install Microsoft.AspNetCore.Mvc.Versioning
+   builder.Services.AddApiVersioning(options =>
+   {
+       options.AssumeDefaultVersionWhenUnspecified = true; // if version is not specified it will take default version
+       options.DefaultApiVersion = new ApiVersion(1, 0); // default version
+       options.ReportApiVersions = true; // to show the supported version in response header
+       options.ApiVersionReader = ApiVersionReader.Combine(  
+           new QueryStringApiVersionReader("api-version"),
+           new HeaderApiVersionReader("X-Version"),
+           new MediaTypeApiVersionReader("ver")); // to read version from query string, header and media type
+   });
+
+3> In controller give the version using [ApiVersion("1.0")]

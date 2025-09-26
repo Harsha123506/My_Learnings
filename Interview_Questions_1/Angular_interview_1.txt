@@ -208,3 +208,58 @@ Enhanced SSR & hydration
 
 Enhanced CLI and developer ergonomics
 
+throttling :: 
+1> if user is typing in search box and we are calling api for every key press it will make lot of api calls. to avoid that we can use throttling.
+2> it will wait for some time after the last key press and then it will make the api call.
+3> we can use rxjs operators like debounceTime, distinctUntilChanged etc.,
+this.searchControl.valueChanges.pipe(
+  debounceTime(300), // wait for 300ms after the last event
+  distinctUntilChanged() // only emit if value is different from previous value
+).subscribe(value => {
+  this.search(value);
+});
+OR
+throttle(function, limit) {
+  let inThrottle;
+  return function() {
+    const args = arguments;
+    const context = this;
+    if (!inThrottle) {
+      function.apply(context, args);
+      inThrottle = true;
+      setTimeout(() => inThrottle = false, limit);
+    }
+  }
+})
+
+21. What is Angular Universal?
+Answer:
+Angular Universal enables server-side rendering (SSR) of Angular applications, improving performance and SEO. It pre-renders the app on the server and sends HTML to the client.
+
+22. How to Secure an Angular Application?
+Answer:
+Use Angular's built-in security features like DomSanitizer to prevent XSS attacks.
+Implement authentication and authorization using JWT or OAuth.
+Use route guards (CanActivate, CanLoad) to protect routes.
+
+23. closure in javascript?
+Answer:
+A closure is a function that retains access to its lexical scope, even when the function is executed outside that scope. This allows the function to remember the environment in which it was created.
+function outerFunction() {
+  let count = 0;
+  return function innerFunction() {
+    count++;
+    console.log(count);
+  }
+}
+const counter1 = makeCounter();
+console.log(counter1()); // 1
+console.log(counter1()); // 2
+
+const counter2 = makeCounter();
+console.log(counter2()); // 1 (different `count`)
+
+24. What are Signals in Angular?
+Answer:
+Signals are a new reactive primitive introduced in Angular 16 that allow you to create reactive state and automatically update the UI when the state changes. Signals can be used to manage state in a more fine-grained way compared to traditional change detection.
+
