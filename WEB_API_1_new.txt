@@ -169,10 +169,46 @@ Header-based versioning
        options.AssumeDefaultVersionWhenUnspecified = true; // if version is not specified it will take default version
        options.DefaultApiVersion = new ApiVersion(1, 0); // default version
        options.ReportApiVersions = true; // to show the supported version in response header
-       options.ApiVersionReader = ApiVersionReader.Combine(  
+       options.ApiVersionReader = ApiVersionReader.Combine(
            new QueryStringApiVersionReader("api-version"),
            new HeaderApiVersionReader("X-Version"),
            new MediaTypeApiVersionReader("ver")); // to read version from query string, header and media type
    });
 
-3> In controller give the version using [ApiVersion("1.0")]
+3> In controller u can povide the versions accepted by the controller using [ApiVersion("1.0")] attribute.
+  > Route(["api/v{version:apiVersion}/[controller]") ==> to make the version as part of route.
+4> [mapToAPiVersion("1.0")] ==> to map the method to specific version.
+5> then you can pass the version in url or query string or header or media type.
+6> Eg: http://localhost:5000/v1/walks  or http://localhost:5000/walks?api-version=1.0 or in header X-Version: 1.0 or in media type application/json;ver=1.0
+7> To see the version in swagger install Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer
+   builder.Services.AddVersionedApiExplorer(options =>
+   {
+       options.GroupNameFormat = "'v'VVV"; // v1, v1.0
+       options.SubstituteApiVersionInUrl = true; // to replace the version in url
+   });
+   builder.Services.AddSwaggerGen(options =>
+   {
+       var provider = builder.Services.BuildServiceProvider().GetRequiredService<IApiVersionDescriptionProvider>();
+       foreach (var description in provider.ApiVersionDescriptions)
+       {
+           options.SwaggerDoc(description.GroupName, new OpenApiInfo
+           {
+               Title = $"My API {description.ApiVersion}",
+               Version = description.ApiVersion.ToString()
+           });
+       }
+   });
+   app.UseSwagger();
+   app.UseSwaggerUI(options =>
+   {
+       var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
+       foreach (var description in provider.ApiVersionDescriptions)
+       {
+           options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
+       }
+   });
+
+ConsumingAPI ::
+========================
+
+RESTAPI 
