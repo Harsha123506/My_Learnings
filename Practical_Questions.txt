@@ -1,0 +1,10 @@
+How to Create azure service and deploy app it with azure devops?
+In Azure ::
+================
+Subscription ? pick your Azure subscription.
+Resource Group ? new or existing (e.g., my-rg).
+App Name ? unique name, e.g., myappservice123.
+Publish ? Code (or Docker Container if you want).
+Runtime Stack ? choose .NET, Node, Java, Python, etc.
+Region ? closest to your users.
+Pricing Plan ? Start with Free (F1) or Basic (B1).
