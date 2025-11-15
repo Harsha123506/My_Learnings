@@ -1,0 +1,3 @@
+Jasmine :: framework used to test the JS code.
+Karma :: test runner for JS code.
+spies :: used to track calls to functions and their arguments.

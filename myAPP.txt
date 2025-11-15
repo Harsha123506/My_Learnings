@@ -1,0 +1,22 @@
+Window commands ::
+cd .. ==> to previous directory
+cd /d D: ==> to D drive
+cd /d D:\folder ==> to specific folder in D drive
+dir ==> list of files and folders in current directory
+dotnet --info ==> to check .NET version
+dotnet new api -n myAPP ==> to create new API project named myAPP
+dotnet new list ==> to check the list of templates available
+dotnet new webapi -h ==> to check the options available for webapi template
+dotnet new sln =>> to create solution file
+dotnet new webapi -o myAPP ==> to create project in specific folder
+dotnet sln add myAPP/myAPP.csproj ==> to add project to solution
+dotnet sln list ==> to check the projects in solution
+tasklist | findstr API ==> to check the process running in system
+taskkill /PID <process-id> /F ==> to kill the process using process id
+
+WithOrigins("http://localhost:5289") ==> to allow specific origin
+.AllowAnyHeader() ==> to allow any header (normally it allows only default headers));
+.AllowAnyMethod() ==> to allow any method like get, post, put, delete
+
+
+

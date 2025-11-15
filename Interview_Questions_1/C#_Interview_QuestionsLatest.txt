@@ -1,0 +1,272 @@
+y no Multiple inheritence in C#?
+> to avoid diamond problem like in C++
+// C# supports multiple interface inheritance but not class inheritance
+> Using Explicit Interface Implementation in C# we can implement two interfaces having same method name.
+duck  d = new duck();
+IFlyable f = d;
+f.fly(); // works
+IWalkable w = d;
+w.walk(); // works
+
+Access Modifiers in C#:
+public - accessible from anywhere
+private - accessible only within the class
+protected - accessible within the class and derived classes
+internal - accessible within the same assembly
+protected internal - accessible within the same assembly or derived classes
+Private Protected - accessible within the same class or derived classes in the same assembly
+
+> if we make a variable public then it can be accessed from anywhere i.e we can change it value without any restriction.(encapsulation is broken))
+> private variables can be inherited but not accessed directly.
+
+System.Object class	:: Its the base class for all data types in C#.
+immutable	:: once created its value cannot be changed.Note: The VARIABLE value may be changed, but the original immutable data value was discarded and a new data value was created in memory.
+
+array.copyTo() vs array.clone() vs array.copy()
+> copyTo() method copies the elements of an array to another existing array.
+> clone() method creates a new array object and copies all the elements of the current array to the new array.
+> copy() method copies a range of elements from an array starting at the specified source index and pastes them to another array starting at the specified destination index.ex Array.copy(arr1, ar2, len);
+
+we cant write finally block without try block.
+we can have try without catch block but not finally block without try block.
+we can have throw inside catch 
+we can have throw inside try without catch block but finally block is must in this case.
+
+throw vs throw ex
+> throw; rethrows the original exception and preserves the stack trace.
+> throw ex; throws the exception as a new exception and resets the stack trace.
+we cannot execute multiple catch blocks for a single try block.
+
+sortedList vs dictionary
+> sortedList is sorted based on the key and slower than dictionary.
+> sortedList uses less memory than dictionary.
+> sortedList is a combination of array and hashtable.
+> dictionary is implemented using hashtable.
+> sortedList allows access by index and key.
+> dictionary allows access only by key.
+> sortedList is not thread safe.
+> dictionary is thread safe for read operations but not for write operations.(ConcurrentDictionary<TKey, TValue> — Thread-safe collection))
+> sortedList is slower for insertion and deletion operations.
+> sortedList is implemented using an array of key-value pairs and a binary search algorithm.
+> dictionary is implemented using a hash table and a hashing algorithm.
+> sortedList is a generic collection that implements the IDictionary<TKey, TValue> interface.
+
+Parallel.For(0, 10, i =>  //Used to run a loop in parallel
+{
+    dict.TryAdd(i, "Value " + i);
+});
+
+sealed class  :: A sealed class is a class that cannot be inherited. It is used to prevent further derivation of a class.
+
+a class defined at top level is internal by default.
+a class defined inside another class is private by default.
+
+can we restrict method overriding?
+1> by making method sealed.
+2> by making class sealed.
+3> by making method static.
+4> by writing new method() in derived class.
+ex: public new void Display()
+    {
+        Console.WriteLine("Derived Display");
+    }
+5> by making method non-virtual. method
+
+overriding will be possible only when the method is virtual, abstract or override in base class.
+static methods cannot be overridden since they are not associated with an instance of the class.
+
+Can a derived class skip implementing abstract methods?
+> No, if a class inherits from an abstract class, it must implement all abstract methods unless the derived class is also declared as abstract.
+
+if we have 2 concrete methods in abstract and its derived class then the base method can only be called through derived class by creating new method in derived class if u want to call it outside.
+
+Interface  ::  is a contract that defines a set of methods, properties, events, or indexers that a class or struct must implement. It does not provide any implementation itself.
+interface doesnt consist variables but can have properties.
+
+private interface is not allowed.
+
+can we Use Di for different derived classes with common single interface ?
+> Yes, we can use Dependency Injection (DI) to inject different derived classes that implement a common interface. This allows for flexibility and decoupling in the code, as the specific implementation can be determined at runtime based on the context or configuration.
+
+without interface:
+private readonly ServiceB _serviceB;
+
+with interface:
+
+builder.Services.AddTransient<EmailNotification>();
+builder.Services.AddTransient<SmsNotification>();
+
+builder.Services.AddTransient<Func<string, INotification>>(serviceProvider => key =>
+{
+    return key switch
+    {
+        "email" => serviceProvider.GetService<EmailNotification>(),
+        "sms" => serviceProvider.GetService<SmsNotification>(),
+        _ => throw new ArgumentException("Invalid type")
+    };
+});
+
+struct vs class ::
+> struct is a value type and class is a reference type.
+> struct cannot have a default constructor and class can have a default constructor.
+> struct is used for small data structures and class is used for
+> struct is faster than class for small data structures.
+> struct cannot inherit from another struct or class but can implement interfaces.
+> struct is sealed by default and cannot be inherited. class can be inherited.
+> struct is used for lightweight objects and class is used for
+> struct cannot have a destructor and class can have a destructor.
+
+signature in the method overloading means method name + number of parameters + type of parameters. not return type.
+
+How to call a base constructor from a derived class constructor?
+> using base keyword.
+class Base
+{
+    public Base(int x)
+    {
+        Console.WriteLine("Base constructor called with value: " + x);
+    }
+}
+class Derived : Base
+{
+    public Derived(int x) : base(x)
+    {
+        Console.WriteLine("Derived constructor called with value: " + x);
+    }
+}
+
+DELEGEATE :: delegate is a type, holds the reference of a method and calls the method for execution.
+we can define a delegate within the method.(usually within namespace)
+public delegate void AddDelegate(int a, int b).
+AddDelegate ad = new AddDelegate(p.AddNums);
+ad(10,50); ==> execution of delegate method.
+ad.Invoke(10,11); ==> execution of delegate method.
+
+MULTICAST DELEGATE :: A multicast delegate is a delegate that can reference multiple methods. When the delegate is invoked, it calls all the methods it references in order.
+public void getArea(int l, int b)
+{
+    Console.WriteLine("Area of rectangle: " + (l * b));
+}
+public void getPerimeter(int l, int b)
+{
+    Console.WriteLine("Perimeter of rectangle: " + 2 * (l + b));
+}
+AreaDelegate ad1 = new AreaDelegate(getArea); or AreaDelegate ad1 = getArea;
+AreaDelegate ad2 = new AreaDelegate(getPerimeter);
+AreaDelegate ad = ad1 + ad2; // Multicast delegate
+Or
+AreaDelegate ad = getArea; // Singlecast delegate
+ad += getPermeter; // Multicast delegate
+ad(10, 20); // Calls both getArea and getPerimeter methods
+ad -= getArea; // Removes getArea from the invocation list
+Anonymous Methods :: Anonymous methods are methods without a name. They are defined using the delegate keyword and can be used to create inline method implementations.
+stringDelegate sd = delegate (string str)
+{
+    Console.WriteLine("Hello " + str);
+};
+
+EventHandler :: EventHandler is a predefined delegate in C# that represents a method that will handle an event. It has a specific signature that takes two parameters: the sender (object) and the event arguments (EventArgs).
+
+Uses: Thread safe , Parallel programming, Callbacks, Event handling.
+callbacks :: A callback is a method that is passed as an argument to another method and is invoked after a certain event or condition is met. Callbacks are commonly used in asynchronous programming to handle the completion of tasks.
+helps in  communication through the 2 threads run in parallel.
+
+xml documentation comment  :: ///
+
+corDBG :: Common Object Runtime Debugger
+It is a debugger that is used to debug .NET applications. It provides a way to inspect the state of a running application, set breakpoints, and step through code.
+It is a command-line tool that is included with the .NET Framework SDK.
+It can be used to debug both managed and unmanaged code.
+
+assert() :: Assert is a method that is used to verify that a certain condition is true. If the condition is false, an exception is thrown.
+Debug.Assert(x > 0, "x must be greater than 0");
+
+Debug vs Trace
+> Debug is used for debugging purposes and is only included in the debug build of the application. It is used to output information to the console or a log file during development.
+> Trace is used for tracing purposes and is included in both the debug and release builds of the application. It is used to output information to the console or a log file during runtime.
+
+TextWriterTraceListener :: TextWriterTraceListener is a class that is used to write trace information to a text file. It is a part of the System.Diagnostics namespace and can be used to log information about the execution of an application.
+TextWriterTraceListener myListener = new TextWriterTraceListener("log.txt");
+Trace.Listeners.Add(myListener);
+Trace.WriteLine("This is a trace message.");
+Trace.Flush();
+Trace.Close();
+myListener.Close();
+
+DataReader :: DataReader is a class that is used to read data from a data source in a forward-only, read-only manner. It is a part of the System.Data namespace and is used to retrieve data from a database.
+
+OLE-DB.NET vs sqlserver.Net
+> OLE-DB.NET is a data access technology that is used to access data from a variety of data sources, including databases, spreadsheets, and text files. It is a part of the System.Data.OleDb namespace and is used to connect to OLE-DB data sources.
+> SqlClient is a data access technology that is used to access data from Microsoft SQL Server databases. It is a part of the System.Data.SqlClient namespace and is used to connect to SQL Server databases.
+
+wildcard characters are used with the LIKE operator in a WHERE clause to perform pattern matching within string values. 
+% - represents zero or more characters.
+_ - represents a single character.
+[ ] - represents any single character within the specified range or set.
+[^ ] - represents any single character not within the specified range or set.
+
+'a__%' - matches any string that starts with 'a', followed by at least two characters, and then followed by zero or more characters.
+'a[bc]%' - matches any string that starts with 'a', followed by either 'b' or 'c', and then followed by zero or more characters.
+'a[^bc]%' - matches any string that starts with 'a', followed by any character except 'b' or 'c', and then followed by zero or more characters.
+'a[b-d]%' - matches any string that starts with 'a', followed by any character in the range 'b' to 'd' (i.e., 'b', 'c', or 'd'), and then followed by zero or more characters.
+
+ACID properties in DBMS
+> Atomicity - ensures that all operations within a transaction are completed successfully. If any operation fails, the entire transaction is rolled back.
+> Consistency - data is either committed or roll back, no in-between case where something has been updated and something has not.
+> Isolation - ensures that concurrent transactions do not interfere with each other, maintaining the consistency of the data.
+> Durability - he values persist if the data had been committed even if the system crashes right after.
+
+connection string  :: A connection string is a string that contains information about how to connect to a data source, such as a database. It typically includes the data source name, authentication credentials, and other configuration settings.
+Example:
+"Server=myServerAddress;Database=myDataBase;User Id=myUsername;Password=myPassword;"
+"Data Source=myServerAddress;Initial Catalog=myDataBase;Integrated Security=True;"
+"Data Source=myServerAddress;Initial Catalog=myDataBase;User Id=myUsername;Password=myPassword;"
+"Provider=SQLOLEDB;Data Source=myServerAddress;Initial Catalog=myDataBase;User Id=myUsername;Password=myPassword;"
+Integrated Security=True means Windows Authentication.
+Integrated Security=False means SQL Server Authentication.
+
+windows authentication vs sql server authentication
+> Windows Authentication uses the Windows credentials of the user to authenticate to the SQL Server. It is more secure and easier to manage, as it does not require storing passwords in the connection string.
+> SQL Server Authentication uses a username and password to authenticate to the SQL Server. It is less secure, as it requires storing passwords in the connection string, but it can be used in scenarios where Windows Authentication is not possible.
+
+Dispose method :: Dispose method is used to release unmanaged resources, such as file handles, database connections, and network sockets. It is a part of the IDisposable interface and is called when an object is no longer needed.
+
+connection pooling :: Connection pooling is a technique used to improve the performance of database connections by reusing existing connections instead of creating new ones. It is managed by the ADO.NET provider and is enabled by default.
+It can be configured using the connection string parameters, such as Max Pool Size and Min Pool Size.
+"Server=myServerAddress;Database=myDataBase;User Id=myUsername;Password=myPassword;Max Pool Size=100;Min Pool Size=10;"
+> Max Pool Size - specifies the maximum number of connections that can be in the pool.
+> Min Pool Size - specifies the minimum number of connections that can be in the pool.
+
+conditions for connection pooling to work:
+> The connection string must be identical for connections to be pooled.
+> The connections must be opened and closed properly using the Open() and Close() methods.
+> The connections must be created using the same ADO.NET provider.
+> The connections must be created using the same connection string parameters.
+> The connections must be created using the same user credentials.
+> The connections must be created using the same application name.
+> The connections must be created using the same network protocol.
+> The connections must be created using the same database.
+Common network protocols:
+•	tcp (TCP/IP)
+•	np (Named Pipes)
+•	lpc (Shared Memory)
+•	via (Virtual Interface Adapter, rarely used)
+
+DLL hell :: multiple app sharing same assembly and it is modified by 1 application and break the backward compatibility so other applications cant use them.
+publish in GAC to avoid DLL hell.if u want to update the assembly then change the version and publish in GAC.
+GAC :: Global Assembly Cache is a machine-wide code cache that stores assemblies specifically designated to be shared by several applications on the computer. It is used to avoid DLL hell and to manage versioning of assemblies.
+To install an assembly into the GAC, you can use the Global Assembly Cache Tool (Gacutil.exe) that comes with the .NET Framework SDK.
+gacutil -i MyAssembly.dll
+An MSI installer, a CAB archive, and XCOPY command. to install in GAC.
+
+satellite assembly :: A satellite assembly is a .NET assembly that contains only resources for a specific culture or language. It is used to support localization and globalization of applications.
+It is created by compiling resource files (.resx) into a separate assembly using the AL.exe tool that comes with the .NET Framework SDK.
+al /t:lib /embed:MyResources.resx /culture:fr /out:MyAssembly.resources.dll
+System.Globalization and System.Resources. required for localization.
+
+gc.collect() :: GC.Collect() is a method that forces the garbage collector to run and reclaim memory from objects that are no longer in use. It is not recommended to call this method explicitly, as the garbage collector is designed to run automatically and efficiently.
+
+
+
+
+

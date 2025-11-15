@@ -1,0 +1,118 @@
+1. Azure Fundamentals (Beginner)
+Azure Overview
+Cloud concepts: IaaS, PaaS, SaaS
+Public, private, hybrid cloud
+Azure Portal & Subscription
+Azure Resource Groups
+Azure Pricing & Cost Management
+Azure Resources & Services
+Virtual Machines (VMs)
+Storage Accounts (Blob, Table, Queue
+App Services
+Azure SQL Database
+Networking Basics
+Virtual Networks (VNet)
+Network Security Groups (NSG)
+Public/Private IPs
+
+2. Azure Compute & Hosting
+App Services
+Web Apps for hosting .NET Core / Angular apps
+Deployment slots
+Scaling (Manual & Auto)
+Azure Functions
+Serverless functions
+Triggers & bindings
+Containers
+Azure Container Instances
+Azure Kubernetes Service (AKS)
+
+3. Azure Storage & Database
+Azure Storage Types
+Blob Storage (for images, files)
+File Storage (SMB)
+Queue Storage (message queues)
+Databases
+Azure SQL Database
+Cosmos DB (NoSQL)
+PostgreSQL / MySQL Managed
+Data Backup & Recovery
+Snapshots, geo-redundant storage
+
+4. Azure Networking & Security
+Networking
+VNets, Subnets
+Azure Load Balancer
+Application Gateway
+Traffic Manager
+Security
+Azure Active Directory (AAD)
+Role-Based Access Control (RBAC)
+Key Vault (Secrets / Certificates)
+Managed Identity
+
+5. DevOps & Monitoring
+Azure DevOps
+Pipelines: CI/CD for .NET Core / Angular apps
+Repos & Boards
+Monitoring
+Azure Monitor
+Application Insights (logs, performance tracking)
+Alerts & Metrics
+Automation
+Logic Apps
+Azure Automation scripts
+
+6. Advanced / Cloud-Native Features
+Serverless Architecture
+Functions + Event Grid + Storage Triggers
+Microservices
+Service Fabric
+AKS + Docker containers
+CDN & Caching
+Azure CDN
+Azure Redis Cache
+Security & Compliance
+Azure Security Center
+Compliance certifications
+
+Learnings ::
+Iaas, Paas, Saas
+Iaas - Infrastructure as a Service:
+Provides virtualized computing resources over the internet. Users manage OS, applications, and data while the provider manages the underlying infrastructure.
+Examples: Azure Virtual Machines, Amazon EC2, Google Compute Engine.
+PaaS - Platform as a Service:
+Offers a platform allowing customers to develop, run, and manage applications without dealing with the underlying infrastructure
+Examples: Azure App Service, Google App Engine, Heroku.
+SaaS - Software as a Service:
+Delivers software applications over the internet, on a subscription basis. The provider manages everything, and
+users access the software via a web browser.
+Examples: Microsoft 365, Google Workspace, Salesforce.
+
+public cloud - Services are delivered over the public internet and shared across multiple organizations. Examples: Azure, AWS, Google Cloud.
+private cloud - Cloud infrastructure is dedicated to a single organization, either on-premises or hosted by
+a third party. Examples: VMware vSphere, OpenStack.
+hybrid cloud - Combines public and private clouds, allowing data and applications to be shared between
+them. Examples: Azure Stack, AWS Outposts.
+
+Azure Portal & Subscription
+Azure Portal - A web-based interface for managing Azure resources and services.
+Azure Subscription - A logical container for Azure resources, tied to a billing account.(Pay-As-You-Go, Free Trial, or Enterprise Agreement.)
+>> Multiple VMs in different RGs can connect to the same VNet using peering.
+>> Blobs or queues can be accessed via connection strings by apps in any RG.
+>> Secrets and keys can be accessed by apps in multiple RGs using RBAC or access policies.
+Azure Resource Groups - A container that holds related Azure resources for an application or service.
+Azure Pricing & Cost Management - Tools and services to monitor, allocate, and optimize cloud spending.
+Azure Resources & Services - Various services offered by Azure, including compute, storage, networking, and databases.
+Virtual Machines (VMs) - On-demand, scalable computing resources that can run various operating systems
+Storage Accounts - A secure account to store data objects like blobs, files, queues, and tables
+App Services - A platform for building, deploying, and scaling web apps and APIs
+Azure SQL Database - A managed relational database service based on SQL Server
+Networking Basics - Fundamental concepts of networking in Azure, including IP addressing, DNS, and routing
+Virtual Networks (VNet) - A logically isolated network in Azure for securely connecting Azure resources
+Network Security Groups (NSG) - A set of rules to control inbound and outbound traffic to.
+Public/Private IPs - IP addresses assigned to Azure resources for communication over the internet or within a VNet
+
+Azure Compute & Hosting
+App Services - A fully managed platform for building, deploying, and scaling web apps and APIs
+webApps : A service for hosting web applications, RESTful APIs, and mobile backends

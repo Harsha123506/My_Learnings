@@ -8,3 +8,9 @@ Publish ? Code (or Docker Container if you want).
 Runtime Stack ? choose .NET, Node, Java, Python, etc.
 Region ? closest to your users.
 Pricing Plan ? Start with Free (F1) or Basic (B1).
+
+SQL ::
+================
+select users_data.name,AVG(salary),sum(salary),max(salary),min(salary) from users_data right join employee_data on users_data.name = employee_data.name	group by users_data.name
+we cant use non aggregated columns without groupby clause. and note the columns should be in group by clause or should be aggregated.
+

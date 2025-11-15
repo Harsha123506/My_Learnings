@@ -1,0 +1,267 @@
+﻿File Handlindg in C# ::
+1. Using System.IO Namespace:
+   - The System.IO namespace provides classes for working with files and directories.
+   - Common classes include File, Directory, FileStream, StreamReader, and StreamWriter.
+2. Creating a File:
+   - You can create a file using the File.Create method.
+
+File → Static methods for file operations.
+FileInfo → Instance-based operations on files.
+Directory → Static methods for directory operations.
+DirectoryInfo → Instance-based directory operations.
+Path → Utilities for working with file/directory paths.
+StreamReader / StreamWriter → For text file reading/writing.
+FileStream → For byte-level file operations.
+BinaryReader / BinaryWriter → For binary data.
+
+File Class Common Methods:
+📌 1. Create and Write
+File.Create(path) → Creates a new file and returns a FileStream.
+File.WriteAllText(path, contents) → Creates a file (if not exists) and writes text.
+File.WriteAllLines(path, string[]) → Writes an array of strings, each as a new line.
+File.AppendAllText(path, contents) → Appends text to an existing file.
+File.AppendAllLines(path, string[]) → Appends multiple lines to an existing file.
+File.OpenWrite(path) → Opens a file for writing (returns FileStream).
+
+📌 2. Read
+File.ReadAllText(path) → Reads the whole file as a single string.
+File.ReadAllLines(path) → Reads all lines into a string array.
+File.ReadAllBytes(path) → Reads file data into a byte array.
+File.OpenRead(path) → Opens an existing file for reading (FileStream).
+File.ReadLines(path) → Lazily reads lines (better for large files).
+
+📌 3. Copy, Move, Delete
+File.Copy(source, destination) → Copies a file.
+File.Move(source, destination) → Moves/renames a file.
+File.Delete(path) → Deletes a file.
+
+📌 4. Existence & Info
+File.Exists(path) → Checks if a file exists (returns true/false).
+File.GetCreationTime(path) → Gets file creation date/time.
+File.GetLastWriteTime(path) → Gets last modified time.
+File.GetLastAccessTime(path) → Gets last access time.
+File.GetAttributes(path) → Gets file attributes (e.g., read-only, hidden).
+File.SetAttributes(path, FileAttributes) → Sets attributes.
+
+📌 5. Open File (for advanced usage)
+File.Open(path, FileMode) → Opens a file with given mode (Read, Write, Append, etc.).
+File.OpenRead(path) → Opens file for reading.
+File.OpenWrite(path) → Opens file for writing.
+File.OpenText(path) → Opens file for reading text (StreamReader).
+File.CreateText(path) → Creates/overwrites and returns a StreamWriter.
+File.AppendText(path) → Opens file for appending text (StreamWriter).
+
+📌 6. Encryption/Decryption
+File.Encrypt(path) → Encrypts a file.
+File.Decrypt(path) → Decrypts a file.
+
+FileInfo Class :
+- FileInfo provides instance methods for file operations.
+- You create a FileInfo object by passing the file path to its constructor.
+
+Directory Class Common Methods:
+📌 1. Create and Delete
+Directory.CreateDirectory(path) → Creates a directory (and any necessary subdirectories).
+Directory.Delete(path) → Deletes an empty directory.
+Directory.Delete(path, true) → Deletes a directory and its contents recursively.
+Directory.Move(source, destination) → Moves/renames a directory.
+Directory.Exists(path) → Checks if a directory exists (returns true/false).
+
+📌 2. Get Info
+Directory.GetFiles(path) → Gets an array of file names in the directory.
+Directory.GetDirectories(path) → Gets an array of subdirectory names.
+Directory.GetFileSystemEntries(path) → Gets all files and directories.
+Directory.GetCreationTime(path) → Gets directory creation date/time.
+Directory.GetLastWriteTime(path) → Gets last modified time.
+Directory.GetLastAccessTime(path) → Gets last access time.
+Directory.GetParent(path) → Gets the parent directory.
+Directory.GetCurrentDirectory() → Gets the current working directory.
+Directory.SetCurrentDirectory(path) → Sets the current working directory.
+
+📌 3. Enumerate (for large directories)
+Directory.EnumerateFiles(path) → Lazily enumerates file names.
+Directory.EnumerateDirectories(path) → Lazily enumerates subdirectory names.
+Directory.EnumerateFileSystemEntries(path) → Lazily enumerates all files and directories.
+
+DirectoryInfo Class :
+- DirectoryInfo provides instance methods for directory operations.
+- You create a DirectoryInfo object by passing the directory path to its constructor.
+
+Path Class Common Methods:
+📌 1. Combine Paths
+Path.Combine(path1, path2, ...) → Combines multiple strings into a single path.
+Path.Join(path1, path2, ...) → Similar to Combine but does not check for invalid characters.
+
+📌 2. Get Parts of a Path
+Path.GetDirectoryName(path) → Gets the directory part of the path.
+Path.GetFileName(path) → Gets the file name and extension.
+Path.GetFileNameWithoutExtension(path) → Gets the file name without extension.
+Path.GetExtension(path) → Gets the file extension.
+Path.GetFullPath(path) → Gets the absolute path.
+Path.GetTempPath() → Gets the path of the temporary folder.
+Path.GetTempFileName() → Creates a temporary file and returns its path.
+Path.GetRandomFileName() → Generates a random file name.
+Path.HasExtension(path) → Checks if the path has an extension.
+Path.IsPathRooted(path) → Checks if the path is absolute (rooted).
+Path.GetPathRoot(path) → Gets the root of the path (e.g., "C:\").
+Path.GetInvalidFileNameChars() → Gets invalid characters for file names.
+Path.GetInvalidPathChars() → Gets invalid characters for paths.
+Path.DirectorySeparatorChar → Gets the platform-specific directory separator (e.g., '\' or '/').
+Path.AltDirectorySeparatorChar → Gets the alternative directory separator (e.g., '/' on Windows).
+Path.VolumeSeparatorChar → Gets the volume separator character (e.g., ':').
+Path.PathSeparator → Gets the character used to separate paths in environment variables (e.g., ';' on Windows).
+Path.TrimEndingDirectorySeparator(path) → Removes any trailing directory separator from the path.
+Path.GetRelativePath(basePath, path) → Gets the relative path from basePath to path.
+Path.ChangeExtension(path, newExtension) → Changes the extension of the path.
+Path.GetInvalidFileNameChars() → Gets invalid characters for file names.
+Path.GetInvalidPathChars() → Gets invalid characters for paths.
+Path.GetTempFileName() → Creates a temporary file and returns its path.
+Path.GetTempPath() → Gets the path of the temporary folder.
+Path.GetRandomFileName() → Generates a random file name.
+Path.IsPathFullyQualified(path) → Checks if the path is fully qualified (absolute).
+Path.GetPathRoot(path) → Gets the root of the path (e.g., "C:\").
+
+streamReader and StreamWriter Classes:
+- StreamReader is used for reading text from a file.
+- StreamWriter is used for writing text to a file.
+
+StreamReader Common Methods:
+
+📌 1. Create
+StreamReader reader = new StreamReader(path);
+StreamReader reader = File.OpenText(path); // Alternative
+
+📌 2. Read
+string line = reader.ReadLine(); // Reads a single line
+string allText = reader.ReadToEnd(); // Reads the entire file
+string[] lines = File.ReadAllLines(path); // Reads all lines into an array
+IEnumerable<string> linesEnum = File.ReadLines(path); // Lazily reads lines
+
+📌 3. Close
+reader.Close(); // Closes the reader
+reader.Dispose(); // Disposes the reader (also closes it)
+
+StreamWriter Common Methods:
+
+📌 1. Create
+StreamWriter writer = new StreamWriter(path);
+StreamWriter writer = File.CreateText(path); // Alternative
+StreamWriter writer = File.AppendText(path); // Opens for appending
+📌 2. Write
+writer.WriteLine("Hello, World!"); // Writes a line
+writer.Write("Some text"); // Writes text without a new line
+writer.WriteLine(string[] lines); // Writes multiple lines
+writer.Flush(); // Flushes the buffer to the file
+
+📌 3. Close
+writer.Close(); // Closes the writer
+writer.Dispose(); // Disposes the writer (also closes it)
+
+FileStream Class:
+- FileStream is used for reading and writing bytes to a file.
+Common Methods:
+📌 1. Create
+FileStream fs = new FileStream(path, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+FileStream fs = File.Open(path, FileMode.Open, FileAccess.Read); // Alternative for reading
+FileStream fs = File.Open(path, FileMode.Create, FileAccess.Write); // Alternative for writing
+
+📌 2. Read/Write
+byte[] buffer = new byte[1024];
+int bytesRead = fs.Read(buffer, 0, buffer.Length); // Reads bytes into buffer	
+fs.Write(buffer, 0, bytesRead); // Writes bytes from buffer
+fs.Seek(offset, SeekOrigin.Begin); // Moves the file pointer
+fs.SetLength(newLength); // Sets the length of the file
+📌 3. Close
+fs.Close(); // Closes the FileStream
+fs.Dispose(); // Disposes the FileStream (also closes it)
+
+BinaryReader and BinaryWriter Classes:
+- BinaryReader is used for reading binary data from a file.
+- BinaryWriter is used for writing binary data to a file.
+Common Methods:
+📌 1. Create
+BinaryReader br = new BinaryReader(File
+.Open(path, FileMode.Open, FileAccess.Read));
+BinaryWriter bw = new BinaryWriter(File .Open(path, FileMode.Create, FileAccess.Write));
+📌 2. Read/Write
+int intValue = br.ReadInt32(); // Reads a 32-bit integer
+string strValue = br.ReadString(); // Reads a string
+bw.Write(intValue); // Writes a 32-bit integer
+bw.Write(strValue); // Writes a string
+📌 3. Close
+br.Close(); // Closes the BinaryReader
+br.Dispose(); // Disposes the BinaryReader (also closes it)
+
+1> stringBuilder Class:
+- StringBuilder is used for efficient string manipulation, especially when performing multiple modifications.
+Common Methods:
+📌 1. Create
+StringBuilder sb = new StringBuilder(); // Default capacity
+StringBuilder sb = new StringBuilder("Initial text"); // With initial text
+StringBuilder sb = new StringBuilder(100); // With specified capacity
+StringBuilder sb = new StringBuilder("Initial text", 100); // With initial text and capacity
+📌 2. Modify
+sb.Append(" More text"); // Appends text
+sb.AppendLine(" New line"); // Appends text with a new line
+sb.Insert(0, "Start: "); // Inserts text at a specific index
+sb.Replace("text", "string"); // Replaces occurrences of a substring
+sb.Remove(0, 6); // Removes text from a specific index
+sb.Clear(); // Clears the StringBuilder
+sb.EnsureCapacity(200); // Ensures a minimum capacity
+sb.Capacity = 300; // Sets the capacity
+sb.Length = 50; // Sets the length (truncates or pads with nulls)
+📌 3. Retrieve
+string result = sb.ToString(); // Converts to a regular string
+char ch = sb[0]; // Accesses a character at a specific index
+int length = sb.Length; // Gets the current length
+int capacity = sb.Capacity; // Gets the current capacity
+int index = sb.IndexOf("string"); // Finds the index of a substring (custom extension method needed)
+int lastIndex = sb.LastIndexOf("string"); // Finds the last index of a substring (custom extension method needed)
+string substring = sb.ToString(0, 10); // Gets a substring	
+// Note: IndexOf and LastIndexOf are not built-in methods of StringBuilder. You would need to implement them as extension methods if needed.
+
+declaring array in C# ::
+dataType[] arrayName = new dataType[size];
+dataType[] arrayName = {value1, value2, value3};
+dataType[] arrayName = new dataType[] {value1, value2, value3};
+dataType[,] arrayName = new dataType[rows, columns];
+dataType[,] arrayName = { {value1, value2}, {value3, value4} };
+dataType[,] arrayName = new dataType[,] { {value1, value2}, {value3, value4} };
+
+declaring list in C# ::
+List<dataType> listName = new List<dataType>();
+List<dataType> listName = new List<dataType> {value1, value2, value3};
+List<dataType> listName = new List<dataType>(capacity);
+List<dataType> listName = new List<dataType>(IEnumerable<dataType> collection);
+
+array.sort()	:: sorts the array in ascending order
+array.reverse()	:: reverses the array
+
+HashTable in C# ::
+- Hashtable is a collection that stores key-value pairs and allows for fast retrieval based on keys.
+Common Methods:
+📌 1. Create
+Hashtable ht = new Hashtable(); // Default constructor
+Hashtable ht = new Hashtable(int capacity); // With initial capacity
+Hashtable ht = new Hashtable(IDictionary dictionary); // From another dictionary
+Hashtable ht = new Hashtable(int capacity, float loadFactor); // With capacity and load factor
+Hashtable ht = new Hashtable(IEqualityComparer comparer); // With custom compare
+📌 2. Add/Remove
+ht.Add(key, value); // Adds a key-value pair
+ht[key] = value; // Adds or updates a key-value pair
+ht.Remove(key); // Removes a key-value pair by key
+ht.Clear(); // Clears all key-value pairs
+📌 3. Retrieve
+object value = ht[key]; // Retrieves value by key
+
+hashtable vs dictionary in C# ::
+Feature	Hashtable	Dictionary<TKey, TValue>
+hashtable(old) is non generic need to box and unbox.will be less faster than dictionary.
+
+Generics : Type safe , no boxing/unboxing, better performance, ReUsability.
+
+
+
+
+
+

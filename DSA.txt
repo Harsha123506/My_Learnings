@@ -1,0 +1,10 @@
+Abstract Data Type :: Hiding Details of a data structure 
+It provides a method to access and modify the data structure without exposing its implementation details.
+Example: Stack, Queue, List, Tree, Graph
+
+Timecomplexity :: measure max time taken by code to complete the logic;
+spacecomplexity  :: measure max space needed for the code ;
+
+O notation -- Worst Case  f(n) <= cg(n);
+Omega Notation -- best case 
+theta notation -- average notation 

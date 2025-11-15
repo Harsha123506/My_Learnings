@@ -385,3 +385,126 @@ Independent deployments
 
 Docker and Kubernetes support
 
+
+bust, scalable applications from day one.
+
+What is .NET Core, and how is it different from the .NET Framework?
+How do you install .NET Core SDK?
+What is the purpose of the dotnet new command?
+How does .NET Core support cross-platform development?
+What are the main benefits of using .NET Core for application development?
+What is the role of the Common Language Runtime (CLR) in .NET Core?
+Explain the structure of a .NET Core project.
+What is the difference between dotnet run and dotnet build commands?
+How do you create a new ASP.NET Core MVC project from scratch?
+What is Kestrel, and why is it used in .NET Core?
+How does .NET Core support dependency injection?
+Explain what middleware is in ASP.NET Core.
+How does routing work in ASP.NET Core MVC?
+What is an API controller, and how does it differ from an MVC controller in .NET Core?
+What is appsettings.json, and how do you configure settings in it?
+What is Entity Framework Core, and what is its primary use?
+How do you connect a .NET Core application to a SQL Server database?
+How does the IConfiguration interface work in .NET Core?
+What are NuGet packages, and how are they used in .NET Core projects?
+Explain how you handle errors using try-catch in .NET Core.
+What is the role of the Program.cs file in a .NET Core project?
+What is Startup.cs, and what are its responsibilities?
+How do you enable HTTPS in a .NET Core application?
+How do you implement basic logging in .NET Core?
+What is model binding in ASP.NET Core MVC?
+Explain what ViewData, ViewBag, and TempData are in ASP.NET Core.
+How do you implement validation in ASP.NET Core using data annotations?
+What is a RESTful API, and how do you build one using ASP.NET Core?
+How do you consume a Web API in a .NET Core application?
+How do you manage cookies in an ASP.NET Core application?
+What are filters in ASP.NET Core?
+How do you handle user authentication in an ASP.NET Core application?
+What is Razor, and how is it used in ASP.NET Core MVC?
+How do you serve static files in a .NET Core application?
+What is the ViewComponent in ASP.NET Core MVC?
+How do you return JSON data from a controller in ASP.NET Core?
+How do you perform file uploads in ASP.NET Core?
+What are Tag Helpers in ASP.NET Core?
+How do you publish a .NET Core application?
+What are global exception handlers, and how do you implement them in .NET Core?
+How do you implement Dependency Injection (DI) in .NET Core?
+What are the different service lifetimes in ASP.NET Core (Transient, Scoped, Singleton)?
+How do you register services in the Startup.cs file in .NET Core?
+Explain the difference between IActionResult and ActionResult in an ASP.NET Core controller.
+What is model validation, and how do you handle it in ASP.NET Core MVC?
+How do you implement exception handling globally in a .NET Core application?
+How do you use custom middleware in ASP.NET Core?
+What is the role of IHostedService in background tasks in .NET Core?
+How do you configure and use CORS (Cross-Origin Resource Sharing) in a .NET Core application?
+What is the purpose of AddMvc() and how does it differ from AddControllers() in .NET Core?
+How do you implement session management in .NET Core?
+Explain the repository pattern and how you implement it in .NET Core.
+How do you perform CRUD operations using Entity Framework Core?
+What is lazy loading, and how is it implemented in Entity Framework Core?
+How do you use migrations in Entity Framework Core to update your database?
+Explain the difference between eager loading and lazy loading in Entity Framework Core.
+How do you create and consume a Web API in .NET Core?
+How do you secure Web APIs in ASP.NET Core using JWT (JSON Web Tokens)?
+How do you enable role-based authorization in ASP.NET Core?
+How do you manage state in a stateless ASP.NET Core application?
+How do you use AutoMapper in .NET Core?
+How do you work with asynchronous programming in .NET Core using async and await?
+What is Swagger, and how do you set it up in a .NET Core Web API project?
+How do you configure database connections in .NET Core for SQL Server or another database?
+What is In-Memory Caching, and how do you use it in .NET Core?
+How do you implement distributed caching in a .NET Core application?
+What is the purpose of UseEndpoints() in ASP.NET Core?
+How do you use Dependency Injection in unit testing for .NET Core applications?
+What are Action Filters in ASP.NET Core, and how do they work?
+How do you implement rate limiting in an ASP.NET Core Web API?
+How do you configure logging providers (e.g., Serilog, NLog) in a .NET Core application?
+What are background services in .NET Core, and how do you use them?
+How do you implement a health check endpoint in a .NET Core application?
+What are Hosted Services in .NET Core, and how do they differ from standard services?
+How do you work with RabbitMQ or other message brokers in .NET Core?
+How do you implement token-based authentication in .NET Core?
+How do you integrate Identity Server with .NET Core for authentication?
+How do you enable response caching in .NET Core Web APIs?
+How do you manage connection pooling for high-performance databases in .NET Core?
+How do you handle concurrency in Entity Framework Core?
+What is the CQRS (Command Query Responsibility Segregation) pattern, and how do you implement it in .NET Core?
+How do you handle distributed transactions in a microservice architecture using .NET Core?
+How do you implement the Event Sourcing pattern in .NET Core?
+Explain the Saga pattern for handling distributed transactions in .NET Core microservices.
+How do you integrate .NET Core with Docker, and what are the benefits?
+How do you handle logging in microservices using centralized logging in .NET Core?
+How do you implement Polly for handling transient faults in .NET Core applications?
+How do you integrate gRPC in a .NET Core application for inter-service communication?
+What are the best practices for optimizing performance in high-traffic .NET Core applications?
+How do you implement Circuit Breaker and Retry patterns using Polly in .NET Core?
+How do you manage caching at scale for distributed applications in .NET Core?
+How do you deploy a .NET Core application to a Kubernetes cluster?
+How do you handle API versioning in an ASP.NET Core Web API?
+How do you integrate OAuth2 and OpenID Connect in a .NET Core application?
+How do you implement hybrid transactions across microservices in .NET Core?
+How do you secure microservices using JWT and Identity Server in .NET Core?
+What is GraphQL, and how do you implement it in .NET Core?
+How do you scale an ASP.NET Core application using Azure Kubernetes Service (AKS)?
+How do you handle message-driven microservices using RabbitMQ in .NET Core?
+How do you implement distributed tracing in a .NET Core microservice architecture?
+How do you implement zero-downtime deployments for .NET Core applications in production?
+How do you work with Azure Functions in a .NET Core application?
+How do you handle large file uploads and downloads in a .NET Core Web API?
+What are the different strategies for scaling out microservices in .NET Core?
+How do you optimize SQL queries using Dapper in .NET Core?
+How do you handle concurrency conflicts in a multi-user Entity Framework Core application?
+How do you implement a global exception handler for microservices in .NET Core?
+How do you implement authentication using Active Directory and Azure AD in .NET Core?
+How do you secure a .NET Core application with HTTPS and certificates?
+How do you integrate ElasticSearch with .NET Core for full-text search capabilities?
+How do you implement API Gateway in a microservices architecture with .NET Core?
+What is Orleans, and how do you use it in .NET Core for distributed systems?
+How do you implement JWT refresh tokens securely in a .NET Core Web API?
+How do you optimize memory management and garbage collection in .NET Core for high-performance applications?
+How do you handle multitenancy in an ASP.NET Core application?
+How do you configure load balancing for .NET Core applications running on Kubernetes?
+How do you monitor performance and health in a production .NET Core application?
+How do you implement WebSockets for real-time communication in ASP.NET Core?
+How do you integrate message queues like Azure Service Bus in a .NET Core application?
+How do you architect a microservice-based solution using .NET Core for cloud-native applications?
