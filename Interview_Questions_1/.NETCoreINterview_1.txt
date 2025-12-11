@@ -388,6 +388,273 @@ Docker and Kubernetes support
 
 bust, scalable applications from day one.
 
+1> What is the difference between tuples and valueTuples?
+
+tuple :: 
+Tuple<int, string> tup1 = new Tuple<int, string>(1,"data1");
+var tup2 = Tuple.Create((1,"data2")); //can have negative performance implications.
+tup1.Item1 --> to fetch first element from tuple
+tup2.Item2 --> to fetch second element from the tuples.
+ValueTuple<int,string> tupval = new ValueTuple<int,string>((2,"678"));
+var valueTuple = (1,"datyaj"); //its a value type. // valueTuple is mutable. // fields can have names  // mutable // can have more than 8 items.
+
+2> WHat is the difference between "is" and "as"??
+is ==> willl check whether if the variable is of specific type 
+as ==> will try to cast the value to specific type // will throw null if it couldn't cast // we cant use as to cast value types 
+
+3> what is the use of using statement ?
+using directive is used to include namespaces in the program. and also we can create alias for the namespaces. //global using directive is used to include namespaces across the project.
+using statement is used to ensure that IDisposable objects are disposed of properly.
+
+4> dynamic keyword in c#?
+will check the type at runtime // bypass compile time type checking // can lead to runtime errors if not used carefully.
+when we need to use .net compatible language which is type free (iron Python).
+
+"What is the difference between strongly-typed and weakly-typed
+ programming languages?"
+ the type automatically convert in weakly types without any type casting.
+
+ "What is the difference between statically-typed and dynamically-typed
+ programming languages?"
+ statically typed --> type checking is done at compile time.
+
+ "What are COM objects?"
+ COM stands for “Component Object Model” and it’s a binary-interface standard
+ for Windows software components. In simple terms, a COM object is something
+ that can be understood by different Windows programs, and for example, it
+ can allow communication between Excel and C# programs
+
+5> What are expression Bodied Members ?
+A single expresson return method can be write without braces as right side of arrow mark.
+we can use them in defining properties 
+
+public Person(string Name) => Name = name;
+
+6> What are Func and Lambda expressions ?
+Func  :: allow us to define type of a function.
+Func<int, DateTime, string> funcadd; // last type is the return remaining parameters.
+Action<string,string, bool> someAction; // for void return types.
+Func<int,bool> predicate1 = isLargersthan10;
+isAny(numbers, predicate1);
+OR
+isAny(numbers, isLargerthan10);
+
+Lambda : short form of defining a function with no name
+isAny(numbers , x => x%2 == 0);
+
+Delegate :
+is a type stores the reference of a method with specific signature.
+Delegate void print(string data);
+print print1 = x => console.WriteLine(x.toUpper());
+print print2 = x => console.WriteLine(x.toLower());
+print multicast = print1 + print2;
+multicast("Data");
+
+func vs delegate ==> funccan be generic , delegate may r not
+delegate can allow out parameters not like func.
+delegate can allow defualt values for paramaters.
+delegate can have params parameter unlike funcs.
+
+How does the Garbage collector knows which obj can be removed?
+works on the mechanism mark and sweep.
+1> Reference Counting // negative circular reference.
+2> Tracing used in .NET -- checks the reachability of objects for application roots
+Application Root ::  Static Fields in Classes and local variables on the thread stack.
+text inside if is not stored in stack
+3> GC do 1-- identifying objects to no longer needed 2-- Remove those objects 3-- Defragment memory.
+Generations of Objects  :: 0 , 1 ,2 ==> rarely checked. 
+Large object heaps :: > 85000 B -- they stored in LOP they wont move during defragmentation.
+they belongs to generation 2
+
+what is the difference between dispose and finalize ??
+dispose :: used to manage unmanaged resources. // Idisposable
+finalize :: used when the objects need to cleaned up by Garbage collector.
+managed : handled by clr -- objects , variables
+unmanaged : not handled by clr -- file handlers , COM Objects, Data Base connections.
+GC.Collect() --> is used to call Garbage Collector.
+Finalize vs finalizer ==> during run time the destructor turned to Finalize which is called finalizer.
+
+What are the default implementaion in interfaces ?
+Indexers ::  are the special members helps to use objects as arrays.
+public string this[int index]{
+get{
+return _dtaa[index];
+}
+set{
+data[index] = value;
+}
+}
+
+Interface and its members are by default public.
+
+new After .NET 8
+can now have method Implementaion.
+can have private methods
+can have static fields
+why?
+when we create a interface and publish then we release new version with cancel() we need to force the users to implement the cancel()
+instead we can create a icancellable inherited from Iorder(old Interface) and define cancel() which is increasinf many interface declartions in future.
+so we can use default implementation.
+
+What is deconstruction in C#?
+Allows breaking the object into its individual variables.
+(int id, string name)GetPerson() {
+    return (1, "data");
+}
+
+var (id, name) = GetPerson();
+var (_, name) = GetPerson(); // discard id) we can use _ to discard unwanted values.
+We can have a deConstruct() method in our class to support deconstruction.)
+note :: deconstruct should have same number of out parameters as the number of variables we want to deconstruct.
+public void Deconstruct(out int id, out string name) {
+    id = this.Id;
+    name = this.Name;
+}
+
+we can use extension methods to add deconstruct method to existing classes when we dont have access to that class code.
+static class DataTimeExtensions {
+    public static void Deconstruct(this DateTime dateTime, out int year, out int month, out int day) {
+        year = dateTime.Year;
+        month = dateTime.Month;
+        day = dateTime.Day;
+    }
+}
+(year, month, day) = DateTime.Now;
+
+Why is Catch(Exception) considered a bad practice?
+catching general exception cant able to handle specific exceptions.
+when to use :
+for global exception handling logging purpose.
+for cases of not handing exceptions.
+for rethrowing exceptions.
+
+throw vs throw ex?
+throw :: preserves the original stack trace.
+throw ex :: resets the stack trace to current method.
+
+typeOf vs GetType()?
+type of :: used to get the type information at compile time. // takes name of the type as parameter.
+getType() :: used to get the type information at runtime. // called on instance of the object. // defined in system.Object class.
+
+What is reflection in C#?
+Reflection is the ability of a program to examine and modify its own structure and behavior at runtime. In C#, it is provided by the System.Reflection namespace. It allows you to inspect assemblies, types, methods, properties, and attributes dynamically.
+we can able to inspect the type info at runtime.even u dont know abt it at compile time.
+we can create a new type at runtime using Reflection.Emit namespace.
+cons :: late binding , Lack of JIT Opitmization , security issues.
+
+What are attributes in C#?
+Attributes are metadata added to program elements (classes, methods, properties) to provide additional information. They are defined using square brackets [] and can be accessed via reflection at runtime.
+How to create a custom attribute?
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, Inherited = false)]
+public class MyCustomAttribute : Attribute
+{
+    public string Description { get; }
+    public int min { get; }
+    public int max { get; }
+
+    public MyCustomAttribute(string description,int min,int max)
+    {
+        Description = description;
+        min = min;
+        max = max;
+    }
+}
+
+[MyCustomAttribute]
+Public string data1 {get; set; }}
+
+public class Validator{
+    public static void ValidateProperties(object obj) {
+        var type = obj.GetType();
+        properties  = type.GetProperties().where(property => Attribute.isDefined(property,typeof(customAttribute))); // to pick the properties which has custom attribute.
+        foreach (var prop in properties) {
+            var attrs = prop.GetCustomAttributes(typeof(MyCustomAttribute), false); // to get all the attributes of specific type.
+            if(prop.GetValue(obj).Length < attrs.min and prop.GetValue(obj).Length > attrs.max) {
+                throw new Exception($"Property {prop.Name} is out of range.");
+            }
+        }
+    }
+}
+
+What is serailization and deserialization?
+Serialization is the process of converting an object into a format that can be easily stored or transmitted, such as JSON or XML. Deserialization is the reverse process of converting the serialized data back into an object.
+
+static string serialize(Person person){
+xmlSerializer serializer = new XmlSerializer(typeof(Person));
+using (StringWriter writer = new StringWriter()){
+    var xmlWriter = XmlWriter.Create(writer,new xmlWriterSettings {Indent = true});
+    xmlSerializer.Serialize(xmlWriter, person);
+    return writer.ToString();
+}}
+File.WriteAllText("person.xml", serialize(new Person{Id=1,Name="data"})); // will create a file in root directory.
+
+reading the data back:
+static Person deserialize(string xmlData){
+    xmlSerializer serializer = new XmlSerializer(typeof(Person));
+    using (StringReader reader = new StringReader(xmlData)){
+        xmlReader xmlReader = XmlReader.Create(reader);
+        return (Person)serializer.Deserialize(xmlReader);
+    }
+}
+
+[serializable] ==> tells whether the class can serialized with Binary formatter and soap formatter.
+
+What is Pattern Matching in C#?
+It is a mechanism to test the expression if it has some characteristics.
+
+public object parservalue(string str, string type){
+return type switch
+{
+"int" => int.parse(str),
+"decimal" => decimal.parse(str),
+"float" => float.parse(str),
+_ => 0 // default condition
+}
+}
+
+How binary System Works?
+the datatypes are stored in memory in binary format.and they have some limitation size.
+
+Checked keyword in c#?
+is used to define scope for overflow checking for integral type arithmetic operations and conversions.
+checked{
+try{
+    int a = int.MaxValue;
+    int b = a + 1; // will throw overflow exception.
+catch(OverflowException ex){
+    console.WriteLine("Overflow occurred: " + ex.Message);
+}
+takes more time to execute due to extra checking.
+dont put the catch aound method call instead put inside the method.
+
+double vs decimal?
+double is optimized for performance // 64 bits (52 bits for mantissa, 11 bits for exponent, 1 bit for sign)) //15-17 digits of precision
+decimal is optimized for precision in financial calculations. // 128 bits (96 bits for mantissa, 16 bits for exponent, 1 bit for sign)) // 28-29 digits of precision
+Nan => Not a number (e.g., 0/0))
+
+Jagged array : array having arrays as its elements with different sizes.
+u cant resize an array once created.
+List.Capacity --> to get or set the capacity of the list().
+List.TrimExcess() --> to set the capacity to actual number of elements in the list.
+complexity of using insert in list :: we need to move remaining elements to right side to create space for new element.
+
+use of getHashCode() and equals() methods?
+getHashCode() :: returns a hash code for the current object. used in hashing algorithms and data structures like a hash table.
+hash code works as keys in hashed collections.
+hashcode will be generated for reference types based on their memory address.but for value types its based on the value.
+so to make two objects equal we need to override getHashCode() method by combining the values hash code of properties.
+getHashCode() will use reflection to get all the properties of the object and combine their hash codes to generate a unique hash code for the object.so better to use override method for structs.
+for struct the getHashCode() generate based on values by default.
+HashCode.Combine(Title, Author, Year); // combines multiple values to generate a single hash code.
+
+Dictionary is th collection of key value pairs where key is unique.
+
+hashTable is the array of Linked Lists where each index represents a bucket.
+when we add a key value pair the hashcode of the key is calculated and based on that the index is determined to store the value in that bucket.
+we need Equals() method to check whether two keys are equal or not when there is a collision in hashcode (two keys generate same hashcode).
+
+
+
 What is .NET Core, and how is it different from the .NET Framework?
 How do you install .NET Core SDK?
 What is the purpose of the dotnet new command?
@@ -508,3 +775,4 @@ How do you monitor performance and health in a production .NET Core application?
 How do you implement WebSockets for real-time communication in ASP.NET Core?
 How do you integrate message queues like Azure Service Bus in a .NET Core application?
 How do you architect a microservice-based solution using .NET Core for cloud-native applications?
+

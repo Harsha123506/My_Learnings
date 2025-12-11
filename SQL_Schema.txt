@@ -1,0 +1,91 @@
+CREATE TABLE employees (
+    emp_no      INT             NOT NULL,  -- UNSIGNED AUTO_INCREMENT??
+    birth_date  DATE            NOT NULL,
+    first_name  VARCHAR(14)     NOT NULL,
+    last_name   VARCHAR(16)     NOT NULL,
+    gender      ENUM ('M','F')  NOT NULL,  -- Enumeration of either 'M' or 'F'  
+    hire_date   DATE            NOT NULL,
+    PRIMARY KEY (emp_no)                   -- Index built automatically on primary-key column
+                                           -- INDEX (first_name)
+                                           -- INDEX (last_name)
+);
+
+
+CREATE TABLE departments (
+    dept_no     CHAR(4)         NOT NULL,  -- in the form of 'dxxx'
+    dept_name   VARCHAR(40)     NOT NULL,
+    PRIMARY KEY (dept_no),                 -- Index built automatically
+    UNIQUE  KEY (dept_name)                -- Build INDEX on this unique-value column
+);
+
+CREATE TABLE dept_emp (
+    emp_no      INT         NOT NULL,
+    dept_no     CHAR(4)     NOT NULL,
+    from_date   DATE        NOT NULL,
+    to_date     DATE        NOT NULL,
+    KEY         (emp_no),   -- Build INDEX on this non-unique-value column
+    KEY         (dept_no),  -- Build INDEX on this non-unique-value column
+    FOREIGN KEY (emp_no) REFERENCES employees (emp_no) ON DELETE CASCADE,
+           -- Cascade DELETE from parent table 'employee' to this child table
+           -- If an emp_no is deleted from parent 'employee', all records
+           --  involving this emp_no in this child table are also deleted
+           -- ON UPDATE CASCADE??
+    FOREIGN KEY (dept_no) REFERENCES departments (dept_no) ON DELETE CASCADE,
+           -- ON UPDATE CASCADE??
+    PRIMARY KEY (emp_no, dept_no)
+           -- Might not be unique?? Need to include from_date
+);
+
+CREATE TABLE dept_manager (
+   dept_no      CHAR(4)  NOT NULL,
+   emp_no       INT      NOT NULL,
+   from_date    DATE     NOT NULL,
+   to_date      DATE     NOT NULL,
+   KEY         (emp_no),
+   KEY         (dept_no),
+   FOREIGN KEY (emp_no)  REFERENCES employees (emp_no)    ON DELETE CASCADE,
+                                  -- ON UPDATE CASCADE??
+   FOREIGN KEY (dept_no) REFERENCES departments (dept_no) ON DELETE CASCADE,
+   PRIMARY KEY (emp_no, dept_no)  -- might not be unique?? Need from_date
+);
+
+
+create table employees (
+  id int auto_increment primary key,
+  last_name varchar(10) not null,
+  first_name varchar(10) not null,
+  middle_name varchar(10),
+  age int not null,
+  current_status varchar(10) not null default 'employed')
+
+
+  CREATE TABLE books 
+	(
+		book_id INT AUTO_INCREMENT,
+		title VARCHAR(100),
+		author_fname VARCHAR(100),
+		author_lname VARCHAR(100),
+		released_year INT,
+		stock_quantity INT,
+		pages INT,
+		PRIMARY KEY(book_id)
+	);
+ 
+INSERT INTO books (title, author_fname, author_lname, released_year, stock_quantity, pages)
+VALUES
+('The Namesake', 'Jhumpa', 'Lahiri', 2003, 32, 291),
+('Norse Mythology', 'Neil', 'Gaiman',2016, 43, 304),
+('American Gods', 'Neil', 'Gaiman', 2001, 12, 465),
+('Interpreter of Maladies', 'Jhumpa', 'Lahiri', 1996, 97, 198),
+('A Hologram for the King: A Novel', 'Dave', 'Eggers', 2012, 154, 352),
+('The Circle', 'Dave', 'Eggers', 2013, 26, 504),
+('The Amazing Adventures of Kavalier & Clay', 'Michael', 'Chabon', 2000, 68, 634),
+('Just Kids', 'Patti', 'Smith', 2010, 55, 304),
+('A Heartbreaking Work of Staggering Genius', 'Dave', 'Eggers', 2001, 104, 437),
+('Coraline', 'Neil', 'Gaiman', 2003, 100, 208),
+('What We Talk About When We Talk About Love: Stories', 'Raymond', 'Carver', 1981, 23, 176),
+("Where I'm Calling From: Selected Stories", 'Raymond', 'Carver', 1989, 12, 526),
+('White Noise', 'Don', 'DeLillo', 1985, 49, 320),
+('Cannery Row', 'John', 'Steinbeck', 1945, 95, 181),
+('Oblivion: Stories', 'David', 'Foster Wallace', 2004, 172, 329),
+('Consider the Lobster', 'David', 'Foster Wallace', 2005, 92, 343);

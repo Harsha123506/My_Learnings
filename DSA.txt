@@ -8,3 +8,54 @@ spacecomplexity  :: measure max space needed for the code ;
 O notation -- Worst Case  f(n) <= cg(n);
 Omega Notation -- best case 
 theta notation -- average notation 
+
+time complexity of recursive functions  :: 
+
+T[n] + n  n > 1
+1         n = 1 
+
+then 
+
+T[n-k] + n-k-1 + n-k-2 ---- n-1 + n
+n-k = 1
+n = k+1 
+T[1] + 0 + 1 + 2 ---- n
+n(n+1)/2 -- O(n^2)
+
+Tail and Head -- calling the recursive method in the bottom is tail and head is its opposite 
+
+Tree Recursion -- Combining Both tail and head recursion.
+
+Indirect recursion -- One method is caling other and other method is calling 1st method
+methodA(n){                   
+methodB(n-1);
+}
+
+methodB(n){                   
+methodA(n-1);
+}
+
+Algorithms ::
+Linear Search --> searching untill got the data.
+
+Binary Search --> works only if the array i in sorted array 
+check the middle number if matches return else check if it is grether r less than needed number 
+
+sorting algorithm --> selection , insertion , bubble , merge , quick , heap , shell , count ,bucket , radix 
+
+stable and unstable sorting --> if u have duplicate data the order of duplicates shouldn't be changed.
+
+eg ::  4,3,5(0),5(1),1,2,6  
+
+stable 1,2,3,4,5(0),5(1),6
+unstable 1,2,3,4,5(1),5(0),6
+
+selection Sort :: pick min value from array and place it in appropriate position. (unstable and O(n^2))
+
+insertion sort :: divide array into sorted(first element intitally) and remaining and add each element from remaining to sorted and do the sorting (O(n ^ 2) stable)
+
+Bubblesort :: compare 2 numbers from the array and its continue till all the data is sorted.
+
+
+
+

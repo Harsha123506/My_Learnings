@@ -1,0 +1,54 @@
+DataBase ?? ==> a collection of data 
+DBMS --> wrapper used to manage the data collection  (oracle,postrgrelsql,mysql,sqllite);
+
+show database --> to view the database list in the serer.
+
+create database --> to create the database.
+use databasename --> to make specific db active 
+select database() --> to check which db is active 
+drop database DBname --> to delete a database
+
+Table --> is a collection of data stored in a structured format 
+
+DataTypes :: 
+Numeric  ::  int,smallint,tinyint,mediumint,bigint,decimal,numeric,float,double,bit
+string :: char,varchar,binary,varbinary,blob,tinyblob,mediumblob,longblob,text,tinytext,mediumtext,longtext,enum.
+date :: date,datetime,timstamp,time,year
+
+varchar(size) --> will store dynamic size with max size specified.
+
+create table name(name type,name type---);
+
+show tables --> to view the tables in the active database
+show tablename 
+show columns from tablename 
+describe tablename || desc tablename
+drop table tablename --> delete the whole table 
+insert into table(column1, column2) values (value1,value2);
+select * from  tablename --> to fetch all data from table 
+insert into tablename(name,age) values ("data2",val1),("data2",2),("dat3",3)
+
+NULL --> means data is unknown
+NOT NULL --> constraint to add so the data couldn't be NULL while inserting.
+DEFAULT --> Constraint used to add a default value to the column while insert.
+note : we can set the value to NULL even it has default without NOT NULL.
+
+Primary key --> unique key and not null constraint
+PRIMARY KEY (cat_id) --> to set primary key on existing table
+auto_increment --> to auto increment the value of primary key / we can use the auto increment for only one column in a table.
+
+Alias --> temporary name to the table or column for current query
+select columnname as aliasname from tablename;
+select columnname aliasname from tablename;
+
+Update table_name set column_name = value where condition
+
+source filename.sql --> to execute the sql file in mysql command line
+
+STRING Operations :::
+CONCAT(a,b,c) ==> abc
+CONCAT_WS('separator',a, b,c) ==> aseparatorbseperatorc
+
+
+
+
