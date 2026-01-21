@@ -1,0 +1,217 @@
+﻿Azure Fundamentals (Must Be Strong)
+
+Difference between Azure IaaS, PaaS, SaaS
+
+Azure Regions vs Availability Zones
+
+Azure Resource Groups – purpose and lifecycle
+
+Azure ARM templates vs Bicep vs Terraform
+
+Azure Subscription vs Management Group
+
+Azure Azure Portal vs Azure CLI vs PowerShell
+
+🔹 Compute Services
+
+Azure VM vs App Service vs Azure Functions
+
+When to use Container Apps vs AKS
+
+App Service scaling (vertical vs horizontal)
+
+Azure Functions Consumption vs Premium vs Dedicated plans
+
+Cold start problem – how do you handle it?
+
+VM Scale Sets use cases
+
+Blue-green & Canary deployments in Azure
+
+🔹 Networking (Very Important at 6 Years)
+
+VNet, Subnet, NSG, ASG differences
+
+Azure Load Balancer vs Application Gateway
+
+Azure Front Door vs Traffic Manager
+
+Private Endpoint vs Service Endpoint
+
+How does DNS work in Azure?
+
+Hybrid connectivity: VPN Gateway vs ExpressRoute
+
+How do you secure traffic between services?
+
+🔹 Storage Services
+
+Azure Blob vs File vs Queue vs Table storage
+
+Hot, Cool, Archive tiers – when to use?
+
+Azure Storage replication types (LRS, ZRS, GRS, RA-GRS)
+
+How do you secure Blob storage?
+
+SAS tokens vs Managed Identity
+
+Handling large file uploads/downloads
+
+🔹 Azure Databases
+
+Azure SQL vs SQL Managed Instance vs SQL on VM
+
+Cosmos DB – Core (SQL) API vs Mongo API
+
+Cosmos DB partition key design
+
+RUs – how to optimize?
+
+Backup & restore strategies
+
+Geo-replication & failover
+
+🔹 Security & Identity (Critical for Senior Roles)
+
+Azure Active Directory (Entra ID) basics
+
+Authentication vs Authorization
+
+Managed Identity – how and why?
+
+Role-Based Access Control (RBAC)
+
+Azure Key Vault – secrets vs keys vs certificates
+
+Securing APIs with OAuth2 / OpenID Connect
+
+Zero Trust in Azure
+
+🔹 Monitoring & Logging
+
+Azure Monitor vs Log Analytics vs Application Insights
+
+How do you troubleshoot a production issue?
+
+Custom metrics vs logs
+
+Alerts & Action Groups
+
+Distributed tracing in microservices
+
+🔹 DevOps & CI/CD (Frequently Asked)
+
+Azure DevOps vs GitHub Actions
+
+CI/CD pipeline for Azure App Service
+
+Infrastructure as Code best practices
+
+Secrets handling in pipelines
+
+Deployment slots & rollback strategies
+
+Automating database migrations
+
+🔹 High Availability & Disaster Recovery
+
+Designing for high availability in Azure
+
+RTO vs RPO
+
+Active-Active vs Active-Passive setup
+
+Azure Backup vs Azure Site Recovery
+
+Multi-region application design
+
+🔹 Performance & Cost Optimization
+
+How do you reduce Azure costs?
+
+Reserved Instances vs Savings Plans
+
+Auto-scaling strategies
+
+Identifying underutilized resources
+
+Caching strategies (Azure Redis Cache)
+
+Cost Management + Budgets
+
+🔹 Architecture & Design (Scenario-Based – Very Important)
+
+Design a high-traffic web application in Azure
+
+Design a secure REST API in Azure
+
+Design a microservices architecture
+
+Migrating on-prem apps to Azure
+
+Monolith → Microservices on Azure
+
+Handling 10x traffic spike
+
+🔹 Messaging & Integration
+
+Azure Service Bus vs Event Grid vs Event Hubs
+
+Queue vs Topic
+
+Dead-letter queues
+
+At-least-once vs exactly-once delivery
+
+Event-driven architecture use cases
+
+🔹 Containers & Kubernetes (If Applicable)
+
+AKS architecture
+
+Pods vs Nodes vs Services
+
+Ingress Controller in AKS
+
+Secrets management in AKS
+
+Rolling updates & rollback
+
+Monitoring AKS workloads
+
+🔹 Behavioral / Experience Questions
+
+Biggest Azure production issue you handled
+
+How did you optimize cost/performance?
+
+Azure service you chose incorrectly and learned from
+
+How do you review Azure architecture?
+
+How do you ensure security & compliance?
+
+⭐ What Interviewers Expect at 6+ Years
+
+You should be able to:
+
+Design systems, not just explain services
+
+Justify trade-offs
+
+Talk about real incidents
+
+Show cost + security awareness
+
+If you want, I can:
+
+Conduct a mock Azure interview
+
+Provide answers with architecture diagrams
+
+Focus on Azure for .NET developers
+
+Share real-world Azure design case studies
+
+Tailor questions for Azure Architect / Senior Dev roles

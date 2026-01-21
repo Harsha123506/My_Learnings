@@ -1,0 +1,193 @@
+﻿Core C# / .NET
+
+What is the difference between .NET Framework, .NET Core, and .NET (5+)?
+
+Explain value types vs reference types with real examples.
+
+What are immutable types? Why is string immutable?
+
+What happens internally when you use string.Concat vs StringBuilder?
+
+Explain boxing and unboxing. How can it impact performance?
+
+What is the difference between struct and class? When would you use a struct?
+
+What is Span<T> and where is it useful?
+
+What is IDisposable and how does using work internally?
+
+What is the difference between finalize and dispose?
+
+How does Garbage Collection work in .NET (Generations 0,1,2)?
+
+OOP & Design Principles
+
+Explain SOLID principles with real-world examples.
+
+What is the difference between abstract class and interface (including default interface methods)?
+
+What is dependency injection and why is it important?
+
+Explain method overloading vs method overriding.
+
+What is polymorphism and how is it implemented in C#?
+
+What are sealed classes and methods?
+
+What is composition vs inheritance? Which do you prefer and why?
+
+🔹 Advanced C#
+
+What are delegates? How are they different from interfaces?
+
+Explain Func, Action, Predicate.
+
+What are events and how are they implemented?
+
+Difference between IEnumerable, ICollection, IList.
+
+Difference between IEnumerable and IQueryable.
+
+What is LINQ deferred execution?
+
+What is Expression Tree and where is it used?
+
+Explain Covariance and Contravariance.
+
+What are Records in C#? How are they different from classes?
+
+What is with keyword in records?
+
+🔹 Asynchronous Programming & Multithreading
+
+Difference between async/await and Task.Run.
+
+What happens if you don’t use await?
+
+Explain deadlock in async code and how to prevent it.
+
+Difference between Task and Thread.
+
+What is SynchronizationContext?
+
+What is ConfigureAwait(false) and when should you use it?
+
+Explain Parallel.For vs Task.WhenAll.
+
+What is race condition? How do you avoid it?
+
+Difference between lock, Monitor, Mutex, SemaphoreSlim.
+
+What is ThreadPool?
+
+🔹 Memory & Performance
+
+What causes memory leaks in .NET?
+
+How do you detect and fix memory leaks?
+
+What is LOH (Large Object Heap)?
+
+Difference between GC.Collect() and automatic GC.
+
+How do weak references work?
+
+What is struct allocation vs heap allocation?
+
+What tools do you use for performance profiling?
+
+🔹 ASP.NET / Web API (If applicable)
+
+Difference between ASP.NET MVC and Web API.
+
+What is middleware?
+
+What is dependency injection lifecycle (Singleton, Scoped, Transient)?
+
+Explain Model Binding and Model Validation.
+
+Difference between Authentication and Authorization.
+
+What is JWT and how does it work?
+
+How does exception handling work in Web API?
+
+What is CORS?
+
+How do you implement logging and monitoring?
+
+How do you handle high concurrency in APIs?
+
+Entity Framework / Data Access
+
+Difference between EF Core and EF 6.
+
+What is DbContext lifetime?
+
+What is Change Tracking?
+
+Difference between Lazy, Eager, and Explicit loading.
+
+What is AsNoTracking?
+
+What is migration and how does it work?
+
+How do you optimize EF queries?
+
+What is N+1 query problem?
+
+Difference between FromSqlRaw and ExecuteSqlRaw.
+
+When would you use Dapper instead of EF?
+
+Design Patterns (Must-know for 6+ years)
+
+Singleton (thread-safe implementation)
+
+Factory vs Abstract Factory
+
+Repository Pattern (pros & cons)
+
+Unit of Work
+
+Strategy Pattern
+
+Observer Pattern
+
+Decorator Pattern
+
+CQRS
+
+Mediator Pattern
+
+Builder Pattern
+
+Scenario-Based / Real-World
+
+How would you improve performance of a slow API?
+
+How do you handle distributed transactions?
+
+How do you design a scalable system in .NET?
+
+How do you handle exception logging in production?
+
+How do you secure sensitive data in a .NET application?
+
+Describe a production issue you faced and how you fixed it.
+
+How do you review code as a senior developer?
+
+How do you ensure thread safety in your application?
+
+Bonus (Often Asked)
+
+Difference between ref, out, in.
+
+What is readonly vs const?
+
+What is dynamic keyword?
+
+What are extension methods?
+
+What is partial class?

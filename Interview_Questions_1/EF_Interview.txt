@@ -1,0 +1,206 @@
+﻿EF Fundamentals (Expected to be Solid)
+
+Difference between Entity Framework vs Entity Framework Core
+
+What is ORM? Pros and cons?
+
+What are DbContext and DbSet?
+
+Difference between Database First, Code First, Model First
+
+What is POCO? Why is it important?
+
+What is Change Tracking?
+
+How does EF generate SQL queries?
+
+🔹 DbContext & Lifecycle (Very Important)
+
+DbContext lifetime – Scoped vs Transient vs Singleton
+
+Why DbContext is not thread-safe?
+
+What happens if DbContext is kept alive too long?
+
+Best practices for DbContext in Web APIs
+
+Difference between Add(), Attach(), Update()
+
+What is AsNoTracking()? When to use it?
+
+Example:
+
+var users = context.Users
+                   .AsNoTracking()
+                   .Where(u => u.IsActive)
+                   .ToList();
+
+🔹 Querying & LINQ (Deep Understanding Expected)
+
+Difference between IQueryable vs IEnumerable
+
+When does LINQ query execute?
+
+How to debug generated SQL?
+
+What is deferred execution?
+
+Difference between First(), FirstOrDefault(), Single(), SingleOrDefault()
+
+How does EF handle client-side evaluation?
+
+Common LINQ performance mistakes
+
+🔹 Loading Strategies (Very Common)
+
+Difference between Eager, Lazy, Explicit loading
+
+What is the N+1 query problem?
+
+How to solve N+1 problem?
+
+Example:
+
+context.Orders
+       .Include(o => o.OrderItems)
+       .ThenInclude(i => i.Product)
+       .ToList();
+
+🔹 Performance Optimization (Must Know for 6+ Years)
+
+How to improve EF performance?
+
+When to use raw SQL vs EF?
+
+What is Compiled Queries?
+
+Impact of tracking vs no tracking
+
+Index usage in EF
+
+How to handle bulk insert/update?
+
+How to avoid Cartesian explosion?
+
+🔹 Migrations & Schema Management
+
+What are EF migrations?
+
+How do you handle migrations in production?
+
+Difference between Add-Migration vs Update-Database
+
+Rollback a migration
+
+Multiple environments & migration strategy
+
+Seed data vs migrations
+
+🔹 Relationships & Modeling
+
+Configure one-to-one, one-to-many, many-to-many
+
+Difference between data annotations vs fluent API
+
+Shadow properties
+
+Cascade delete behaviors
+
+Owned entities / Value objects
+
+Table splitting vs table per hierarchy (TPH)
+
+Example:
+
+modelBuilder.Entity<Order>()
+    .HasMany(o => o.Items)
+    .WithOne(i => i.Order)
+    .OnDelete(DeleteBehavior.Restrict);
+
+🔹 Transactions & Concurrency
+
+How does EF handle transactions?
+
+What is optimistic concurrency?
+
+RowVersion / Timestamp usage
+
+Handling concurrency conflicts
+
+Using TransactionScope vs DbContextTransaction
+
+🔹 Advanced EF Concepts (Senior Level)
+
+Global query filters
+
+Soft delete implementation
+
+Interceptors in EF Core
+
+Value converters
+
+Backing fields
+
+Owned types
+
+Split queries vs single query
+
+Temporal tables (SQL Server + EF Core)
+
+🔹 Security & Best Practices
+
+How EF prevents SQL Injection
+
+When raw SQL can be dangerous
+
+Protecting sensitive data
+
+Preventing over-posting attacks
+
+DTO vs Entity exposure
+
+🔹 Real-World Scenario Questions
+
+How would you fix a slow EF query in production?
+
+Large dataset pagination best practices
+
+How to log and analyze EF SQL queries?
+
+Migrating legacy stored procedures to EF
+
+Handling multi-tenant databases
+
+EF in microservices architecture
+
+🔹 Behavioral / Experience-Based
+
+Biggest EF performance issue you faced and solution
+
+EF vs Dapper – when and why?
+
+How do you review EF code?
+
+How do you mentor juniors on EF best practices?
+
+⭐ Interview Expectations for 6+ Years
+
+Interviewers expect you to:
+
+Explain why, not just what
+
+Understand generated SQL
+
+Balance EF convenience vs performance
+
+Demonstrate production experience
+
+If you want, I can:
+
+Provide answers with code examples
+
+Do a mock EF interview
+
+Compare EF Core vs Dapper
+
+Focus on EF Core 6/7/8 specific questions

@@ -1,0 +1,197 @@
+C# Language
+
+What is the difference between ref, out, and in parameters?
+
+Explain value types vs reference types. How does memory allocation differ?
+
+What are immutability and readonly vs const?
+
+How does Span<T> improve performance?
+
+What is boxing and unboxing? How can you avoid it?
+
+Difference between IEnumerable, IQueryable, and IAsyncEnumerable
+
+What are records in C#? When would you use them?
+
+Explain pattern matching and its real-world use.
+
+What is Garbage Collection? How does GC work internally?
+
+What are finalizers and IDisposable? When do you implement them?
+
+2. .NET Runtime & Memory Management
+
+Explain Managed vs Unmanaged memory
+
+What are GC generations (Gen 0, 1, 2)?
+
+What is LOH (Large Object Heap)?
+
+How do you detect memory leaks in .NET?
+
+What are Weak References?
+
+What happens when you call GC.Collect()?
+
+3. ASP.NET Core
+Fundamentals
+
+Difference between ASP.NET MVC and ASP.NET Core
+
+Explain the request lifecycle in ASP.NET Core
+
+What is Middleware? How is it different from filters?
+
+Explain Kestrel and IIS integration
+
+What is Web API vs Minimal API?
+
+Dependency Injection
+
+Explain Singleton, Scoped, Transient
+
+When would you use Scoped vs Singleton?
+
+What problems does DI solve?
+
+Filters & Security
+
+What are Action Filters, Authorization Filters, Exception Filters?
+
+How does Authentication vs Authorization work?
+
+What is JWT authentication?
+
+How do you secure Web APIs?
+
+4. Entity Framework Core
+
+Difference between EF Core and EF 6
+
+Explain DbContext lifetime
+
+What is Change Tracking?
+
+What are Tracking vs No-Tracking queries?
+
+What is Lazy, Eager, Explicit Loading?
+
+What are Migrations? How do you handle production migrations?
+
+What is Compiled Query?
+
+How do you optimize EF Core performance?
+
+What is N+1 problem?
+
+Explain Concurrency handling in EF Core
+
+5. LINQ & Performance
+
+How does LINQ work internally?
+
+Difference between Select and SelectMany
+
+What is Deferred Execution?
+
+When does LINQ execute immediately?
+
+Difference between Any() and Count()
+
+How do you optimize LINQ queries?
+
+What are Expression Trees?
+
+6. Asynchronous Programming
+
+Difference between async/await and Tasks
+
+What is deadlock in async programming?
+
+Explain ConfigureAwait(false)
+
+Difference between Parallel vs Async
+
+When to use Task.Run()
+
+What is Thread Pool?
+
+How do you handle exceptions in async code?
+
+7. Design Patterns & Architecture
+Design Patterns
+
+Explain SOLID principles
+
+What is Repository Pattern? Do you always recommend it?
+
+Explain Factory, Singleton, Strategy, Decorator
+
+What is CQRS?
+
+What is Unit of Work?
+
+Architecture
+
+What is Clean Architecture?
+
+Difference between Monolithic vs Microservices
+
+How do you handle cross-cutting concerns?
+
+What is API Gateway?
+
+How do you version APIs?
+
+8. Testing
+
+Difference between Unit, Integration, and Functional testing
+
+What is Mocking?
+
+Tools used: xUnit, NUnit, MSTest, Moq
+
+How do you test Controllers and Services?
+
+What is TDD?
+
+How do you test async methods?
+
+9. DevOps & Deployment (Common for 6+ Years)
+
+What is CI/CD?
+
+How do you deploy ASP.NET Core apps?
+
+What is Docker? How do you containerize .NET apps?
+
+What are Health Checks?
+
+How do you handle logging (Serilog, NLog)?
+
+What is Application Insights?
+
+10. Scenario-Based Questions (Very Important)
+
+How would you improve API performance?
+
+How do you handle high concurrency?
+
+How do you design a scalable Web API?
+
+How do you handle exceptions globally?
+
+How would you refactor a legacy .NET application?
+
+How do you handle database transactions?
+
+Bonus: HR + Behavioral
+
+Biggest technical challenge you solved?
+
+How do you mentor junior developers?
+
+How do you handle production issues?
+
+Explain a performance issue you fixed.

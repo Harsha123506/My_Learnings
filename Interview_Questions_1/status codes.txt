@@ -1,0 +1,32 @@
+100 informational 
+100 - ready to receive the body, 
+101 - server can able to switch to different protocol in same request.
+
+200 success
+200 -- successful request , 
+201 -- Resource successfully Created ,
+202 - Accepted -Request Is Processing asynchronously but the output cannot be determined, 
+204 -- No content, success with no response for delete and put.
+
+300 redirections -- 
+301 - indicating the request resource moved to new url permanently, 
+302 - indicating the request resource moved to new url temporarily keeping old index., 
+304 - indicates the source is not changed since last visit. used in caching.
+ 
+400  client error -- 
+400 - BadRequest invalid request format or parameters, 
+401 - unauthorized, user authentication fails, 
+403 - Forbidden, user Is not authorized to accesss the content., 
+404 - NotFound, Route url breakdown
+405 - Method not allowed, request exists but http method is not allowed, (Post instead of get)
+429 - Too Many Requests, requests are coming more than the rate limiting threshold
+422 - Unprocessable, the request body is not processable due to 
+Missing required Fields, incorrect data formats, invalid values,incorrect content-type header
+
+400 vs 422 -- structure error --- semantic or validation errors.
+
+500 - internal server error ,Server Misconfiguration, Code errors, Database Issues, Insufficient resources, Third-Party Dependencies.
+502 - Bad GateWay, This is because the server sent invalid response due to server down , server Overload, Network Issues.
+503 - Service Unavailable , temporarily due to maintenance or being overloaded
+504 - Gat way timedout, did not receive response from the server.
+

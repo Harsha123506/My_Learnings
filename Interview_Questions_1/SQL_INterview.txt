@@ -1,0 +1,169 @@
+﻿Difference between DELETE vs TRUNCATE vs DROP
+
+What are ACID properties? Explain with examples
+
+Explain normalization vs denormalization
+
+What is a candidate key, composite key, surrogate key?
+
+Difference between WHERE vs HAVING
+
+Difference between UNION vs UNION ALL
+
+Difference between CHAR vs VARCHAR
+
+What is NULL? How is it handled in comparisons?
+
+Explain constraints (PK, FK, UNIQUE, CHECK)
+
+What are views? Are they stored physically?
+
+🔹 Joins (Very Important)
+
+Difference between INNER, LEFT, RIGHT, FULL JOIN
+
+What is a self join? Give a real use case
+
+Difference between JOIN vs SUBQUERY
+
+How do joins behave with NULL values?
+
+Explain cross join and where it is used
+
+How do you find records in table A not in table B?
+
+Example:
+
+SELECT *
+FROM employees e
+LEFT JOIN salaries s ON e.id = s.emp_id
+WHERE s.emp_id IS NULL;
+
+🔹 Indexing & Performance (Must Know)
+
+What is an index? How does it work internally?
+
+Difference between clustered vs non-clustered index
+
+When not to use an index?
+
+How many clustered indexes can a table have and why?
+
+What is a covering index?
+
+How to identify slow queries?
+
+Difference between B-Tree vs Hash index
+
+What happens to indexes on INSERT/UPDATE/DELETE?
+
+🔹 Advanced SQL (Expected at 6 Years)
+
+What are window functions?
+
+Difference between RANK(), DENSE_RANK(), ROW_NUMBER()
+
+Use case of PARTITION BY
+
+What is CTE (WITH clause)?
+
+Recursive CTE use cases
+
+Difference between CTE vs Subquery vs Temp Table
+
+What are stored procedures vs functions?
+
+What is MERGE statement?
+
+Example:
+
+SELECT emp_id,
+       department,
+       RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS rank
+FROM employees;
+
+🔹 Transactions & Concurrency
+
+What is a transaction?
+
+Explain commit vs rollback
+
+What are isolation levels?
+
+Read Uncommitted
+
+Read Committed
+
+Repeatable Read
+
+Serializable
+
+What are dirty reads, non-repeatable reads, phantom reads?
+
+What is deadlock? How do you handle it?
+
+🔹 Query Writing (Hands-On Questions)
+
+Find second highest salary
+
+Find duplicate records
+
+Delete duplicate rows without losing one
+
+Find employees who earn more than their manager
+
+Fetch Nth highest salary
+
+Get top 3 salaries per department
+
+Swap column values without temp variable
+
+Example – Second Highest Salary:
+
+SELECT MAX(salary)
+FROM employees
+WHERE salary < (SELECT MAX(salary) FROM employees);
+
+🔹 Database Design & Real-World Scenarios
+
+Design a banking / e-commerce / order management schema
+
+How do you handle soft deletes?
+
+How do you store audit logs?
+
+How to design tables for high read vs high write systems?
+
+How would you optimize a query running slow in production?
+
+How do you handle data migrations?
+
+🔹 SQL vs NoSQL (Often Asked)
+
+When would you choose SQL over NoSQL?
+
+How do transactions differ in SQL vs NoSQL?
+
+Explain eventual consistency
+
+🔹 Behavioral + Scenario Questions
+
+Describe a production issue caused by SQL and how you fixed it
+
+How do you ensure data consistency across services?
+
+Have you ever optimized a query? What was the impact?
+
+How do you review SQL written by juniors?
+
+⭐ Interview Tip for 6+ Years
+
+At this level, interviewers expect:
+
+Performance tuning knowledge
+
+Clean, readable SQL
+
+Real-world tradeoffs
+
+Ability to explain execution plans

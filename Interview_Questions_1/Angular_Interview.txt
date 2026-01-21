@@ -1,0 +1,181 @@
+Core Angular & Architecture
+
+How does Angular’s change detection work internally?
+
+What is the difference between Default and OnPush change detection strategies?
+
+Explain Angular compilation: JIT vs AOT.
+
+What are standalone components? How do they differ from NgModules?
+
+How does Angular handle dependency injection hierarchy?
+
+What are providers, useClass, useValue, useFactory, and useExisting?
+
+How do you design a scalable Angular application architecture?
+
+What problems does Angular solve compared to plain JavaScript or jQuery?
+
+What are Angular signals? How do they compare with RxJS?
+
+How does zone.js work and why is it used?
+
+2. Components, Directives & Pipes
+
+Lifecycle hooks execution order and real-world use cases
+
+Difference between @ViewChild, @ContentChild, and @ViewChildren
+
+When would you use a structural directive vs a component?
+
+How do pure and impure pipes differ?
+
+How to optimize heavy pipes?
+
+What happens when an @Input() value changes?
+
+How does Angular handle content projection (ng-content)?
+
+3. RxJS & Reactive Programming (Very Important)
+
+Difference between Subject, BehaviorSubject, ReplaySubject, and AsyncSubject
+
+switchMap vs mergeMap vs concatMap vs exhaustMap
+
+How do you avoid nested subscriptions?
+
+What is cold vs hot observable?
+
+How do you handle memory leaks in Angular?
+
+Explain takeUntil and real-world usage
+
+How does the async pipe work internally?
+
+Error handling strategies in RxJS
+
+How would you retry an API call conditionally?
+
+Difference between debounceTime and throttleTime
+
+4. Forms (Template & Reactive)
+
+Template-driven vs Reactive forms – which do you prefer and why?
+
+How do custom validators work?
+
+Async validators – real-world use case
+
+How do you dynamically add/remove form controls?
+
+Difference between setValue and patchValue
+
+How do you handle cross-field validation?
+
+Form performance optimization strategies
+
+5. Routing & Navigation
+
+Lazy loading vs Preloading strategies
+
+How does Angular Route Guards work internally?
+
+Difference between CanActivate, CanActivateChild, CanLoad, and Resolve
+
+How do you handle role-based routing?
+
+How to pass data between routes?
+
+How does router state snapshot differ from observable state?
+
+6. Performance Optimization
+
+How do you optimize Angular application performance?
+
+TrackBy function – when and why?
+
+Lazy loading modules vs components
+
+How do you detect performance bottlenecks?
+
+How does server-side rendering (SSR) help performance?
+
+What is Angular Universal?
+
+How do you reduce bundle size?
+
+How does tree shaking work?
+
+7. State Management
+
+When would you use NgRx, Akita, or Signals?
+
+Explain NgRx architecture (Actions, Reducers, Effects, Selectors)
+
+How do you handle side effects?
+
+Pros and cons of NgRx
+
+How do you manage shared state without NgRx?
+
+How do you debug state issues?
+
+8. HTTP & Security
+
+How do HTTP interceptors work?
+
+How do you implement token refresh?
+
+How do you handle API errors globally?
+
+How does Angular prevent XSS?
+
+What is CSRF and how is it handled?
+
+How do you secure sensitive data in Angular?
+
+9. Testing (Often Asked for Senior Roles)
+
+Unit testing components vs services
+
+How do you mock HTTP calls?
+
+Difference between Jasmine, Karma, and Jest
+
+How do you test RxJS observables?
+
+What is TestBed?
+
+How do you test route guards and interceptors?
+
+E2E testing tools (Cypress vs Protractor)
+
+10. Advanced & Real-World Scenario Questions
+
+How would you design a large enterprise Angular application?
+
+How do you migrate from AngularJS to Angular?
+
+How do you handle multi-language (i18n) support?
+
+How do you share components across multiple projects?
+
+How do you handle authentication & authorization?
+
+What breaking changes did you face while upgrading Angular?
+
+How do you improve first contentful paint (FCP)?
+
+Explain micro-frontend architecture with Angular
+
+Bonus: Coding / Practical Questions
+
+Create a custom directive for infinite scrolling
+
+Implement debounced search using RxJS
+
+Create a reusable modal component
+
+Optimize a slow Angular page
+
+Implement lazy loaded feature module
