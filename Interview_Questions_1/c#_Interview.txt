@@ -2,109 +2,223 @@
 
 What is the difference between .NET Framework, .NET Core, and .NET (5+)?
 
+1>open source , small, fast , built in dependency, cross platform, --- mobile development compatible.
+
 Explain value types vs reference types with real examples.
+
+1> store data in heap , stores the address in heap.
 
 What are immutable types? Why is string immutable?
 
+types cannot be changed, to maintain consistency and performance.(stack is small so better to store them in heap)
+
 What happens internally when you use string.Concat vs StringBuilder?
+
+will create new string by appending new value , sb append it to same reference.
 
 Explain boxing and unboxing. How can it impact performance?
 
+convert value to reference type, need to store in heap which is slower, Garbage collection Over Head, runtime checks.
+
 What is the difference between struct and class? When would you use a struct?
+
+value type, Light Weight and fast, Used for to store simple Data. Stores in stack Memory.
 
 What is Span<T> and where is it useful?
 
+allows to store the part of collection data. Improves performance. 
+
 What is IDisposable and how does using work internally?
+
+it is an interface which will release unmanaged resources explicitly, calls dispose method with boolean dispose parameter.
+Finalizer called when detructor is declared within the class.
 
 What is the difference between finalize and dispose?
 
+will call by GC to release unmanaged resources.
+
 How does Garbage Collection work in .NET (Generations 0,1,2)?
+
+marking , sweeping , compacting. dataa in if condition for loops , objects , variables , static and global variables.
 
 OOP & Design Principles
 
+1> polymorphism , abstraction , encapsulation , inheritance., solutions for problems in day to day coding.
+
 Explain SOLID principles with real-world examples.
+
+Singlresponsibility , open closed , Liskov substitution , Inteface segregation , Dependency inversion.
 
 What is the difference between abstract class and interface (including default interface methods)?
 
+properties , multiple inheritence , constructor, contract - common behaviour.
+
 What is dependency injection and why is it important?
+
+using the object from external resource instead of crating it within class to remove tight coupling.
 
 Explain method overloading vs method overriding.
 
+methods with different signature, include inheritance.can use within same class.
+
 What is polymorphism and how is it implemented in C#?
+
+changing the behaviour of the method based on its type.
 
 What are sealed classes and methods?
 
+retrict inheritence.
+
 What is composition vs inheritance? Which do you prefer and why?
+
+creating an object within the same class, 
+class has other objects and delegates behaviour of them.
 
 🔹 Advanced C#
 
 What are delegates? How are they different from interfaces?
 
+functional pointers -- contract to class.
+
 Explain Func, Action, Predicate.
+
+they are built in Generic Delegates return type, void , boolean.
 
 What are events and how are they implemented?
 
+they are notification mechanismbuild top of the delegates.
+
 Difference between IEnumerable, ICollection, IList.
+
+Iterator(linq , db queries, only read), Modifications + size (Operations) , Ordered + indexing properties(searching).
 
 Difference between IEnumerable and IQueryable.
 
+inmemory representation of sequence of Object data.Used to iterate over lists, representation of quereable data source that can be transfored into query language.
+
 What is LINQ deferred execution?
+
+the data is not iterates when u define since it works on lazy loading by default. when toListAsycn(),.count(),.First(),.Any(). It will execute the iteration.
 
 What is Expression Tree and where is it used?
 
 Explain Covariance and Contravariance.
 
+mechanism used more derived types when low derved is expected.
+
 What are Records in C#? How are they different from classes?
 
 What is with keyword in records?
 
-🔹 Asynchronous Programming & Multithreading
+with :  used to create a similar version of record with modifications.
+records :: help us to minimise the boileer plate for value type equity implementation
+
+Asynchronous Programming & Multithreading
 
 Difference between async/await and Task.Run.
+makes execution asynchrnous(doesnt create a thread) , assign worker thread to cpu bound work(computations, processing)
 
 What happens if you don’t use await?
+execution doesnt await for the method to complete instead complete the execution. fire and forgot throws errors will cause the app crash r silent executions
 
 Explain deadlock in async code and how to prevent it.
 
+happens when two threads are waiting for each other , when sychrnous blocking happens for asynchrnous tasks.(task.Results,return "string");
+
+await method releases control waiting for the task completion but task is never returned so the method returning task is waiting for task (task.Result)
+
 Difference between Task and Thread.
+
+Each thread is representation of OS Thread , Represents Unit of work, Manages threads efficiently and async await operations.excepions creash if not handled manually.
 
 What is SynchronizationContext?
 
+it is ana abstractions over context executed by thread or environment. it decides when the continuation happend on which thred.
+
 What is ConfigureAwait(false) and when should you use it?
+
+reduces context capture over head,
+prevents deadlock.
 
 Explain Parallel.For vs Task.WhenAll.
 
+Iteration of loops in parallel , trigger multiple async operation at onece waiting all of them to complete.
+
+when u need to iterate independently oncpu bound operations, i/o bound r async task 
+
 What is race condition? How do you avoid it?
 
+When 2 threads try to read at same time the outcome might be upredectable. 
+use Locks , Monitors, Semaphores, Type Safe Collections.
+
 Difference between lock, Monitor, Mutex, SemaphoreSlim.
+scope : In process , Mutex : Cross process
+Level : High , Low, OS LEVEL, Light Weight
+semaphores : async support
+mutex : slow performance
+Lock : No timeout support
 
 What is ThreadPool?
+They are the Group of background threads provided by .NET to execute asynchronous work efficiently.since the OS thread is cost effective.
 
-🔹 Memory & Performance
+ThreadPool starvation?
+When all thread pool threads were blocked. The execution will be slower.
+
+Memory & Performance
 
 What causes memory leaks in .NET?
+1> WHen event are not subscribed.  p.SomeEvent -= Handle;
+2> static List<object> _cache = new();  
+3> improper use of dispose
+4> Collections iterate infinitely
 
 How do you detect and fix memory leaks?
+watch memory behavious , Use profiling tools
+1> Use Size Limit,Memory Cache  for static Fields
+2> Unsubscribe event Handklers
+3> Proper Use of dispose
 
 What is LOH (Large Object Heap)?
+Its a special part in Heap used to store large Objects.since copying it will be Difficult while GC.Objects >= 85000Bytes
 
 Difference between GC.Collect() and automatic GC.
 
-How do weak references work?
+Manual , Automatic 
+can Hurt Performance, Optimised
+When there is a release of large memory after memory compaction u can use GC.Collect().
 
-What is struct allocation vs heap allocation?
+How do weak references work?
+GC ignores weak references if the string ref are present.
+weak ref.TryGetTarget(out var value) ==> check if it GCollected.
+
+What is stack allocation vs heap allocation?
+stack -- method scoped , Cleared when the method returns, directly accessable
+Heap -- scope varied , GC collected, accessable by pointers.
 
 What tools do you use for performance profiling?
+Memory Usage ,CPU Usage , Events Timelines, Parallel/Threads
 
 🔹 ASP.NET / Web API (If applicable)
 
-Difference between ASP.NET MVC and Web API.
+//Difference between ASP.NET MVC and Web API.
 
 What is middleware?
+Its the code that sits in the request pipeline to handle requests and responses.
 
 What is dependency injection lifecycle (Singleton, Scoped, Transient)?
 
 Explain Model Binding and Model Validation.
+1> Converting the incoming request data to .NET objects. It reads , query Params , form data , route data and headers to bind to action parameters.
+2> Validating the model data based on data annotations or custom validation logic. (data Notattions, IValidatableObject,ValidationAttribute))
+public IEnumerable<ValidationResult> Validate(ValidationContext context)
+{
+    if (Age < 18) yield return new ValidationResult("Must be 18 or older");
+}
+
+public class EvenNumberAttribute : ValidationAttribute
+{
+    public override bool IsValid(object value) => (int)value % 2 == 0;
+}
 
 Difference between Authentication and Authorization.
 
@@ -113,16 +227,43 @@ What is JWT and how does it work?
 How does exception handling work in Web API?
 
 What is CORS?
+Its restricts web applications running on one domain from accessing resources on a different domain. to prevent cross site scripting attacks.
 
 How do you implement logging and monitoring?
+1>
+private readonly ILogger<HomeController> _logger;
+builder.Logging.AddConsole();
+
+2>Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
+
+builder.Host.UseSerilog();
+
+Monitoring :
+1> 
+builder.Services.AddHealthChecks()
+    .AddSqlServer(connectionString)
+    .AddRedis(redisConnection);
+
+app.MapHealthChecks("/health");
+
+2>Application Insights
 
 How do you handle high concurrency in APIs?
 
 Entity Framework / Data Access
+------------------------------
 
 Difference between EF Core and EF 6.
+New , Old
+sqllite,cosmosdb,postgresql ,mariadb support
+fully async support
+faster , cross platform
 
 What is DbContext lifetime?
+
 
 What is Change Tracking?
 
