@@ -263,29 +263,56 @@ fully async support
 faster , cross platform
 
 What is DbContext lifetime?
-
+transcient(short Lived Operations),scoped(used in majority of web apps) , singleton(db is not thread safe so wont be used)
 
 What is Change Tracking?
+its the mechanism by which ef tracks the changes that are loaded by dbcontext.
 
 Difference between Lazy, Eager, and Explicit loading.
+Lazy Loading: related data is loaded when it is accessed for the first time. eg: navigation properties marked as virtual.
+Eager Loading: related data is loaded along with the main entity using Include method. eg: context.Blogs.Include(b => b.Posts).ToList();
+Explicit Loading: related data is loaded on demand using the Load method. eg: context.Entry(blog).Collection(b => b.Posts).Load();
 
 What is AsNoTracking?
+improves performance for read-only operations by disabling change tracking for the retrieved entities
+var user = context.Users.AsNoTracking()
+                        .FirstOrDefault(u => u.Id == 1);
 
 What is migration and how does it work?
+dotnet ef migrations add InitialCreate
+creates a migration file that contains the schema changes.Up() and Down() methods to apply or revert changes.
+dotnet ef database update
+dotnet ef migrations remove -- removes the last migration if not applied to db.
+dotnet ef database update <PreviousMigration> -- reverts to a previous migration.
 
 How do you optimize EF queries?
+1> use asNoTracking for read only operations.
+2> use projection to select only required columns.
+3> use pagination to limit the number of records retrieved.
+4> use compiled queries for frequently executed queries.
+5> avoid n+1 query problem by using eager loading.
 
 What is N+1 query problem?
+to fetch the related data for a collection of entities, ef executes an additional query for each entity in the collection.(use eager loading to solve this))
 
 Difference between FromSqlRaw and ExecuteSqlRaw.
+FromSqlRaw : is used to execute raw SQL queries that return entities.(SELECT statements)
+var users = context.Users
+                   .FromSqlRaw("SELECT * FROM Users WHERE IsActive = 1")
+                   .ToList();
+
+ExecuteSqlRaw : is used to ex]ecute raw SQL commands that do not return entities.(INSERT, UPDATE, DELETE) RETURNS number of rows affected.
+var rowsAffected = context.Database
+                          .ExecuteSqlRaw("UPDATE Users SET IsActive = 0 WHERE LastLogin < {0}", cutoffDate);
+
 
 When would you use Dapper instead of EF?
 
 Design Patterns (Must-know for 6+ years)
 
-Singleton (thread-safe implementation)
+Singleton (thread-safe implementation) 
 
-Factory vs Abstract Factory
+//Factory vs Abstract Factory
 
 Repository Pattern (pros & cons)
 
@@ -330,5 +357,3 @@ What is readonly vs const?
 What is dynamic keyword?
 
 What are extension methods?
-
-What is partial class?

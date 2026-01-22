@@ -9,26 +9,63 @@ Explain Angular compilation: JIT vs AOT.
 What are standalone components? How do they differ from NgModules?
 
 How does Angular handle dependency injection hierarchy?
+provided-in : root,
+@Module
+@Component
+
+
 
 What are providers, useClass, useValue, useFactory, and useExisting?
+providers: [
+  { provide: 'API_CONFIG', useValue: config }
+]
+@inject("API_CONFIG")
+providers: [
+  { provide: LoggerService, useFactory: loggerFactory, deps: [EnvironmentService] }
+]
+providers: [
+  MyService,
+  { provide: AnotherService, useExisting: MyService }
+]
 
 How do you design a scalable Angular application architecture?
+core, shared, feuture
+Lazy Loading 
+const routes: Routes = [
+  { path: 'products', loadChildren: () => import('./features/products/products.module').then(m => m.ProductsModule) }
+];
+Smart vs Dumb components: seeparation of concerns
+Performance Optimization lazyLoading,trackBy , No Method in html , change detection
 
 What problems does Angular solve compared to plain JavaScript or jQuery?
+dependency injection, component architecture, 2 way data Binding, Routing
 
 What are Angular signals? How do they compare with RxJS?
+component level reactive state , http interactions - streams -- complex async cross component logic.
 
 How does zone.js work and why is it used?
+it allows angular when the async tasks completes and trigger change detection.
+setTimeout(callback, delay, ...args) ==runs after some delay
+setInterval(callback, interval, ...args) ==> run after certain interval repeatedly
 
 2. Components, Directives & Pipes
 
+Directives -- Changes the Behaviour of DOM
+component, structural, Behavioural
+@HostListener('mouseenter') onMouseEnter() {
+
 Lifecycle hooks execution order and real-world use cases
+ngonchanges,ngoninit ,ngdocheck,ngaftercontentinit,ngaftercontentchecked,ngafterviewinit,nfafterviewchecked, ngondestroy
 
 Difference between @ViewChild, @ContentChild, and @ViewChildren
 
+
 When would you use a structural directive vs a component?
+when u want only structure change not logic implement, no stylings
 
 How do pure and impure pipes differ?
+ pure: false
+ executes only when reference of input changes
 
 How to optimize heavy pipes?
 
@@ -39,8 +76,10 @@ How does Angular handle content projection (ng-content)?
 3. RxJS & Reactive Programming (Very Important)
 
 Difference between Subject, BehaviorSubject, ReplaySubject, and AsyncSubject
+doesnt hold previous data,emit previous data immediately,emit buffer data when subscribed,emits only when completes.
 
 switchMap vs mergeMap vs concatMap vs exhaustMap
+cancel precious observable , return all as one, queue the Observables, ignore existing if previous is active.
 
 How do you avoid nested subscriptions?
 
@@ -103,8 +142,10 @@ How does server-side rendering (SSR) help performance?
 What is Angular Universal?
 
 How do you reduce bundle size?
+Ahead of time , tree shaking 
 
 How does tree shaking work?
+checks the apps referenced used if not found removed.
 
 7. State Management
 
@@ -134,6 +175,8 @@ What is CSRF and how is it handled?
 
 How do you secure sensitive data in Angular?
 
+
+
 9. Testing (Often Asked for Senior Roles)
 
 Unit testing components vs services
@@ -149,6 +192,8 @@ What is TestBed?
 How do you test route guards and interceptors?
 
 E2E testing tools (Cypress vs Protractor)
+
+
 
 10. Advanced & Real-World Scenario Questions
 
@@ -167,6 +212,8 @@ What breaking changes did you face while upgrading Angular?
 How do you improve first contentful paint (FCP)?
 
 Explain micro-frontend architecture with Angular
+
+
 
 Bonus: Coding / Practical Questions
 
