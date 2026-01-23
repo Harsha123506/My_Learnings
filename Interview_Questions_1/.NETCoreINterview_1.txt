@@ -653,6 +653,142 @@ hashTable is the array of Linked Lists where each index represents a bucket.
 when we add a key value pair the hashcode of the key is calculated and based on that the index is determined to store the value in that bucket.
 we need Equals() method to check whether two keys are equal or not when there is a collision in hashcode (two keys generate same hashcode).
 
+Indexers ??
+void this[index] {
+get => _element[index];
+set => _element[index] = value;
+}
+
+Caching ?
+mechanism to store frequently accessed data in memory for faster retrieval.
+
+Immutable ::: variables which cant be altered.
+simple and easier code.
+pure functions.
+makes multi threading easier.
+make objects Valid.
+avoids identity Mutation.
+easier testing.
+pure vs inpure ==> pure uses function scoped variables inside the method.
+
+Records ??
+They are new types combining classes and structs. they are used to create immutable data objects. They provide built-in functionality for value-based equality, immutability, and concise syntax for defining data models.
+positional records :: used to create immutable data objects with a concise syntax. // automatically generates properties, constructor, deconstructor, and value-based equality methods.
+non-positional records :: used to create immutable data objects with named properties. // allows defining properties with custom logic and default values.// need to declare a body with curly braces.
+by using with keyword we can create a new record object by copying an existing one and modifying specific properties.
+
+Why does string behave like a value type even though it is a reference type?
+Strings are immutable in C#, meaning once created, their values cannot be changed. When you modify a string, a new string object is created in memory rather than altering the existing one. This behavior is similar to value types, where changes result in new instances rather than modifying the original instance. As a result, strings exhibit value-type-like behavior despite being reference types.
+interning :: storing only one copy of each distinct string value in memory to optimize memory usage.
+
+string + Read Operation is faster as compared to stringBuilder append Operations. // since it is Immutable
+
+Operator Overloading ??
+to perform operations on custom types we need operator Overloading.
+public static Point operator +(Point point1 , Point point2) => new Point(point1.X + point2.X,point2.Y+point2.Y); //constructor should be declaared like return value.
+non-overloadable operators ==> =>,.,new,&&,||,^
+public static implicit operator Point((float,float) pointAsTuple) => new Point(pointAsTuple.Item1,PointAsTuple.Item2);  // converting tuple to point Object
+then now u can use Point d = (5f,5f);
+public static explicit operator Point((float,float) pointAsTuple) => new Point(pointAsTuple.Item1,PointAsTuple.Item2);  // converting tuple to point Object
+
+anonymous types ??
+types without a name will be used temporarily return an object in linqs;
+var result = students.Select(s => new {
+    s.Id,
+    s.Name
+});
+they cant contain methods fields events.
+we can change the value of the anonymous type by using with keyword (""with"" create a new object by modifying the value);
+they have value based equality.
+Note ::anonymous arrays can be updatable since by default arrays are updatable.
+
+y .NET defaults reference equality??
+1>
+Two different objects might look similar
+Treating them as equal by default could cause data loss
+2>
+reference comparison is fast.
+3>
+Backwardcompatibility
+
+Cohesion ??
+it measures the strong relation between members of a class or Module.
+if the methods inside the class have less depedencies with each other then it is considerd as less cohesive.
+high cohesive class will satisfy single responsibility principle.
+
+Coupling ??
+degree of which one module dependes on each other.
+identify using below points
+1> one type uses other directly without abstraction. (declare in one class as one type and use it as other type in other classes)
+2> one small change leading to all other changes around project.
+3> not independent classes.
+sol :: remove direct connection instead set an abstraction.
+
+Strategy Design Pattern??
+allow us to define some algorith during run time.
+Func<Game,bool> SelectStrategy(FilteringType ftp, string searchWord){
+switch (ftp){
+case byTitle:
+    return game=> game.Title.Contains(searchWord);
+case bestGames:
+    return game => game.Rating >= 95;
+default:
+    throw new Argumentexception("ksbdc");
+}
+}
+
+IEunemerable<Game> FindBy(IEunemerable<Game> game,Func<Game,bool> strategy){
+return game.Where(g => g.isAvailable && strategy(g));
+}
+
+benefits :: reduce code duplication and make code cleaner.
+
+Dependency injection patterns::
+Breaks the single responsibility principle
+DI frameworks :: mechanism automatically create objects eg::Autofac,Ninject.
+
+Template Method Design Pattern ::
+defines the skeleton of an algorithm in base class and implement it in derived class.
+In the base class we define the common behaviour and in derived we override the methods used in the base class common template method. //smae as strategic pattern but selected at compile time unlike strtegic pattern.
+
+Decorator Design Pattern ::
+adds functionality to the object without affecting the Other Objects.
+IpeopledataReader LogginCountLimitingReader = new LimitingDecorator(new LoggingDecorator(new PeopleDataReader(),new Logger()),3); // log and limit the data.
+here both classes inherit Ipeopledatareader interface
+add functionality to the object
+make us to align with opencloased and single responsibility principle.
+
+Observer Design pattern ::
+allows one object to notify other object above changes in their state.
+Create IObservable and DI List<IObserver> and add and remove to the list using methods.
+
+Events  :
+Message sent by an Object as a signal for certain action.
+public delegate void PriceRead;
+public event PriceRead? Priceread;
+Note :: EVent vs delegate
+event cant be raised outside the class it is defined.
+Priceread.Invoke(price); Or Priceread(price) -- will cause null reference exception before any user subscribe.
+for subscribers we need to have a method satisfying the event signature.
+we can use predefined delegate ""EventHandler<className>""(Generic EventHandler)
+note:: className should be eventargs which is a base class for events used to pass the information for the eventhandler
+for the above we use PriceRead(this,new PriceReadEventArgs(price
+unsubscribing the eventhandler while closing the present class window.
+
+WHat is Inversion of control ??
+Its a design approach instead of developer control the flow external sources will control it.
+
+What is the composiktion over inheritance ?
+Inheritence Issues --> 
+1> Tight Coupling 
+2> Rigid Relation SHip
+3> Inheritence limitations 
+4> Inheritence hierarchy 
+5>Tricky Unt test cases
+6> Inheriting more than Needed
+7> Problematic storage of Objects of database.
+
+
 
 
 What is .NET Core, and how is it different from the .NET Framework?

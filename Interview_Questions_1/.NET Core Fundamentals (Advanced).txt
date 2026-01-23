@@ -1,0 +1,634 @@
+.NET Core Fundamentals (Advanced)
+
+What are the key differences between .NET Framework, .NET Core, and .NET (6/7/8)?
+
+Explain the .NET Core request lifecycle.
+
+How does Kestrel work internally?
+
+What is HostBuilder vs WebApplicationBuilder?
+
+What are SDK-style projects?
+
+What is cross-platform CLR and how does it work?
+
+How does Side-by-Side versioning work in .NET Core?
+
+What is self-contained vs framework-dependent deployment?
+
+🔹 Dependency Injection & Middleware
+
+Explain Dependency Injection in ASP.NET Core.
+
+Difference between Transient, Scoped, and Singleton lifetimes (real use cases).
+
+What happens if a Scoped service is injected into Singleton?
+
+How does middleware pipeline work?
+
+Difference between Use, Run, and Map.
+
+How do you write custom middleware?
+
+What is IHostedService?
+
+Difference between Filters vs Middleware.
+
+🔹 ASP.NET Core MVC / Web API
+
+Difference between MVC and Minimal APIs.
+
+How does Model Binding work internally?
+
+What is Model Validation?
+
+How do you handle global exception handling?
+
+What are Action Filters, Result Filters, Exception Filters?
+
+What is Attribute Routing vs Conventional Routing?
+
+How does API Versioning work?
+
+How do you implement Swagger customization?
+
+
+🔹 Performance & Scalability
+
+How do you improve ASP.NET Core performance?
+
+What is response caching?
+
+Difference between In-Memory Cache vs Distributed Cache?
+
+What is Redis and how is it used with .NET Core?
+
+How does async/await improve scalability?
+
+What are Thread Pool starvation issues?
+
+What is Rate Limiting in ASP.NET Core?
+
+How do you handle high traffic APIs?
+
+🔹 Security (Must-Know)
+
+How does Authentication vs Authorization work?
+
+JWT Authentication flow.
+
+How do you secure APIs in ASP.NET Core?
+
+What is OAuth 2.0?
+
+How do you prevent CSRF and XSS?
+
+What is Data Protection API?
+
+How do you store secrets securely?
+
+Difference between HTTPS, TLS, SSL.
+
+🔹 Microservices & Cloud
+
+What is Microservices architecture?
+
+How does ASP.NET Core fit microservices?
+
+What is Docker and how do you containerize .NET apps?
+
+What is Kubernetes?
+
+What is Service Discovery?
+
+What is API Gateway?
+
+How do you handle inter-service communication?
+
+How do you implement health checks?
+
+🔹 Logging, Monitoring & Diagnostics
+
+How does ILogger work?
+
+What is Serilog / NLog?
+
+What is Application Insights?
+
+How do you trace production issues?
+
+What is Structured Logging?
+
+Difference between LogLevel Debug vs Information?
+
+🔹 Design Patterns & Architecture
+
+What design patterns have you used in .NET Core?
+
+Explain Repository vs Unit of Work.
+
+What is CQRS?
+
+What is Clean Architecture?
+
+Difference between Monolithic vs Microservices.
+
+What is SOLID principle?
+
+What is Event-driven architecture?
+
+🔹 DevOps & CI/CD
+
+How do you deploy ASP.NET Core apps?
+
+What is CI/CD pipeline?
+
+How do you configure environment-based settings?
+
+What is appsettings.json vs appsettings.{Environment}.json?
+
+How do you do zero-downtime deployments?
+
+🔹 Scenario-Based Questions (Very Important)
+
+How would you design a highly scalable Web API?
+
+How do you handle database failover?
+
+How do you secure a public API?
+
+How do you refactor a legacy .NET Framework app to .NET Core?
+
+How do you improve slow API response times?
+
+
+
+Core Angular Concepts (Must-Know)
+
+Q1. How does Angular differ from AngularJS?
+Q2. Explain Angular architecture (Modules, Components, Templates, Services).
+Q3. What is the difference between Component and Directive?
+Q4. Explain decorators in Angular.
+Q5. What is AOT vs JIT compilation?
+Q6. How does Angular bootstrapping work?
+Q7. What are standalone components? Why were they introduced?
+
+2️⃣ Components & Lifecycle Hooks
+
+Q8. Explain Angular component lifecycle hooks in order.
+Q9. Difference between ngOnInit() and constructor()?
+Q10. When would you use ngOnChanges()?
+Q11. What is ChangeDetectionStrategy.OnPush?
+Q12. How do you detect memory leaks in Angular components?
+
+3️⃣ Change Detection & Performance (VERY IMPORTANT)
+
+Q13. How does Angular change detection work internally?
+Q14. What is Zone.js and why Angular needs it?
+Q15. How do you manually trigger change detection?
+Q16. Difference between markForCheck() and detectChanges()?
+Q17. How do you optimize performance in large Angular apps?
+
+4️⃣ Templates & Data Binding
+
+Q18. Explain all types of data binding in Angular.
+Q19. Difference between ngIf and hidden?
+Q20. What are pure vs impure pipes?
+Q21. How does trackBy improve *ngFor performance?
+Q22. What is content projection (ng-content)?
+
+5️⃣ Dependency Injection (Advanced)
+
+Q23. Explain Angular Dependency Injection hierarchy.
+Q24. Difference between providedIn: 'root' vs providers array?
+Q25. What are multi providers?
+Q26. How do you create a custom injector?
+Q27. What happens if two services have circular dependencies?
+
+6️⃣ RxJS & Observables (Senior-Level Focus)
+
+Q28. Difference between Observable and Promise?
+Q29. What is a Subject, BehaviorSubject, ReplaySubject?
+Q30. Explain switchMap, mergeMap, concatMap, exhaustMap.
+Q31. How do you handle memory leaks with Observables?
+Q32. What is the async pipe and why is it preferred?
+Q33. Difference between hot and cold observables?
+
+7️⃣ Forms (Reactive Forms Focus)
+
+Q34. Difference between Template-driven and Reactive forms?
+Q35. How do you build dynamic forms?
+Q36. Custom validators – sync vs async?
+Q37. How do you validate cross-field values?
+Q38. How do you handle large form performance issues?
+
+8️⃣ Routing & Navigation
+
+Q39. What is lazy loading and why is it important?
+Q40. Difference between forRoot() and forChild()?
+Q41. What are Route Guards?
+Q42. How does Angular handle route resolvers?
+Q43. Preloading strategies – when to use them?
+
+9️⃣ State Management (NgRx / Signals)
+
+Q44. When should you use NgRx?
+Q45. Explain NgRx Store, Actions, Reducers, Effects.
+Q46. How do Signals work in Angular?
+Q47. Difference between RxJS and Signals?
+Q48. How would you migrate from RxJS to Signals?
+
+🔟 Angular 16+ Features (Highly Asked)
+
+Q49. What are Signals and why were they introduced?
+Q50. What is standalone API?
+Q51. What is DestroyRef?
+Q52. What are @defer, @if, @for control flow blocks?
+Q53. How does Angular support SSR & hydration?
+
+1️⃣1️⃣ Testing (Interview Favorite)
+
+Q54. Difference between unit testing and e2e testing?
+Q55. How do you mock services in Angular tests?
+Q56. How do you test Observables?
+Q57. What is TestBed?
+Q58. How do you test OnPush components?
+
+1️⃣2️⃣ Security & Best Practices
+
+Q59. What security vulnerabilities exist in Angular apps?
+Q60. How does Angular prevent XSS?
+Q61. What is DomSanitizer and when should you use it?
+Q62. How do you secure API calls?
+
+1️⃣3️⃣ Real-World / Scenario Questions ⭐
+
+Q63. How would you optimize an Angular app with 1M+ users?
+Q64. How do you handle backward compatibility in Angular upgrades?
+Q65. How would you design a reusable component library?
+Q66. How do you manage environment-based configurations?
+Q67. How do you debug production Angular issues?
+
+🧠 Bonus: Common Follow-Ups
+
+Why did you choose RxJS over Promises?
+
+How do you reduce bundle size?
+
+How do you handle micro-frontend architecture?
+
+Angular vs React — when would you choose Angular?
+
+
+
+SQL :::::
+
+SQL Fundamentals (Quick Check)
+
+Q1. Difference between DELETE, TRUNCATE, and DROP
+Q2. What is a primary key vs unique key?
+Q3. What is a foreign key and how does it enforce integrity?
+Q4. Difference between WHERE and HAVING
+Q5. What are constraints in SQL?
+
+2️⃣ Joins & Relationships (Very Important)
+
+Q6. Types of joins with examples
+Q7. Difference between INNER JOIN and LEFT JOIN
+Q8. What is a self join?
+Q9. What is a cross join and when would you use it?
+Q10. Difference between joins and subqueries?
+
+3️⃣ Subqueries & CTEs (Senior Level)
+
+Q11. What is a subquery? Types of subqueries
+Q12. Difference between correlated and non-correlated subqueries
+Q13. What is a CTE (WITH clause)?
+Q14. Recursive CTE – real-world use case
+Q15. CTE vs temporary table
+
+4️⃣ Indexes & Performance (Highly Asked)
+
+Q16. What is an index and how does it work internally?
+Q17. Types of indexes (clustered, non-clustered, composite, unique)
+Q18. When should you NOT use an index?
+Q19. How does indexing affect INSERT, UPDATE, DELETE?
+Q20. What is an execution plan?
+
+5️⃣ Window Functions (Must-Know)
+
+Q21. What are window functions?
+Q22. Difference between ROW_NUMBER, RANK, DENSE_RANK
+Q23. Use cases for LEAD and LAG
+Q24. Running totals using window functions
+Q25. Difference between window functions and GROUP BY
+
+6️⃣ Aggregation & Grouping
+
+Q26. How does GROUP BY work internally?
+Q27. What is ROLLUP and CUBE?
+Q28. Difference between COUNT(*) and COUNT(column)
+Q29. How to find duplicate records?
+Q30. How to delete duplicate rows?
+
+7️⃣ Transactions & Concurrency
+
+Q31. What is a transaction?
+Q32. Explain ACID properties
+Q33. What is a deadlock? How to resolve it?
+Q34. Isolation levels (READ COMMITTED, SERIALIZABLE, etc.)
+Q35. Difference between optimistic and pessimistic locking
+
+8️⃣ Stored Procedures, Functions & Triggers
+
+Q36. Stored procedure vs function
+Q37. When should you avoid stored procedures?
+Q38. What are triggers and their use cases?
+Q39. Pros and cons of triggers
+Q40. How do you debug a stored procedure?
+
+9️⃣ Advanced Queries (Scenario Based ⭐)
+
+Q41. Find the second highest salary
+Q42. Find employees earning more than their manager
+Q43. Top N records per group
+Q44. Find gaps in sequential data
+Q45. Swap column values without temp table
+
+🔟 Data Modeling & Design
+
+Q46. What is normalization? Explain 1NF–3NF
+Q47. What is denormalization? When to use it?
+Q48. OLTP vs OLAP
+Q49. Star schema vs Snowflake schema
+Q50. How do you design a high-performance database?
+
+1️⃣1️⃣ Database-Specific (Often Asked)
+
+Q51. Difference between SQL Server, MySQL, PostgreSQL
+Q52. What is a materialized view?
+Q53. How does PostgreSQL handle MVCC?
+Q54. Temp tables vs table variables
+Q55. Partitioning – when and why?
+
+1️⃣2️⃣ Security & Best Practices
+
+Q56. What is SQL injection? How to prevent it?
+Q57. How do you manage roles and permissions?
+Q58. What is data masking?
+Q59. How do you secure sensitive data at rest?
+Q60. Best practices for writing maintainable SQL
+
+1️⃣3️⃣ Real-World Production Scenarios ⭐
+
+Q61. How do you troubleshoot a slow query in production?
+Q62. How do you handle large data migrations?
+Q63. How do you archive historical data?
+Q64. How do you ensure high availability?
+Q65. How do you handle schema changes with zero downtime?
+
+🧠 Bonus: Common Follow-Ups
+
+Index vs partitioning
+
+CTE vs subquery performance
+
+EXISTS vs IN
+
+UNION vs UNION ALL
+
+Query optimization steps
+
+EF ::::::
+
+1️⃣ EF / EF Core Fundamentals
+
+Q1. What is Entity Framework? EF vs EF Core
+Q2. Code-First vs Database-First vs Model-First
+Q3. What is DbContext? How is it different from ObjectContext?
+Q4. What is DbSet<T>?
+Q5. How does EF track entities?
+
+2️⃣ Change Tracking & State Management (Highly Asked)
+
+Q6. What are entity states in EF?
+Q7. How does EF detect changes?
+Q8. Difference between Attach() and Update()
+Q9. How do you work with detached entities?
+Q10. How do you disable change tracking?
+
+context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+
+3️⃣ LINQ to Entities (Advanced)
+
+Q11. Difference between IQueryable and IEnumerable
+Q12. When does EF execute a query?
+Q13. What LINQ methods are translated to SQL?
+Q14. Client-side vs server-side evaluation
+Q15. How do you optimize LINQ queries?
+
+4️⃣ Loading Strategies (VERY Important)
+
+Q16. Eager loading vs Lazy loading vs Explicit loading
+Q17. How do you implement lazy loading in EF Core?
+Q18. What is the N+1 query problem?
+Q19. How do you prevent N+1 queries?
+Q20. Difference between Include and ThenInclude
+
+5️⃣ Migrations & Database Versioning
+
+Q21. What are EF migrations?
+Q22. Code-based vs SQL-based migrations
+Q23. How do you handle migrations in production?
+Q24. Rolling back a migration
+Q25. Handling breaking schema changes safely
+
+6️⃣ Relationships & Modeling
+
+Q26. One-to-One, One-to-Many, Many-to-Many relationships
+Q27. Shadow properties
+Q28. Owned entity types
+Q29. Table-per-Hierarchy (TPH) vs Table-per-Type (TPT)
+Q30. Composite keys – how do you configure them?
+
+7️⃣ Performance Optimization (Senior Focus ⭐)
+
+Q31. How do you improve EF Core performance?
+Q32. AsNoTracking() vs tracking queries
+Q33. Compiled queries – when to use them?
+Q34. Batching & SaveChanges() performance
+Q35. When should you avoid EF and use Dapper?
+
+8️⃣ Transactions & Concurrency
+
+Q36. How does EF handle transactions?
+Q37. Explicit vs implicit transactions
+Q38. Optimistic concurrency using RowVersion
+Q39. Handling concurrency conflicts
+Q40. Distributed transactions in EF Core
+
+9️⃣ Raw SQL & Stored Procedures
+
+Q41. How do you execute raw SQL in EF Core?
+Q42. Mapping stored procedure results to entities
+Q43. When should you use raw SQL?
+Q44. SQL injection prevention in EF
+Q45. Limitations of raw SQL queries
+
+🔟 Testing & Architecture
+
+Q46. How do you unit test EF Core?
+Q47. InMemory provider vs SQLite
+Q48. Repository pattern – pros and cons
+Q49. How do you mock DbContext?
+Q50. Clean Architecture with EF Core
+
+1️⃣1️⃣ EF Core Advanced Features (Latest Versions)
+
+Q51. Global query filters
+Q52. Value converters
+Q53. Interceptors
+Q54. Temporal tables (SQL Server)
+Q55. Split vs single queries
+
+1️⃣2️⃣ Production & Debugging Scenarios ⭐
+
+Q56. How do you debug slow EF queries?
+Q57. Logging generated SQL
+Q58. Handling large bulk operations
+Q59. Connection pooling behavior
+Q60. EF Core memory leaks – causes & fixes
+
+🧠 Bonus Rapid-Fire Questions
+
+First() vs FirstOrDefault()
+
+Single() vs SingleOrDefault()
+
+Find() vs FirstOrDefault()
+
+Tracking vs NoTracking queries
+
+SaveChanges() vs SaveChangesAsync()
+
+🔹 Entity Framework Core (Advanced)
+
+Difference between EF and EF Core.
+
+How does Change Tracking work?
+
+What is AsNoTracking and when to use it?
+
+Lazy vs Eager vs Explicit loading (performance impact).
+
+How do Migrations work internally?
+
+How do you handle concurrency conflicts?
+
+What is compiled queries?
+
+How do you optimize EF Core performance?
+
+How do you handle large datasets?
+
+Azure ::
+
+1️⃣ Azure Fundamentals & Core Concepts
+
+Q1. What is Azure and how does it differ from other cloud providers?
+Q2. Explain Azure Resource Manager (ARM) and its benefits.
+Q3. What are resource groups, and why are they important?
+Q4. What is the difference between region and availability zone?
+Q5. How do you design a highly available application in Azure?
+
+2️⃣ Compute Services
+
+Q6. Difference between Azure VMs, App Services, and Azure Functions.
+Q7. When would you choose Azure Kubernetes Service (AKS) vs App Service?
+Q8. Explain VM Scale Sets and their use cases.
+Q9. How does Azure handle VM high availability?
+Q10. What are Azure Batch and Azure Container Instances, and when would you use them?
+
+3️⃣ Storage & Databases
+
+Q11. Types of Azure storage: Blob, Table, Queue, File – differences & use cases.
+Q12. Difference between Standard and Premium storage accounts.
+Q13. What is Azure SQL Database, and how is it different from SQL Server on VM?
+Q14. Explain Cosmos DB and its consistency models.
+Q15. How do you implement geo-redundancy for storage?
+
+4️⃣ Networking
+
+Q16. What is a VNet, and why is it used?
+Q17. Difference between public IP, private IP, and internal load balancer.
+Q18. How do you implement secure communication between VNets? (Peering, VPN)
+Q19. What is Azure Application Gateway vs Azure Load Balancer?
+Q20. Explain Azure DNS and traffic routing methods.
+
+5️⃣ Identity & Security
+
+Q21. What is Azure Active Directory (AAD) and how is it different from on-prem AD?
+Q22. Difference between RBAC and IAM in Azure.
+Q23. What is Managed Identity and its benefits?
+Q24. How do you secure Azure Storage and SQL?
+Q25. What is Azure Key Vault and its typical usage?
+
+6️⃣ DevOps & CI/CD
+
+Q26. What is Azure DevOps? Components?
+Q27. Difference between build pipeline and release pipeline.
+Q28. How do you implement Infrastructure as Code (IaC) in Azure? (ARM Templates vs Bicep vs Terraform)
+Q29. How do you manage multi-environment deployments?
+Q30. What is Azure Monitor, and how do you integrate it with CI/CD?
+
+7️⃣ Monitoring, Logging & Performance
+
+Q31. How do you monitor Azure resources?
+Q32. Difference between Azure Monitor, Application Insights, and Log Analytics.
+Q33. How do you troubleshoot slow performance in Azure Web Apps or SQL?
+Q34. What is Azure Advisor, and how can it help optimize costs?
+Q35. How do you set up alerts and autoscaling in Azure?
+
+8️⃣ Serverless & Microservices
+
+Q36. Explain Azure Functions vs Logic Apps vs Event Grid vs Event Hub.
+Q37. How do you implement event-driven architecture in Azure?
+Q38. What is Durable Functions?
+Q39. How do you scale serverless applications efficiently?
+Q40. Explain message queue patterns using Azure Service Bus.
+
+9️⃣ Cost Management & Governance
+
+Q41. How do you estimate and control Azure costs?
+Q42. What are Azure Policies and Blueprints?
+Q43. How do you implement tagging strategy for resources?
+Q44. How do you handle cost optimization for compute-heavy workloads?
+Q45. What are Reserved Instances, Spot VMs, and their trade-offs?
+
+🔟 Disaster Recovery & High Availability
+
+Q46. Difference between Azure Backup and Site Recovery.
+Q47. How do you implement multi-region disaster recovery?
+Q48. What is Azure Traffic Manager, and how does it help in DR?
+Q49. How do you design HA for database services like SQL or Cosmos DB?
+Q50. How do you test a disaster recovery plan in Azure?
+
+1️⃣1️⃣ Advanced / Scenario-Based Questions
+
+Q51. How would you migrate an on-prem monolith app to Azure?
+Q52. How do you implement zero-downtime deployment in Azure?
+Q53. How would you architect a microservices app using AKS, Event Hub, and Cosmos DB?
+Q54. How do you troubleshoot intermittent connectivity issues between VNets?
+Q55. How do you design a hybrid cloud environment with on-prem + Azure?
+
+🧠 Bonus / Follow-Ups
+
+Difference between Azure Service Bus, Event Hub, and Event Grid
+
+Azure Front Door vs Application Gateway vs Load Balancer
+
+Caching strategies using Azure Cache for Redis
+
+Multi-region read/write strategies in Cosmos DB
+
+Security: encrypting data at rest and in transit

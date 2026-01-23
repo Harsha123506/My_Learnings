@@ -1,0 +1,167 @@
+Creational Patterns ::
+based on creation of Object.
+structural Patterns ::
+based on th estructure of class.
+Behavioural Patterns ::
+based on the behaviour of Objects.
+
+Builder Patterns ::
+note :: htmlbuilder.append().Append();
+
+public htmlbuilder append(string str){
+   var e = new htmlelemtn.add(< skdc);
+   this;   // returning this will makes the method use like a chain
+}
+
+fluent builder ::
+WHen we try to use methods of different classes like builders it wont be possible since the one returning object is not of other type which has that mthod
+
+public abstract class PersonBuilder
+  {
+    protected Person person = new Person();
+
+    public Person Build()
+    {
+      return person;
+    }
+  }
+
+  public class PersonInfoBuilder<SELF> : PersonBuilder
+    where SELF : PersonInfoBuilder<SELF>
+  {
+    public SELF Called(string name)
+    {
+      person.Name = name;
+      return (SELF) this;
+    }
+  }
+
+  public class PersonJobBuilder<SELF> 
+    : PersonInfoBuilder<PersonJobBuilder<SELF>>
+    where SELF : PersonJobBuilder<SELF>
+  {
+    public SELF WorksAsA(string position)
+    {
+      person.Position = position;
+      return (SELF) this;
+    }
+  }
+
+  // here's another inheritance level
+  // note there's no PersonInfoBuilder<PersonJobBuilder<PersonBirthDateBuilder<SELF>>>!
+
+  public class PersonBirthDateBuilder<SELF> 
+    : PersonJobBuilder<PersonBirthDateBuilder<SELF>>
+    where SELF : PersonBirthDateBuilder<SELF>
+  {
+    public SELF Born(DateTime dateOfBirth)
+    {
+      person.DateOfBirth = dateOfBirth;
+      return (SELF)this;
+    }
+  }
+
+  StepWiseBuilder ::
+  Here we use interface segregation principle we use multiple interfaces as chains of events. and call them as builder chain.
+
+  public class Car
+  {
+    public CarType Type;
+    public int WheelSize;
+  }
+
+  public interface ISpecifyCarType
+  {
+    public ISpecifyWheelSize OfType(CarType type);
+  }
+
+  public interface ISpecifyWheelSize
+  {
+    public IBuildCar WithWheels(int size);
+  }
+
+  public interface IBuildCar
+  {
+    public Car Build();
+  }
+
+  public class CarBuilder
+  {
+    public static ISpecifyCarType Create()
+    {
+      return new Impl();
+    }
+
+    private class Impl : 
+      ISpecifyCarType,
+      ISpecifyWheelSize,
+      IBuildCar
+    {
+      private Car car = new Car();
+
+      public ISpecifyWheelSize OfType(CarType type)
+      {
+        car.Type = type;
+        return this;
+      }
+
+      public IBuildCar WithWheels(int size)
+      {
+        switch (car.Type)
+        {
+          case CarType.Crossover when size < 17 || size > 20:
+          case CarType.Sedan when size < 15 || size > 17:
+            throw new ArgumentException($"Wrong size of wheel for {car.Type}.");
+        }
+        car.WheelSize = size;
+        return this;
+      }
+
+      public Car Build()
+      {
+        return car;
+      }
+    }
+  }
+
+
+  Functional Builder ::
+
+  from QuestPond::
+  1 > Repository Patterns :: 
+  Minimize Duplicate query Logic  // need to write the iquereable logic every where 
+  Decouples app with persistence frame work  // tightly coupled if any EF upgrade need to change app code.
+  promotes testability
+
+  IRepository :: Repository<T> where T: class
+  _dbSet = context.Set<T>(); 
+  _dbSet.AddAsync(entity) // T entity
+
+  2> Unit of Work (Wrapper around repo pattern)
+
+   private GenericUnitOfWork shopfloorUnitOfWork = new GenericUnitOfWork("shopfloor");
+   private Repository<TripsModel> tripsModel;
+   private Repository<OperatorOnModel> operatorsOnModel;
+   tripsModel = shopfloorUnitOfWork.GetRepoInstance<TripsModel>();
+   operatorsOnModel = shopfloorUnitOfWork.GetRepoInstance<OperatorOnModel>();
+   utilise the 2 models in a single method with single connection to database.
+
+DbContext is already a Unit of Work so dont use it for defined query execution.
+Use UoW to coordinate multiple repositories
+Avoid calling SaveChanges() inside repositories
+Improves testability and consistency
+
+Builder Patterns ::
+public constructor(par1, par2, par3, par4,par5 ----);
+cant able to know what each parameter means untill u see the defination.
+hard to handle multiple parameterized constructors.
+has to write complex logic in constrictor for validations for every property.
+hard to handle optional parameters.
+constructor handles object creation, validation, configuration. Breaking of Single Responsibility.
+
+public dataobj setdata1(int data11){ this.data11 = data11 return this}
+public dataobj setdata2(int data12){ this.data12 = data12 return this}  // obj.setdata1("kavscj").setdata2("kbabk");
+
+
+
+

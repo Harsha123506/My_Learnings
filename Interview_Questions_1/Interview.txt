@@ -1,0 +1,51 @@
+.net core vs frame work 
+
+1> cross platform 
+2> Open source
+3> Integration of UI 
+4> Hosting -- Kestrel , IIS , nginx.
+5> Dependency Injection 
+6> Supports Multiple IDE
+
+.Net Request LifeCycle:
+
+call the request from the client 
+host server creation 
+server fetches the request and pass it to middleware pipeline 
+then routing will happen 
+model binding 
+Action Execution 
+result execution
+response middleware throw the result to client.
+
+Kestrel Working 
+
+Sockets Listening : Kestrel opens TCP sockets on configured ports (e.g., 5000, 443).
+Connections Management : Each Connection is established and handled independently
+Request Parsing : Raw Bytes which are request header , request line and body are parsed.
+httpContext Creation : http response and http request Object creation takes place.
+middleware execution 
+controller end point execution
+Connection Reuse
+
+HostBuilder vs WebApplicationBuilder?
+
+Host Builder is Generic Hosting Model used for Different Type of Applications (Console, Web apps , Worker and background services) introduced in .NET core 2.1
+WEbApplicationBuilder is minimal hosting model for web applications (web api , mvc , minimal apis and razor pages) introduced in .NET 6
+
+What are SDK-style projects?
+new project file structure introduced in .NET core. majority of SDK defaults were already defined which are not included in project file.
+
+JIT vs AOT :: compile at runtime, compile at Build time.
+
+How does Side-by-Side versioning work in .NET Core?
+each app will run individually with different runtimes as mentioned in app.runtimeconfig.json
+app runs on its own process.
+
+What is self-contained vs framework-dependent deployment?
+self-contained : app will be deployed with its runtime. unlike FDD
+
+Explain Dependency Injection in ASP.NET Core.
+
+
+

@@ -1,0 +1,3 @@
+For Custom css u need to install sass compiler to run it 
+npm install -g sass
+sass --watch ./scss/custom.scss ./css.custom.css

@@ -50,12 +50,15 @@ eg ::  4,3,5(0),5(1),1,2,6
 stable 1,2,3,4,5(0),5(1),6
 unstable 1,2,3,4,5(1),5(0),6
 
-selection Sort :: pick min value from array and place it in appropriate position. (unstable and O(n^2))
+selection Sort :: pick min value from array and place it in appropriate position. (unstable and O(n^2))   // Best :: o(n^2) , AverageCase : O(n^2) , Worstcase :O(n^2) , Space :O(1) stable : no
+  
+insertion sort :: divide array into sorted(first element intitally) and remaining and add each element from remaining to sorted and do the sorting (O(n ^ 2) stable)  // Best :: o(n) , AverageCase : O(n^2) , Worstcase :O(n^2) , Space :O(1) stable : yes
 
-insertion sort :: divide array into sorted(first element intitally) and remaining and add each element from remaining to sorted and do the sorting (O(n ^ 2) stable)
+Bubblesort :: compare 2 numbers from the array and its continue till all the data is sorted. // Best :: o(n) , AverageCase : O(n^2) , Worstcase :O(n^2) , Space :O(1) stable : yes
 
-Bubblesort :: compare 2 numbers from the array and its continue till all the data is sorted.
+Shell Sort :: improvement over insertion sort . it divides the array into sub arrays and sort them using insertion sort. (unstable O(n log n))// Best :: o(nlogn) , AverageCase : O(nlogn) , Worstcase :O(nlogn) , Space :O(1) stable : no
 
+Merge Sort :: divide and conquer algorithm . divide the array into 2 halves and sort them recursively and merge them. (stable O(n log n)) // Best :: o(n^2) , AverageCase : O(n^2) , Worstcase :O(n^2) , Space :O(1) stable : no
 
-
+Quikk Sort :: divide and conquer algorithm . pick a pivot element and partition the array into 2 halves such that left half contains elements less than pivot and right half contains elements greater than pivot and sort them recursively. (unstable O(n log n) )
 
