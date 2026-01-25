@@ -1,0 +1,31 @@
+.NET ::
+use Async and Await for Non-Blocking Operations
+use Paginations for Large Data Sets
+Avoid Unnecessary Allocations 
+use StringBuilder for String Manipulations
+use Span<T> for Memory Efficiency
+use any instead of count()>0 for Existence Checks
+use asNoTracking for Read-Only Queries
+project Only required Fields in Queries
+Use Compiled Queries for Repeated Queries
+use Parallel.ForEach for CPU-Bound Operations
+Enable response compression in Web APIs
+use Concurrent Collections for Multi-Threaded Scenarios
+
+Angular ::
+use OnPush Change Detection Strategy
+use trackBy in ngFor Directives
+Lazy Load Modules for Better Performance
+Avoid Memory Leaks by Unsubscribing from Observables
+use Pure Pipes for Performance Optimization
+Debounce User Input in Reactive Forms
+Avoid Polling when Possible
+
+SQL :: 
+use Indexes on Frequently Queried Columns
+Avoid SELECT *
+use Joins Instead of Subqueries
+use Stored Procedures for Repeated Queries
+Optimize Queries with Execution Plans
+use transactions for Batch Operations
+use char vs varchar for Fixed-Length Data

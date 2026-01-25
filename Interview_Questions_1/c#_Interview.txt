@@ -307,6 +307,7 @@ var rowsAffected = context.Database
 
 
 When would you use Dapper instead of EF?
+When We use micro ORM for better performance and control over SQL queries.
 
 Design Patterns (Must-know for 6+ years)
 

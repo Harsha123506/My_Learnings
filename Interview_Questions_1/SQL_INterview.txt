@@ -80,7 +80,7 @@ only one per table
 When not to use an index?
 1> for small tables
 2> changing columns 
-3> columns with more ficed common values. Use combinations instead
+3> columns with more fixed common values. Use combinations instead
 
 How many clustered indexes can a table have and why?
 only one, because only one physical data is available. clustered indexes defines how the data stored in disk.
