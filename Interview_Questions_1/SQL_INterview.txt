@@ -86,22 +86,54 @@ How many clustered indexes can a table have and why?
 only one, because only one physical data is available. clustered indexes defines how the data stored in disk.
 
 What is a covering index?
+it covers all the columns required for the query.
+
+CREATE INDEX idx_orders_customer
+ON orders(customer_id)
+INCLUDE (order_date, total_amount);
+
+covering index vs merge index 
+1> covers all columns -- scans all reults using index and intersects r union them
+2> wont access tables while fetching results -- access tables
 
 How to identify slow queries?
+1> Use logs 
+2> Use EXPLAIN r EXPLAIN ANALYZE to get info of queries used 
+reasons::
+where clause without index
+scanning more than 1000000+
+full table scan 
+un expected index Merging 
 
 Difference between B-Tree vs Hash index
+B-Tree -- Balanced tree structures stores data in sorted order useful for conditional Operators(>= , <= , Like , Min , Max).
+Hash Index -- uses keys to map the data useful exact equity scan (=)
 
 What happens to indexes on INSERT/UPDATE/DELETE?
+steps:
+Insert row 
+indexes need to read 
+change the indexes for every Result
+B-Tree:
+find the correct positions 
+update the parents 
 
 🔹 Advanced SQL (Expected at 6 Years)
 
 What are window functions?
+It performs calculation over windows of rows based on current row.
+ROW_NUMBER()
+RANK()
+DENSE_RANK()
+LAG()
+LEAD()
 
 Difference between RANK(), DENSE_RANK(), ROW_NUMBER()
 assign dif val for duplicates,same but wont skip count after ties, same but skip count after ties, 
 
 Use case of PARTITION BY
 ROW_NUMBER() OVER (PARTITION BY Department ORDER BY Salary DESC)
+it will calculate based on the group but every row remains
 
 What is CTE (WITH clause)?
 used as reusable query in several places.
@@ -153,9 +185,11 @@ What is a transaction?
 all sequence of queries execute as single unit of work
 
 Explain commit vs rollback
+commit -- used to update the data base permanently
+rollback -- used to undo the trasaction.
 
 What are isolation levels?
-How visible the changes in onr trans visible to Other.
+How visible the changes in one trans visible to Other.
 
 Read Uncommitted
 can read changes of uncommitable 
@@ -167,16 +201,23 @@ Repeatable Read
 Serializable
 
 What are dirty reads, non-repeatable reads, phantom reads?
-read uncommited data, changing reflects , inserts reflects 
+dirty reads :: read uncommited data, 
+non repeatable :: Same row, different value within one transaction , changing reflects , 
+Phantom reads :: Getting new result due to insert.
 
 What is deadlock? How do you handle it?
+2 transactions waiting for each other.
+eg : 2 transactions delete on one table waiting for the already deleted index
+sol :
+Keep transactions short 
+Maintain Order of accessing table data.
+Use Proper Index
+retry Deadlock
 
 exceptions ::
 raiseExceptionerror(number , Message);
 throw number , mesage
 signal sqlstate number set message_text = "kas"
-
-
 
 🔹 Query Writing (Hands-On Questions)
 

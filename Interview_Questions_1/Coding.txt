@@ -1,0 +1,37 @@
+ public static void Main(string[] args)
+    {
+        int[] arr = {1,2,3,4,5,6,7,8,9,10};
+        int n = 2;
+        RightShift(arr);
+        LeftShift(arr);
+        findNthElement(n,arr);
+    }
+    
+    public static void LeftShift(int[] arr){
+        int temp  = arr[0];
+        for(int i=0;i< arr.Length-1;i++){
+            arr[i] =  arr[i+1];
+        }
+        arr[arr.Length-1] = temp;
+        displayData(arr);
+    }
+    
+    public static void RightShift(int[] arr){
+        int temp  =  arr[arr.Length-1];
+        for(int i=arr.Length-2; i >= 0;i--){
+            arr[i+1] =  arr[i];
+        }
+        arr[0] = temp;
+        displayData(arr);
+    }
+    
+    public static void findNthElement(int n, int[] arr){
+        Array.Sort(arr);
+        Console.WriteLine(arr[n-1]);
+    }
+    
+    public static void displayData(int[] arr){
+    for(int j=0;j < arr.Length; j++){
+        Console.WriteLine(arr[j]);
+    }
+    }
