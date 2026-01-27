@@ -1,19 +1,25 @@
 Core Angular & Architecture
 
 How does Angular’s change detection work internally?
+Zone.js ,omitors events , bndings , promises , Observables.
+if any change found triggers the change detection from the app roots.reevaluates bindings , Update dom
+Note :: It does not diff objects deeply — it checks references, not structure.
 
 What is the difference between Default and OnPush change detection strategies?
+will trigger change detection of every Life cycle by zone.js while need to call cd.detectChanges();
 
 Explain Angular compilation: JIT vs AOT.
+JIT :: app sends compiler and templetes then browser will compile to js and run app (Faster rebuild,Hot Reload,Better error Messages)(Large Files, slow start up)
+AOT :: app compile templates and send pure js, browser run js (fast app start up , high security, Errors caught at build time)(long Build Time)
 
 What are standalone components? How do they differ from NgModules?
+standalone :: they rely on its own dependencies, Lazy Loading 
+ngModules :: components rely on modules, Large, tightly coupled modules
 
 How does Angular handle dependency injection hierarchy?
 provided-in : root,
 @Module
 @Component
-
-
 
 What are providers, useClass, useValue, useFactory, and useExisting?
 providers: [
@@ -57,8 +63,10 @@ component, structural, Behavioural
 Lifecycle hooks execution order and real-world use cases
 ngonchanges,ngoninit ,ngdocheck,ngaftercontentinit,ngaftercontentchecked,ngafterviewinit,nfafterviewchecked, ngondestroy
 
-Difference between @ViewChild, @ContentChild, and @ViewChildren
-
+Difference be. Get the data of tween @ViewChild, @ContentChild, and @ViewChildren
+@ViewChild == Get the element , component , directive from its own View
+@ViewChildren == Get Multiple element from its own View.
+@ContentChild == Get element Projected Via ng content
 
 When would you use a structural directive vs a component?
 when u want only structure change not logic implement, no stylings

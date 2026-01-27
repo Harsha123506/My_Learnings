@@ -307,54 +307,143 @@ var rowsAffected = context.Database
 
 
 When would you use Dapper instead of EF?
+When u need Modeling , Chage tracking we use ef ,while use dappper when u want performance and sql control.
 When We use micro ORM for better performance and control over SQL queries.
+
 
 Design Patterns (Must-know for 6+ years)
 
-Singleton (thread-safe implementation) 
+Singleton (thread-safe implementation)  : single responsibility
+
+public static Lazy<type> instance = new(() => new Singleton() ,isThreadSafe :true);
+
+Singleton :: Configurations, Logging, InMemory Cache
+Scoped :: DB Context , Repository, Business Service
+Transcient(Light Weight, no Shared Data) :: Validators, formatters , Small calculation services
 
 //Factory vs Abstract Factory
 
-Repository Pattern (pros & cons)
+Repository Pattern (pros & cons) :: Dependency Inversion
+pros : separation of concerns, Testability, Abstraction over data source
+cons : Repository Over EF(extra Boiler Plate),Leaky abstractions 
 
-Unit of Work
 
-Strategy Pattern
+Unit of Work :: SRP and DI
+do changes and commit only once. EF auto perform UOW in same repository
+pros :: Multiple Repositories one transactions 
+cons :: wrapping ef core , one global UoW, 
 
-Observer Pattern
+Strategy Pattern :: OCP & DI
+Lets u implement different startegies based on the type during run time.
+pass the startegy Object to the repective class.
+pros : multiple algorithms
+cons : one implementation , Tiny Logic.
 
-Decorator Pattern
+Observer Pattern :: OCP and DI
+1> Create IObservableService(Implement Subscribe -- to subscribe, Update--to add Observer to NotificationsList)
+2> Create Unsubscribe disposable class
+3> Create IObserver classes (implement ONComplete(), OnError(Exception exp), OnNext(int num))
+4> call and subscibe and then update to call the notify the data.
 
-CQRS
+Decorator Pattern  follows Open/Closed Principle
 
-Mediator Pattern
+Create Inetrface , concrete class Pair
+Create a common class inheriting concrete class
+implement derived classes from common class 
+pass the mutated Object to the next constructor.
 
-Builder Pattern
+CQRS :: SRP & OCP & DI
+Separates the query Operations to 2 models read and Write.
+
+//Mediator Pattern
+
+Builder Pattern ::  SRP & OCP & DI
+
+create the Building of an Complex Object by different methods.
+
+ public ICarBuilder AddHeatedSeats()
+    {
+        _car.HeatedSeats = true;
+        return this;
+    }
 
 Scenario-Based / Real-World
 
-How would you improve performance of a slow API?
+//How would you improve performance of a slow API?
 
 How do you handle distributed transactions?
 
+U can achieve it by using 
+saga pattern(a long transaction break down into small transactions ), Outbox pattern(a outbox event will be sent)
+
 How do you design a scalable system in .NET?
+using stateless services, 
+select architectural style (Monolith, Modular monolith, Microservices)
+Appply solid and design patterns
+Asynchronous Code
+Use Caching
+Monitoring 
+Security
+Handle Failures
 
 How do you handle exception logging in production?
+1> Global Exception Handling 
+2> Logging and Monitoring , Correlation IDs (trace a request)
+3> Alerts for Critical exceptions.
 
 How do you secure sensitive data in a .NET application?
+Encoding and parameterised queries.
+RateLimiting , JWT/api keys  ,CORS Restrictions
+Hashing sensitive data.
+store data in environment variables , Azure Key Vault, 
+use Https / TLS
 
 Describe a production issue you faced and how you fixed it.
 
 How do you review code as a senior developer?
+Design & architecture
+Correctness
+Maintainability
+Performance
+Security
+Style & conventions (last)
 
 How do you ensure thread safety in your application?
+Avoid shared mutable state
+Use async/await correctly
+Use Threadsafe collections
+Thread-safe singletons
 
 Bonus (Often Asked)
 
 Difference between ref, out, in.
 
 What is readonly vs const?
+const : compile time constant, must be intitialised, cannot support reference types,  
+readonly : runtime Constant, assign in the compiler r in declaration, can support reference types
 
 What is dynamic keyword?
+allows us to set the datatype at runtime
+usage :: COM / Interop , JSON
 
 What are extension methods?
+allows us to add the method to the data types without changing its state.
+
+
+public static string changeState(this string str){
+return str.toUpperCase()[0];
+}
+
+"kjabxkiw".changeState();
+
+What are records in C#? When would you use them?
+Records are reference types designed to represent immutable data with value-based equality.
+we can create the new modified Object using with statement
+
+Explain pattern matching and its real-world use.
+if (x is Customer c)  allows to extract the data of Object in One line
+
+Explain Managed vs Unmanaged memory
+Not Managed By CLR eg files handles, Db Connections , OS Memory, Native Library
+
+

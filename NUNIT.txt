@@ -1,1 +1,40 @@
-Types of test :: 
+packages :: NUNIT, Microsoft.test.sdk, NUnit3TestAdapter
+
+Method Replace in Latest Version : ClassicAssert.AreEqual() instead of Assert.AreEqual()
+
+NUNIT ::
+
+For Controllers -- Use TestFixture attribute
+For Methods -- Use Test attribute ,TestCase Attribute for parameters
+
+Test vs TestCase --> [Test] attribute marks a single, non-parameterized test method, while the [TestCase] attribute is used to create multiple test instances for the same method by providing different inline input parameters. 
+[TestCase(1,"2")] ==> can add parameters
+[TestCase(1,"2",ExpectedResult = True)] ==> can add parameters with expected result and return the expected reult via method.
+
+ClassicAssert.AreEqual(a,b) ==> to check if the values are equal
+ClassicAssert.AreEqual(a,b,delta) ==> to check for double data types use delta(mandatory);
+
+ClassicAssert.True(a,b) ==> if the result is Boolean
+ClassicAssert.That(a,b) ==> Assert.That(actual, Is.EqualTo(expected)
+ClassicAssert.That(a,b) ==> Assert.That(actual, Does.Contains(expected) -- to check if string has the character
+ClassicAssert.That(a,b) ==> Assert.That(actual, Does.StartsWith(expected) -- to check if string starts wIth the character
+ClassicAssert.That(a,b) ==> Assert.That(actual, Does.EndWith(expected) -- to check if string ENds wIth the character
+ClassicAssert.That(a,b) ==> Assert.That(actual, Does.Mathc(expected, Patterns) -- to check if string Matches specific pattern
+Does.Contains(expected).IgnoreCase ==> TO ignore the case while checking 
+
+ClassicAssert.ISNull(expected) ==> to check null;
+ClassicAssert.IsFalse(bool isadd) ==> to check if the value is false
+ClassicAssert.IsTrue(bool isadd) ==> to check if the value is true
+
+[SetUp]
+public void setUp{
+Customer cu = new Customer();   to set the Global Variable.
+}
+
+Models :: Classic Model --> Uses single method for sinfgle check
+Constraints model (that method) --> check multiple conditions in single method.
+
+
+
+
+
