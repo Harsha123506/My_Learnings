@@ -446,4 +446,16 @@ if (x is Customer c)  allows to extract the data of Object in One line
 Explain Managed vs Unmanaged memory
 Not Managed By CLR eg files handles, Db Connections , OS Memory, Native Library
 
+REST Full Principles?
+Client Server Seperation
+statelessness -- server wont store the data of client
+cachebiability -- Responses can say they can be cacheable
+uniform Interface -- Resource Based Urls, meaningful HTTP Methods,Requests & responses must include:headersmedia typemetadata, Layered System.
 
+PI functionality?
+
+Handle Large Dataset in DB ?
+use Filtering , Pagination, stream, Aggregate, 
+Indexing 
+modelBuilder.Entity<Order>()
+    .HasIndex(o => o.CreatedAt);

@@ -76,8 +76,18 @@ How do pure and impure pipes differ?
  executes only when reference of input changes
 
 How to optimize heavy pipes?
+use pure pipes
+use async pipes for loop operations
+cache pipe returned data
+use on push change detection
+avoid using pipes instead of for.'
+use track by 
 
 What happens when an @Input() value changes?
+parent changes the value 
+change detection 
+@input bindings search 
+reassigns the value to @input
 
 How does Angular handle content projection (ng-content)?
 
@@ -90,14 +100,31 @@ switchMap vs mergeMap vs concatMap vs exhaustMap
 cancel precious observable , return all as one, queue the Observables, ignore existing if previous is active.
 
 How do you avoid nested subscriptions?
+Use SwitchMap, Merge Map , concat map , foRK jOIN
+we can use scan, pair wise,with layest from to use previous state
 
 What is cold vs hot observable?
+cold: data is produced when u subscribe , 
+hot: data is produced u will get when u subscribe.
 
 How do you handle memory leaks in Angular?
+unsubscribe the Observable
+takeuntilldestroyed
+clear time intervals 
+destroy third party libraries
 
 Explain takeUntil and real-world usage
+source$.pipe(
+  takeUntil(stop$)
+)
+subscribe , Kill if the stop$ value changes
+multiple will be killed at once
 
 How does the async pipe work internally?
+1> SUbscribes when the view is rendered
+2> takes the latest value of the data.
+3> Marks for check
+4>
 
 Error handling strategies in RxJS
 
@@ -110,6 +137,10 @@ Difference between debounceTime and throttleTime
 Template-driven vs Reactive forms – which do you prefer and why?
 
 How do custom validators work?
+//to create a class inherit from validatorFN and then add the name of the class 
+ return (control: AbstractControl): ValidationErrors | null => {
+    const forbidden = control.value === forbiddenName;
+    return f
 
 Async validators – real-world use case
 
