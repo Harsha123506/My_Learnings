@@ -86,7 +86,7 @@ they are built in Generic Delegates return type, void , boolean.
 
 What are events and how are they implemented?
 
-they are notification mechanismbuild top of the delegates.
+they are notification mechanism build top of the delegates.
 
 Difference between IEnumerable, ICollection, IList.
 
