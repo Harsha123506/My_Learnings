@@ -1,0 +1,21 @@
+Pagination  :: In actionMethod dbContext.students.ToPagedList();
+
+in html add @html.PagedListPager(Modle,page => url.Action(Index, new {Page}))
+
+
+Calling API ::
+
+using HttpClient
+
+httpClient =  new (){
+baseAddress = Uri(UrlPath);  ==> to create baseaddress 
+}
+
+httpResponseMessage  = httpClient.GetAsync("ToDo/GetList");
+httpResponse.Content.ReadAsStringAsync();
+
+using xmlhttpRequest
+
+using fetch()
+
+

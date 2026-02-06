@@ -34,7 +34,18 @@ Customer cu = new Customer();   to set the Global Variable.
 Models :: Classic Model --> Uses single method for sinfgle check
 Constraints model (that method) --> check multiple conditions in single method.
 
+Assert.AreEqual(l1,l2);
+Assert.Contains(7,l1);
+Assert.That(result, Is.Not.Empty);
+Assert.That(result, Has.NOe.Member(6));  // check if list has 6
+Assert.That(result, Is.Ordered);  // check if the list is sorted.
+Assert.That(result, Is.Unique);
+Assert.That(result, Is.InRange(10,23));
 
+Assert.That() // if one fails stop execution
+Assert.Multiple(() => {
+all that statements           // allows to execeute all if any fails.
+}) 
 
-
-
+excDetils = Assert.Throws<ArgumentEXception>(()=> customer.methodthrowseception("",123));
+Assert.That(() => customer.MethaodThroweception(",q123"),Throwa.ArgumentException.With,Message.EqualTo("mesage"));  // to validate message thrown for Exception.

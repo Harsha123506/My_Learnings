@@ -55,7 +55,7 @@ properties , multiple inheritence , constructor, contract - common behaviour.
 
 What is dependency injection and why is it important?
 
-using the object from external resource instead of crating it within class to remove tight coupling.
+using the object from external resource instead of creating it within class to remove tight coupling.
 
 Explain method overloading vs method overriding.
 
@@ -459,3 +459,96 @@ use Filtering , Pagination, stream, Aggregate,
 Indexing 
 modelBuilder.Entity<Order>()
     .HasIndex(o => o.CreatedAt);
+
+What is mocks ?
+Instead of connecting database while testing we use mock object to test the scenario.(delays will be reduced)
+mock<IpeopleClass> mockdata = new mock<IpeopleClass>();
+mockdata.setUp(() => return obj);
+Fast, not affect database , No need to create test db data.
+
+Nuget Packages ??
+dotnet restore ==> sometimes if vs cant able to restore we can use this command for manual action
+packages installed in Users Folder (users/harsha/.nuger/Packages)
+even installed in one package will be shared by all projects.
+
+Debug vs release ?
+Release -- Optimisations introduced by compiler which are appropriate.
+Debug -- Used for debugging the code.
+ildasm -- used to read ilcode.
+sharplab.io -- used to convert il to c# code.
+#if DEBUG
+logic            // to execute the code only in dev mode
+#endif
+
+Preprocessor directive ??
+Allows to decide whether the specific code is compiled r not.
+program that runs before the actual compiler runs applies some operations on code before compilations starts.
+#if()
+else
+#endif
+
+#region
+#endregion  // to create a region for the info
+
+#pragma warning disable CA2200;  // to disable the warning 
+#pragma warning restore CA2200;  // to restore it
+
+#nullable disable // to disable nullableity
+
+Nullable Reference types?
+value types are notnullable types by default.
+reference types are nullable But we got warnings it might throw null refernce exception
+note :: in array null wont give warnings., even in object instantiation it will be the same.
+? --> nullable operator 
+! --> Null supress Operator.
+note :: y int? are assignes as nullable even they are value types --> to differ 0 and missing data. 
+
+File --> to work with Binary data for simple read and write Operations.  //copy , move, create, Read
+File STrea, --> more flexible than File.
+streamWriter, streamReader --> work with text of files instead of binary data.
+File Info --> To get the data about the File.
+Directory.exists();
+Directory.CreateDirectory(name);
+Directory.getFiles(fOLDERnAME);  // GET the List
+Use StreamReader with ReadLine()  // To read line by line instead of all loading into Memory.
+
+File vs File Info 
+File -- Static Base, used for simple ops
+File Info -- instance , Used for multiple operation in single File 
+
+Directory vs Directory Info
+Directory :: static
+Directory Info :: instace , More used for repeted tasks on same folder.
+
+if u use ReadAllText can cause out of memory exception.
+
+FileMode.Create vs FileMode.CreateNew
+Create -- > override if exists 
+Create New --> Throw exception
+
+FileShare --> controls how the Other Process can access the File If it is open
+
+Flush() → writes buffered data to disk
+Close() → flushes + releases resources
+
+can 2 apps access one File at once --> Yes WIth FileShare
+
+reader.EndOfStream  ==> return if it is end of the file 
+
+new StreamWriter("file.txt", false, Encoding.UTF8);  // To Encode Explicitly
+
+if encoding Mismatches u wont get exceptions , instead will get incorrect characters.
+
+Why do we get “file is being used by another process”  --> File Stream not closed , Incorrect File share Mode
+
+How do you check if a file is locked? --> by catching IO exception.
+
+Relative → based on current working directory
+
+Absolute → full path from root
+
+Path.Combine(folder, fileName);
+Path.GetExtension(path);
+Path.GetFileName(path);
+
+Difference between TempFile and normal file?  // TempFile Auto delete

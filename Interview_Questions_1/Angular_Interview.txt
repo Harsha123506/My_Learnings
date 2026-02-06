@@ -1,7 +1,7 @@
 Core Angular & Architecture
 
 How does Angular’s change detection work internally?
-Zone.js ,omitors events , bndings , promises , Observables.
+Zone.js ,monitors events , bindings , promises , Observables.
 if any change found triggers the change detection from the app roots.reevaluates bindings , Update dom
 Note :: It does not diff objects deeply — it checks references, not structure.
 
@@ -22,6 +22,7 @@ provided-in : root,
 @Component
 
 What are providers, useClass, useValue, useFactory, and useExisting?
+that helps to implement dependency injection
 providers: [
   { provide: 'API_CONFIG', useValue: config }
 ]
@@ -80,7 +81,7 @@ use pure pipes
 use async pipes for loop operations
 cache pipe returned data
 use on push change detection
-avoid using pipes instead of for.'
+avoid using pipes in forloops.'
 use track by 
 
 What happens when an @Input() value changes?
@@ -101,16 +102,16 @@ cancel precious observable , return all as one, queue the Observables, ignore ex
 
 How do you avoid nested subscriptions?
 Use SwitchMap, Merge Map , concat map , foRK jOIN
-we can use scan, pair wise,with layest from to use previous state
+note :: we can use scan, pair wise,with latest from to use previous state
 
 What is cold vs hot observable?
-cold: data is produced when u subscribe , 
-hot: data is produced u will get when u subscribe.
+hot : data is produced when u subscribe , 
+cold : data is produced u will get when u subscribe.
 
 How do you handle memory leaks in Angular?
 unsubscribe the Observable
 takeuntilldestroyed
-clear time intervals 
+clear time intervals
 destroy third party libraries
 
 Explain takeUntil and real-world usage
@@ -124,61 +125,210 @@ How does the async pipe work internally?
 1> SUbscribes when the view is rendered
 2> takes the latest value of the data.
 3> Marks for check
-4>
 
 Error handling strategies in RxJS
+Data$.Subscribe({
+next: n => Console.Log(),
+error : e => Console.Log(),     ==> if we use error without rxjs it will terminate the execution.
+complete : c => Console.Log()
+})
+
+source$.pipe(
+  catchError(err => {
+    console.error(err);
+    return of(fallbackValue);  
+  })
+)
+
+catch error - rxjs error is caught only the errors occur above the catch error line (u call it as upstream)
+
+retry, retryWHen :: retries , automatic resubscribe
+
+Finalize :: clean Up no Matter what 
+
+materialize() :: turns errors into values
 
 How would you retry an API call conditionally?
 
+retryWhen(errors =>
+    errors.pipe(
+      scan((retryCount, error) => {
+        if (retryCount >= 3 || error.status < 500) {   ==> for production ready pattern
+          throw error;
+        }
+        return retryCount + 1;
+      }, 0),
+      delayWhen(retryCount =>
+        timer(2 ** retryCount * 1000)
+      )
+    )
+  )
+
+
 Difference between debounceTime and throttleTime
+debounceTime :: Emits the latest data after the time specified 
+throttleTime :: Emits Immediately and ignore the data till time completed.
 
 4. Forms (Template & Reactive)
 
 Template-driven vs Reactive forms – which do you prefer and why?
+Reactive Forms :: can be tested , can be able to predict wt error we might get , forms are observables makes easy for conditional validation, Higher BoilerPlate, cross Validation
 
 How do custom validators work?
-//to create a class inherit from validatorFN and then add the name of the class 
+//to create a class inherit from validatorFN and then add the name of the class
+export function minLengthValidator(min: number): ValidatorFn {
  return (control: AbstractControl): ValidationErrors | null => {
-    const forbidden = control.value === forbiddenName;
-    return f
+    const forbidden = control.value === forbiddenName;    // declare the function
+ return forbidden;
+
+ this.input = new formcontrol('',minLengthValidators);
 
 Async validators – real-world use case
+Async validators are for anything that needs I/O or time (server, network, IndexedDB, etc.)
+
+export function usernameTakenValidator(
+  api: UserApi
+): AsyncValidatorFn {
+  return (control: AbstractControl) => {
+    if (!control.value) {
+      return of(null);
+    }
+
+    return api.isUsernameTaken(control.value).pipe(
+      map(isTaken => (isTaken ? { usernameTaken: true } : null)),
+      catchError(() => of(null)) // don’t block form on API error
+    );
+  };
+}
+
+
 
 How do you dynamically add/remove form controls?
 
+we can give the name of the form control and then use removecontrol.
+
+this.name  = new formcontrol('middle',required);
+
+this.form.addControl(
+  'middleName',
+  new FormControl('')
+);
+
+this.form.removeControl('middleName'); 
+
 Difference between setValue and patchValue
+
+this.form.setValue({
+  firstName: 'Alice', // if misses any param will throw error
+  lastName: 'Smith'
+});
+
+this.form.PatchValue({
+  firstName: 'Alice',  //will update
+  lastName: 'Smith'
+});
 
 How do you handle cross-field validation?
 
+Validating between 2 different Fields
+password, confirm password
+startdate , end date
+
 Form performance optimization strategies
+
+use onPush,
+updateOn: 'blur' in formcontrol as 3rd param
+debouncetime, distinctuntillchanged ==> in pipes
+unsubscribe value changes
 
 5. Routing & Navigation
 
 Lazy loading vs Preloading strategies
 
+LazyLoading  :: LoadChildren : () => import('sdc').then(m=>activeModule);
+preloading  :: Loads all at the background ,
+RouterModule.forRoot(routes, {
+  preloadingStrategy: PreloadAllModules
+});
+
 How does Angular Route Guards work internally?
+Its a Hooks from routing Life Cycle.
+canActivate :: run before navigating to route
+canActivateChild :: run before navigating to child
+CanLoad :: execute before the import is loaded, Prevents the module from being downloaded.
+CanDeactivate :: before navigating to different route
+Resolve :: before activating route resolves data
+CanMatch :: run if route matched specific url
+
+A guard can return boolean , urltree(navigate to the urlroute), observable, promise 
+
+canActivate(
+  route: ActivatedRouteSnapshot,
+  state: RouterStateSnapshot
+): Observable<boolean | UrlTree> {
+  return this.authService.isLoggedIn$.pipe(
+    map(loggedIn => loggedIn || this.router.createUrlTree(['/login']))
+  );
 
 Difference between CanActivate, CanActivateChild, CanLoad, and Resolve
 
+
 How do you handle role-based routing?
+ data: { roles: ['admin', 'superuser'] } in route.ts we can configure the role 
+ and then validate in the Roleguard class which implements canActivate
 
 How to pass data between routes?
+1> This.Router.navigate([/user,"121"])
+constructor(private route: ActivatedRoute) {}
+
+ngOnInit() {
+  this.route.paramMap.subscribe(params => {
+    const id = params.get('id'); // "42"
+  });
+}
+
+2> this.router.navigate(['/search'], { queryParams: { q: 'angular' } });
+3> this.router.navigate(['/checkout'], { state: { cart: this.cartItems } });  // passing data using state property 
+  const nav = this.router.getCurrentNavigation();
+  const cart = nav?.extras.state?.cart;
 
 How does router state snapshot differ from observable state?
 
 6. Performance Optimization
 
 How do you optimize Angular application performance?
+Lazy Load 
+Preload frequently used modules
+Import specific libraries which are going to use.
+onpush strategy
+Use Immutable Objects
+Cache Calculations
+updateOn: 'blur' | 'submit'
+Use debounceTime and distinctUntilChanged for search inputs
+Unsubscribe with takeUntil or async pipe
+Use *ngIf to remove hidden DOM elements
+Use *ngFor trackBy to prevent unnecessary re-renders
+Use ng-container instead of extra <div> wrappers to reduce DOM nodes
+Lazy load images with loading="lazy"
+Compress images and SVGs
+Use async pipe instead of manual subscriptions to reduce memory leaks
+Use pagination for large datasets instead of loading everything at once
 
 TrackBy function – when and why?
+In normal in for loop the angular checks the reference of the objects and update the Whole DOM if it is different.
+track By allow to track the changes of the object. results in changing in only the specific part of the DOM element.
 
 Lazy loading modules vs components
 
 How do you detect performance bottlenecks?
+by using dev tools > heap Memory
 
 How does server-side rendering (SSR) help performance?
+SSR -- will render html ikmmeiately, better SEo , Cacheable CDN.
+can cause Hydration Gap.(events wont work till JS loading done)
 
 What is Angular Universal?
+it allows us to achieve SSR runs angular in node.js Server.
 
 How do you reduce bundle size?
 Ahead of time , tree shaking 
@@ -189,6 +339,8 @@ checks the apps referenced used if not found removed.
 7. State Management
 
 When would you use NgRx, Akita, or Signals?
+signals :: when u need simplicity ,moderately shared
+NgRx :: Use when state is Large , Business Critical.
 
 Explain NgRx architecture (Actions, Reducers, Effects, Selectors)
 

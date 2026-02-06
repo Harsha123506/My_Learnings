@@ -1,0 +1,55 @@
+Refresh Tokens :: Access tokens for JWT is short Lived To get the new generated token we use refreshTokens
+
+User Get Access Tokens + Refresh Token When Login.
+if expired calls /refresh then the user Get the new access token.
+
+
+Password hashing (BCrypt)
+
+BCrypt.GetHashCode(password);
+BCrypt.Verify(passwordEnteredByUser, storedHashFromDb);
+
+FileUpload and download ::
+-----
+get the file variable from the html.
+create formdata and append file data.
+receive through iformfile object.
+use file.copytoasync(stream)  // to upload in specific path.
+
+download::
+Bytes data = system.IO.File.ReadALlBytes(path);
+return File(bytes , "Application-octstream", fileName)
+
+in angular 
+return this.http.get(`https://localhost:5001/api/Download/file/${fileName}`, {
+      responseType: 'blob' // important to treat it as binary
+    });
+
+url = window.url.createObjectUrl(blob);
+a = document.getelementbytag('a');
+a.href = url;
+a.click();
+window.URL.revokeObjectURL(url); // used to release Object Url
+
+RateLimiting ::
+-------
+Builder.Services.AddRateLimitter(opt => {
+opt.addwindowLimiters("fixed", options => {
+        limiterOptions.PermitLimit = 5; // 5 requests
+        limiterOptions.Window = TimeSpan.FromSeconds(10); // per 10 seconds
+        limiterOptions.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+        limiterOptions.QueueLimit = 2; // queue up to 2 extra requests
+}
+})
+
+PermitLimit: Max requests per window.
+Window: Time period for the limit
+QueueLimit: Number of requests that can wait if limit is exceeded.
+RequireRateLimiting("fixed"): Apply to specific endpoints.
+
+cases 
+LoadBalancing 
+DataBase Replication
+Cache -- Cache Tier // consider expiration, consistency , frequent data cacheing
+Common Delivery Network  // can handle CDN outage , cost , Proper cache expiry.
+

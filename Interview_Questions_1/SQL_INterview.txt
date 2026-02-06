@@ -193,11 +193,8 @@ How visible the changes in one trans visible to Other.
 
 Read Uncommitted
 can read changes of uncommitable 
-
 Read Committed
-
 Repeatable Read
-
 Serializable
 
 What are dirty reads, non-repeatable reads, phantom reads?
