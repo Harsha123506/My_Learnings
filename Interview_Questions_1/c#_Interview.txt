@@ -552,3 +552,16 @@ Path.GetExtension(path);
 Path.GetFileName(path);
 
 Difference between TempFile and normal file?  // TempFile Auto delete
+
+What is CSRF, and how do you prevent it in a .NET Core app?
+From other tab hacker ask us to send request to access resources, steal data.
+
+[ValidateAntiForgeryToken] // works if token sent in headers
+public IActionResult Update([FromBody] DataModel model)
+{
+    return Ok();
+}
+
+How to Create BackGroundJOb using .NET?
+create a class inherits backgroundServices and Add service in program.css
+builder.Services.AddHostedService<MyBackgroundService>();

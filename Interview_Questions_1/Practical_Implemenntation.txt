@@ -1,0 +1,117 @@
+How to replace File Text ?
+
+string txt = File.ReadAllText(@"C:\Users\hyerraguntla\Downloads\Text.txt.txt");
+txt = txt.Replace("test", "Joe");
+File.WriteAllText(@"C:\Users\hyerraguntla\Downloads\Text.txt",txt);
+
+using (StreamReader sr = new StreamReader(@"C:\Users\hyerraguntla\Downloads\Text.txt.txt"))
+{
+    using (StreamWriter sw = new StreamWriter(@"C:\Users\hyerraguntla\Downloads\Text.txt"))
+    {
+        while (!sr.EndOfStream)
+        {
+            sw.WriteLine(sr.ReadLine().Replace("test", "Danger"));
+        }
+
+    }
+}
+
+
+How to Implement Logging Using Serilog ?
+
+Log.Logger = new LoggerCongiguration().MinimumLogLevel.debug().WriteTo.Console().CreateLogger();
+        Log.Information("Application started");
+        Log.Debug("Debugging info here");
+        Log.Warning("This is a warning!");
+        Log.Error("Oops! An error occurred");
+        Log.Fatal("Fatal error! Application will terminate");
+
+
+Implement Signal R ??
+install signalr Package 
+create hub.cs inherits hub class and implement sendMessage and receiveMessage
+add signalrservice
+add hub class to end points
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+    endpoints.MapHub<ChatHub>("/chatHub"); // Map SignalR Hub endpoint
+});
+
+in angular 
+
+private hubConnection!: signalR.HubConnection;
+  public messageReceived = new Subject<{ user: string, message: string }>();
+
+  public startConnection() {
+    this.hubConnection = new signalR.HubConnectionBuilder()
+      .withUrl('https://localhost:5001/chatHub') // Replace with your backend URL
+      .withAutomaticReconnect()
+      .build();
+
+    this.hubConnection
+      .start()
+      .then(() => console.log('SignalR Connected'))
+      .catch(err => console.log('Error connecting to SignalR: ', err));
+
+    this.hubConnection.on('ReceiveMessage', (user, message) => {
+      this.messageReceived.next({ user, message });
+    });
+  }
+
+  public sendMessage(user: string, message: string) {
+    this.hubConnection.invoke('SendMessage', user, message)
+      .catch(err => console.error(err));
+  }
+
+  How to Download The Data in ANgular?
+  this.http.Get(url, {responseType = Blob}).subscribe(
+    next : (response) => {
+        let a = document.GetELementBytag('a');
+        blob =  new Blob([response.body!], { type: response.body!.type });
+        a.href = window.Url.CreateObjectUrl(blob);
+        a.click();
+        window.URL.revokeObjectURL(url);
+    },
+    error : (err) => {
+    }
+  )
+
+  How to Create pdf document in .NET ?
+  Using QuestPDF 
+  document.CreateContainer(container => {
+  container.Page(page =>{
+
+  page.Header().Text(x => x.CurrentPageNumber + "/" + x.TotalPages);
+  page.Content().Column(column =>
+                    {
+                        column.Item().Text("Hello! This is a sample PDF created using QuestPDF.");
+                        column.Item().Text("You can add multiple lines, tables, images, etc.");
+                    });
+  page.Footer().Text(x => x.CurrentPageNumber + "/" + x.TotalPages););
+
+  })
+  }).GeneratePDF();
+
+
+  How to Implement Virtual scrolling in angular ? 
+
+  this.observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !this.loading) {
+        this.loadMore();
+      }
+    }, options);
+
+    this.observer.observe(this.anchor.nativeElement);
+  }
+
+Where do u store jwt token?
+
+LocalStorage , Session Storage, HttpOnly Cookie, inmemory
+
+localstorage :: not safe for XSS, shared with all tabs.
+session storage  ::  not safe for XSSs, shared only with tab.
+httpOnly Cookie :: safe for Xss , csrf should be handled.
+inmemory :: lost toke  if it refreshed.
+
+

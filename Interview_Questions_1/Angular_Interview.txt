@@ -1,9 +1,9 @@
-Core Angular & Architecture
+﻿Core Angular & Architecture
 
-How does Angular�s change detection work internally?
+How does Angular’s change detection work internally?
 Zone.js ,monitors events , bindings , promises , Observables.
 if any change found triggers the change detection from the app roots.reevaluates bindings , Update dom
-Note :: It does not diff objects deeply � it checks references, not structure.
+Note :: It does not diff objects deeply — it checks references, not structure.
 
 What is the difference between Default and OnPush change detection strategies?
 will trigger change detection of every Life cycle by zone.js while need to call cd.detectChanges();
@@ -171,7 +171,7 @@ throttleTime :: Emits Immediately and ignore the data till time completed.
 
 4. Forms (Template & Reactive)
 
-Template-driven vs Reactive forms � which do you prefer and why?
+Template-driven vs Reactive forms – which do you prefer and why?
 Reactive Forms :: can be tested , can be able to predict wt error we might get , forms are observables makes easy for conditional validation, Higher BoilerPlate, cross Validation
 
 How do custom validators work?
@@ -183,7 +183,7 @@ export function minLengthValidator(min: number): ValidatorFn {
 
  this.input = new formcontrol('',minLengthValidators);
 
-Async validators � real-world use case
+Async validators – real-world use case
 Async validators are for anything that needs I/O or time (server, network, IndexedDB, etc.)
 
 export function usernameTakenValidator(
@@ -196,7 +196,7 @@ export function usernameTakenValidator(
 
     return api.isUsernameTaken(control.value).pipe(
       map(isTaken => (isTaken ? { usernameTaken: true } : null)),
-      catchError(() => of(null)) // don�t block form on API error
+      catchError(() => of(null)) // don’t block form on API error
     );
   };
 }
@@ -314,7 +314,7 @@ Compress images and SVGs
 Use async pipe instead of manual subscriptions to reduce memory leaks
 Use pagination for large datasets instead of loading everything at once
 
-TrackBy function � when and why?
+TrackBy function – when and why?
 In normal in for loop the angular checks the reference of the objects and update the Whole DOM if it is different.
 track By allow to track the changes of the object. results in changing in only the specific part of the DOM element.
 
@@ -343,6 +343,16 @@ signals :: when u need simplicity ,moderately shared
 NgRx :: Use when state is Large , Business Critical.
 
 Explain NgRx architecture (Actions, Reducers, Effects, Selectors)
+
+UI → Action → Reducer → Store → Selector → UI     //
+               ↓
+            Effect → API → Action
+
+Actions  :: Represents events.
+REducers :: Describe how the state changes based on actions
+Effects :: Handles side effects like api calls.
+store :: will handle entire app state.
+Selectors :: Read state from the store
 
 How do you handle side effects?
 
