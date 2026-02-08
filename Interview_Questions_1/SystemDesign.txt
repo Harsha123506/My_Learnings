@@ -53,3 +53,15 @@ DataBase Replication
 Cache -- Cache Tier // consider expiration, consistency , frequent data cacheing
 Common Delivery Network  // can handle CDN outage , cost , Proper cache expiry.
 
+state vs stateless ::
+StateFull :: Stores the data of User within session(cache , cookie)
+Both Can store the data in DB r use redis Cache.
+StateFull cons :: 
+1>User A should Navigate to Server A(can be managed Using sticky sessions)
+2>Adding and removing servers will be difficult.
+
+Data Center :: contains databases , Servers and its respective Cache.
+Traffic Redirection :: need Geo DNS tool to direct the traffic.
+Data Synchronization :: need to replicate data while failover
+Test and deployment :: need to test and deploy in every location.
+
