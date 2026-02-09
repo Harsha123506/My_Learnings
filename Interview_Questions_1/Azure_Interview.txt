@@ -1,38 +1,95 @@
 ﻿Azure Fundamentals (Must Be Strong)
 
 Difference between Azure IaaS, PaaS, SaaS
+Iaas : Provides VM, DataBase, Networking 
+User :: Os , Application and datA, runtime.
+eg :: Virtul machine , virtul Load balancer , Virtul Nework.
+
+Paas : Provides infrastructure , OS , runtime, Middleware
+User :: Application.
+eg  :: Azure app services , Azure functions , Azure sql database.
+
+SAAS : provides platform , Application
+User :: settings , Data Usge
+eg :: Microsoft 365, O365, Power Bi.
+
+Note :: U wont get the chnce to pick lthe specific services. U can pick as mixed 
 
 Azure Regions vs Availability Zones
+Azure Regions :: are the Physical regions consists multiple data centers within it , independennt to each other.
+Availability Zones :: they are the physical data centers which maintins it own database , networking and cooling used for failover within same region.
+
 
 Azure Resource Groups – purpose and lifecycle
+Its container mnges all resources based on appliction , environment nd project
+contins Vms , Load Balancers , networks , app services.
+pros :: access on group level , policies , create , delete resources.
+Note :: 
+1> Exists in One Location. 
+2> Resource Groups do not nest.
+3> RG location ≠ resource location.  // RG loctions is the place where meta data is stored.
 
 Azure ARM templates vs Bicep vs Terraform
+These are the coding types to create resources in Azure
+ARM :: Json Format , High Boiler Plate , Hard to red and write., No external tool required
+Bicep :: Microsoft introduced, Converts into ARM Json, Azure specific no multi cloud support
+Terrform  :: Multi CLoyd Support.
 
 Azure Subscription vs Management Group
+subscription :: is a resource level Billing, one subscription per resource
+Management Group :: is a set of Subscriptions used to scle subscriptions,Governnce rules.
 
 Azure Azure Portal vs Azure CLI vs PowerShell
 
 🔹 Compute Services
 
 Azure VM vs App Service vs Azure Functions
+Vm (IAAS):: User manages OS , Runtime , APpliction , Flexible for OS level Operations, Used for old platform specific apps.
+App Services(PAAS) :: User manges code, Quick Deployment using CICD Pipelines.
+Azure Functions (FAAS) :: scales to zero when not needed. Server Less , EVent Driven, Extremely cost Efficient.
 
 When to use Container Apps vs AKS
+continer Apps :: just deploy app , all are managed automatically by container.
+AKS ::  we need mange clusters , Nodes, Networking and scaling policies.
 
 App Service scaling (vertical vs horizontal)
+Vertical Scaling :: u ADD resources of single app service INstance , RAM , SSD (s1 plan to s2) (our app is CPU or memory-bound on its current instance.)
+Horizontal scaling :: U Add app services instances. (Your app needs to handle more concurrent requests.)
 
 Azure Functions Consumption vs Premium vs Dedicated plans
+Consumption -- coldstart, pay as u go 
+Premium  -- there is a warning instnces, Offers ENhnced Performance.
+Dedicated -- will run the app  functions within Azure vm, USED FOR  fixed traffic.
 
 Cold start problem – how do you handle it?
+When a request came to functions it has to provise Vm r container to run the serverless code , runtime has to be initialised, Load dependencies and run.
+use premium plan , use periodic requests.
 
 VM Scale Sets use cases
+re set of ideal vms tht scales automticlly based on demnd 
 
 Blue-green & Canary deployments in Azure
+Blue --> Current Production
+green --> new version
+using load balancer we will shift the traffic to new version server after testing.
 
 🔹 Networking (Very Important at 6 Years)
 
 VNet, Subnet, NSG, ASG differences
+VNEt  :: Fundamanetal network boundary in Azure, allow to communicate between resources.
+Subnet :: range of ip addresses within V NET, Azure resources are deployed inside subnet.
+NSG  :: Fire wall for Subnets /nic
+ASG :: A Logical groups for vms to manage NSGs.
 
 Azure Load Balancer vs Application Gateway
+Azure Load Balancer :: layer 4 load balancer apply on TCP/UDP Level, session affinity hash based.
+Application Gate Way :: Layer 7 Load Balancer apply on http/https level, session affinity is coockie based. navigates the routing of the request with different backend pools.
+
+first application gateway will decide based on route urls which tier need to go (web , app , database)
+then in specific tier , load balancer based on port it will select specific instance.
+
+
+
 
 Azure Front Door vs Traffic Manager
 
@@ -215,3 +272,7 @@ Focus on Azure for .NET developers
 Share real-world Azure design case studies
 
 Tailor questions for Azure Architect / Senior Dev roles
+
+
+
+Azure Event hub??
