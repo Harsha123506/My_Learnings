@@ -276,3 +276,21 @@ Tailor questions for Azure Architect / Senior Dev roles
 
 
 Azure Event hub??
+It is a platform where the events from m applications will be stored as a partition and consumed by various applications in parallel.
+
+Azure app functions?
+are the set of code executes when it is been triggereed (events , http req , blob upload , storage queue , service messages , Timer)
+
+Azure cosmos DB ?, 
+Is a database service that stores Multi models, fast with low latency.
+
+Azure applications Insights?
+Used to Monitor the errors and warnings. and disagnois issue.
+
+Azure APIM?
+its a api gateway anad management platfom. work as a reverse proxy. and also add policies.
+
+Azure Syorage accounts?
+container that stores all the storage services like , blob , queue , File , disc
+
+Azure Tech Stack ?
