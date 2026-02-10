@@ -9,7 +9,7 @@ use asNoTracking for Read-Only Queries
 project Only required Fields in Queries
 Use Compiled Queries for Repeated Queries
 use Parallel.ForEach for CPU-Bound Operations
-Enable response compression in Web APIs
+Enable response compression in Web APIs  // AddResponseCompression
 use Concurrent Collections for Multi-Threaded Scenarios
 Avoid unnecessary reflection
 
@@ -27,6 +27,6 @@ use Indexes on Frequently Queried Columns
 Avoid SELECT *
 use Joins Instead of Subqueries
 use Stored Procedures for Repeated Queries
-Optimize Queries with Execution Plans
+Optimize Queries with Execution Plans -- Explain Analyse
 use transactions for Batch Operations
 use char vs varchar for Fixed-Length Data

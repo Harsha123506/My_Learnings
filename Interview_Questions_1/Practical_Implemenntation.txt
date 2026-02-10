@@ -159,7 +159,7 @@ Optimisations techniques for server side ??
 
 Secure end points ??
 authentication 
-authorization 
+authorization ;
 input validation 
 Rate Limiting and throttling
 CORS
