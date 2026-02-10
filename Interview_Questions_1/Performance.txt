@@ -11,6 +11,7 @@ Use Compiled Queries for Repeated Queries
 use Parallel.ForEach for CPU-Bound Operations
 Enable response compression in Web APIs
 use Concurrent Collections for Multi-Threaded Scenarios
+Avoid unnecessary reflection
 
 Angular ::
 use OnPush Change Detection Strategy

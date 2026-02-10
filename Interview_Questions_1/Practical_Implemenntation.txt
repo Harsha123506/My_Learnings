@@ -29,7 +29,7 @@ Log.Logger = new LoggerCongiguration().MinimumLogLevel.debug().WriteTo.Console()
 
 Implement Signal R ??
 install signalr Package 
-create hub.cs inherits hub class and implement sendMessage and receiveMessage
+create hub.cs inherits hub class and implement sendMessage and receiveMessage (In my project used dbpooling background service to fetch the data and then with the delay of 3 sec)
 add signalrservice
 add hub class to end points
 app.UseEndpoints(endpoints =>
@@ -112,6 +112,79 @@ LocalStorage , Session Storage, HttpOnly Cookie, inmemory
 localstorage :: not safe for XSS, shared with all tabs.
 session storage  ::  not safe for XSSs, shared only with tab.
 httpOnly Cookie :: safe for Xss , csrf should be handled.
-inmemory :: lost toke  if it refreshed.
+inmemory :: lost take  if it refreshed.
+
+Performance Implementations ::
+
+MultiThreading ::
+
+1> WHy 
+
+Parallel.For(0, 1000, i =>
+{
+    counter++;
+});
+
+Gives unknown result?
+
+threads access shared memory causes unknown output
+
+Use Lock(_lock)
+{
+counter++;
+}
+
+2> dead Lock (asynchronous methods return synchrnous results cause deadlock)
+
+lock(a){
+lock(b)
+}
+
+lock(b){
+lock(a)
+}
+
+3> Your ASP.NET Web API receives 1,000 concurrent requests. Each request performs a CPU-heavy calculation.
+How does the ThreadPool handle this?
+it wint run all requests concurrently 
+it will take 8 threads and parallely and wait it to free to execute other.
+
+Would you use Task.Run here? Why or why not?
+No , It will ask to run the same thread again increasing delay.
+
+How can thread starvation happen?
+when there is a dead lock happened all threads are blocked then no threads are in thread pool.
+
+Optimisations techniques for server side ??
+
+Secure end points ??
+authentication 
+authorization 
+input validation 
+Rate Limiting and throttling
+CORS
+Logging and Monitoring 
+
+how to identify performance issues or loading issues in backend r front end  r database?
+
+angular :: dev tools :: network , perfoermance tools , light house
+.NET :: Visual Studio Profiler, APplications insights.
+db :: sql server profiler , maintain logs in sql
+
+challenges u faced while dealing migrating vb.NET to .NET core 
+
+folder structure 
+un supported methods.
+need to refactor code to use latest patterns
+dependencies
+synchronous code to asynchronous
+
+Agile ::
+envisioning 
+release planning 
+sprint planning 
+sprint execution
+sprint review 
+retrospective 
 
 
