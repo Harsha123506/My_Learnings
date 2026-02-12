@@ -1,0 +1,107 @@
+﻿🔥 JAVASCRIPT (Advanced Level)
+
+Explain event loop in detail.
+Difference between microtask and macrotask?
+What happens when you run async/await?
+How does hoisting work?
+var vs let vs const (internal behavior)
+Explain closure with real example.
+What is lexical scope?
+What is prototype & prototype chain?
+Difference between:
+call()
+apply()
+bind()
+What is this? Explain different binding rules.
+
+✅ Asynchronous JS
+How does Promise work internally?
+Promise.all vs Promise.allSettled?
+How to cancel a fetch request?
+What is debounce and throttle?
+Implement debounce function.
+How to avoid callback hell?
+
+✅ Performance & Optimization
+How do you improve frontend performance?
+What causes memory leaks in JS?
+How does garbage collection work?
+What is code splitting?
+What is tree shaking?
+
+✅ Browser & DOM
+Event delegation – explain with example.
+Difference between:
+event bubbling
+event capturing
+What is reflow and repaint?
+How does virtual DOM work?
+How does browser render a webpage?
+
+✅ ES6+ Advanced
+What are generators?
+What are iterators?
+What is Symbol?
+WeakMap vs Map?
+Optional chaining & nullish coalescing?
+
+🔥 CSS (Advanced / Practical)
+
+✅ Layout & Positioning
+Difference between Grid and Flexbox?
+How does z-index work?
+What creates stacking context?
+Explain position: relative vs absolute.
+How to vertically center a div (multiple ways)?
+
+✅ Advanced Topics
+What is BEM?
+What are CSS preprocessors?
+What is specificity?
+Important vs inline vs id priority?
+What is CSS containment?
+
+✅ Performance
+How to optimize CSS?
+What is critical CSS?
+How to avoid layout thrashing?
+
+🔥 HTML (Senior Level)
+
+✅ Core Knowledge
+What is semantic HTML?
+Difference between:
+section
+article
+div
+What is accessibility (a11y)?
+What is ARIA?
+What is Shadow DOM?
+
+✅ Browser Related
+How does browser parse HTML?
+What blocks rendering?
+What is preload vs prefetch?
+Difference between defer and async?
+
+🔥 Coding Questions (Very Common)
+Implement debounce
+Implement throttle
+Flatten nested array
+Deep clone object
+Reverse string without built-in methods
+Check if two objects are equal
+Implement custom Promise
+Polyfill for map/filter/reduce
+LRU Cache implementation
+Infinite scroll implementation
+
+🔥 Scenario-Based Questions (5 Years Experience)
+
+How would you design a large-scale frontend app?
+How do you handle state management?
+How do you debug production issues?
+How do you reduce bundle size?
+How do you improve page load time?
+How do you handle cross-browser issues?
+How do you secure frontend applications?
