@@ -1,13 +1,39 @@
 ﻿🔥 JAVASCRIPT (Advanced Level)
 
 Explain event loop in detail.
+event loop allows parallel executions in a single threaded environment.
+It will check if there are any operations to be executed 
+queues callbacks and execute them.
+
 Difference between microtask and macrotask?
+when callstack is empty then at priority microtask will be executed (promise.then, async await continuation).then macrotask (settimeout, setimeinterval,IO operations, click events)
+Microtask starvation:: if you write promise as a recursive(means a func having promise which resolves the same method). the it will be looping continuosly and microtask queue will be full.
+
 What happens when you run async/await?
+if u declare a mthod as a async the return type will become wrapped by promise.
+till await synchrnoisation happens then the task will be added as micro task the call will be handled by event loop.
+
 How does hoisting work?
+is a behaviour of js to move the declarations to top level while creating.
+when js runs it happens 2 phases creation phase , execution phase.
+Let and const will be hoisted but sent to TDZ(temporal dead zone) so cant be accessible (throw reference error)
+
 var vs let vs const (internal behavior)
+Var store in variable environment, functional scope. 
+Let store in Lexiographic env, Block level scope(reference error).no need to initialiaze. placed in TDZ.
+const same as let but need to initialise.
+
 Explain closure with real example.
+Even the Lexical scope of variable is within the outer function the js remembers the state of the variable even it is completed execution.
+Eg: Counter
+
 What is lexical scope?
+A function’s scope is determined by where it is written (defined) in the code, not where it is called.
+
 What is prototype & prototype chain?
+In JS every Obj is Linked to prototype Which has Methods and properties so the object can inherit.
+Prototypechain :: is chain of Objects that js ;looks to find a property or method.
+
 Difference between:
 call()
 apply()
