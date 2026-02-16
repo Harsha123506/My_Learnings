@@ -13,3 +13,48 @@ routerstore :: store router data.
 ngrxentity :: stores state as entity to apply crud operations.
 ngrxdata :: provides reducers and actions behind the scene.
 
+store :: only one store exists , immutable , only changeable via reducers and sideeffects, epxposes as Observable, allowing to subscibe rand react to change
+actions :: have uniquetype to idetify events. can carry payload, they should clearly describe its event.
+reducers :: for same input they always produce same output, wont mutate state instead return new state.
+
+create counter.state.ts
+export const initialstate = {
+counter : 0
+};
+
+create counter.actions.ts
+export const increment = createAction('increment');
+
+create counter.reducer.ts
+const counterReducer = createReducer(initialstate,
+on(increment, (state) => {
+return{
+...state,
+counter : state.counter+1
+}
+}));
+
+counter Button
+constructor(){
+ private store: Store<counter: {counter:number}}>
+}
+
+OnIncrement(){
+this.store.dispatch(increment());
+}
+
+counter value 
+ngoninit(){
+this.store.select('counter').subscribe((data) => {
+this.counter = data.counter
+})
+}
+
+customIncrement = creatAction('customIncrement', props<{value : number}>());
+
+on(cutomIncrement, (state,action) => {
+return {
+..state,
+counter  : state.counter + action.value
+}
+})
