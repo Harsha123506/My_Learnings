@@ -34,6 +34,10 @@ What is prototype & prototype chain?
 In JS every Obj is Linked to prototype Which has Methods and properties so the object can inherit.
 Prototypechain :: is chain of Objects that js ;looks to find a property or method.
 
+What is Event Propogation ?
+when event triggers it will create not only in one element but it passes from the main element to target element and then event bubbling happense in reverse.
+to stop event propogation use event.stoppropogation();
+
 Difference between:
 call()
 apply()

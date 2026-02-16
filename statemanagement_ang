@@ -1,0 +1,15 @@
+rxJx is a statement system follows redux pattern used by react. Where we have single state of truth. It has 5 principles.
+store :: angular stores the whole state of the application in the form of one big Object. and use it to have a utilisation of other components to achieve single state of truth.
+Actions :: its an object that have events occured which will change the state.
+Reducers :: It takes store and actions and return the immutable new state.
+Selectors :: It allows us to take a single slice of an Object
+side Effects :: this will handles the side effects like api calls , navogations, database connections that should happen as part of the state change.
+
+Ngrx Libraries :: ngrxstore , ngrxeffects, Router, ngrxEntity, ngrxdata
+
+ngrxstore :: Used to manage in memory state with action and reducer
+ngrxeffect :: handle sideeffects.
+routerstore :: store router data.
+ngrxentity :: stores state as entity to apply crud operations.
+ngrxdata :: provides reducers and actions behind the scene.
+

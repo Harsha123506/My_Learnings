@@ -253,12 +253,15 @@ RouterModule.forRoot(routes, {
 
 How does Angular Route Guards work internally?
 Its a Hooks from routing Life Cycle.
-canActivate :: run before navigating to route
-canActivateChild :: run before navigating to child
+canActivate :: run before navigating to route  // decides if user can navigate to specific component
+canActivateChild :: run before navigating to child  // decides if th user can navigate to its child.
 CanLoad :: execute before the import is loaded, Prevents the module from being downloaded.
 CanDeactivate :: before navigating to different route
 Resolve :: before activating route resolves data
 CanMatch :: run if route matched specific url
+routerlink :: attribute to navigate to specific component matches routes in route.ts
+routerlinkactive :: we can mention classes to apply when selected link nis active.
+[routerlinkoptions] = {exact :true} :: to make the classs active only exact url matches.
 
 A guard can return boolean , urltree(navigate to the urlroute), observable, promise 
 
