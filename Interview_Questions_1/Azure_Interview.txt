@@ -66,7 +66,7 @@ When a request came to functions it has to provise Vm r container to run the ser
 use premium plan , use periodic requests.
 
 VM Scale Sets use cases
-re set of ideal vms tht scales automticlly based on demnd 
+re set of ideal vms tht scales automticlly based on demand 
 
 Blue-green & Canary deployments in Azure
 Blue --> Current Production
@@ -88,14 +88,17 @@ Application Gate Way :: Layer 7 Load Balancer apply on http/https level, session
 first application gateway will decide based on route urls which tier need to go (web , app , database)
 then in specific tier , load balancer based on port it will select specific instance.
 
-
-
-
 Azure Front Door vs Traffic Manager
+Azure Front Door :: will acts as a proxy at the application level. manages security, Cache Content, Url rewriting..
+Traffic Manager :: will acts as a DNS manager.at the DNS Level.
 
 Private Endpoint vs Service Endpoint
+Private Endpoint :: provide ip to access between services and azure resources within vnet (private link communication)
+service endpoint :: provides ip to access in public. (via azure backbone)
 
 How does DNS work in Azure?
+in vnet we have default dns resolver 
+and we have private and public dns service.
 
 Hybrid connectivity: VPN Gateway vs ExpressRoute
 
