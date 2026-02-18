@@ -1,0 +1,84 @@
+﻿Tell me about yourself.
+Walk me through your experience as a .NET developer.
+What projects have you worked on in the last 2–3 years?
+What was your role in your current/previous company?
+Why are you looking for a job change?
+Why do you want to join our company?
+What do you know about our organization?
+
+🔹 2. Experience & Responsibility-Based Questions
+Have you led any projects or mentored juniors?
+How do you handle production issues?
+Describe a challenging project and how you handled it.
+Have you worked in Agile/Scrum environments?
+How do you manage deadlines and pressure?
+Have you interacted with clients directly?
+How do you ensure code quality in your team?
+
+🔹 3. Behavioral Questions (STAR-Based)
+Tell me about a time you had a conflict with a team member.
+Describe a situation where you missed a deadline.
+Give an example of when you took ownership beyond your role.
+Tell me about a time you handled critical production downtime.
+Describe a situation where you improved an existing process.
+
+🔹 4. Team & Communication Skills
+How do you explain technical concepts to non-technical stakeholders?
+How do you handle code review feedback?
+Do you prefer working independently or in a team?
+How do you prioritize tasks when multiple assignments are given?
+
+🔹 5. Career Growth & Motivation
+Where do you see yourself in 3– years?
+What motivates you at work?
+Are you interested in technical leadership or management roles?
+How do you keep yourself updated with new technologies (e.g., ASP.NET Core, Azure, Docker)?
+What are your strengths and weaknesses?
+
+🔹 6. Salary & Logistics
+What is your current CTC?
+What are your salary expectations?
+Are you open to relocation?
+What is your notice period?
+Do you have any other offers in hand?
+
+🔹 7. Situational HR Questions (Experienced Level)
+If you disagree with your manager on a technical approach, what would you do?
+If a junior developer repeatedly makes mistakes, how would you handle it?
+If production breaks at midnight, what would be your approach?
+How do you handle sudden requirement changes from clients?
+
+
+Techno::
+
+Explain the architecture of a project you recently worked on.
+Vizinspect ::
+Assets : consisteing the static images for the application.
+configSettings : consisting of definition of option setting types
+controllers : we have set of controllers like authentication , ptl , camerastation, displaystation.
+Core : consists of services , custom middlewares , mappings, service models.
+Infrastruture : consists of models.
+
+Difference between ASP.NET Core and older ASP.NET?
+cross platform , High performance (split libraries),  build int dependencies.
+
+where do u prefer mvc over api ??
+when u want UI , code base dependeny , and whole resource mangeable pick mvc.
+when u want microservices, mobile , front end pick api.
+
+Explain async/await internally. How does it improve scalability?
+Its a compiler generated state machine.
+bla bla
+
+How do you handle memory leaks in .NET applications?
+forget unsubscribing event handlers.
+static data declaration
+cache without expiry
+LOH(Large Object Heap)
+not disposable objects
+
+
+
+
+
+
