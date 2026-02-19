@@ -1,0 +1,375 @@
+1. ASP.NET MVC (8 Years – Advanced Level)
+Core & Architecture
+
+Explain the MVC request lifecycle in ASP.NET MVC.
+
+What are filters in MVC? Difference between Authorization, Action, Result, and Exception filters?
+
+How does Model Binding work internally?
+
+Difference between TempData, ViewBag, ViewData, and Session?
+
+How do you handle global exception handling in MVC?
+
+What is attribute routing? When would you prefer it over conventional routing?
+
+Explain dependency injection in MVC. Have you implemented custom DI?
+
+Performance & Security
+
+How do you improve MVC application performance?
+
+What is Anti-Forgery Token? How does it prevent CSRF?
+
+How do you prevent over-posting attacks?
+
+How would you secure an MVC app using authentication & authorization?
+
+What are bundling and minification?
+
+2. Web API (Advanced)
+Design & REST
+
+Difference between ASP.NET MVC and Web API?
+
+What makes an API RESTful?
+
+Which HTTP verbs are idempotent and why?
+
+How do you design versioning in Web APIs?
+
+How do you handle pagination, filtering, and sorting in APIs?
+
+Internals & Performance
+
+Explain Web API pipeline.
+
+How does content negotiation work?
+
+Difference between IActionResult vs HttpResponseMessage?
+
+How do you implement global exception handling in Web API?
+
+What are Delegating Handlers and Filters?
+
+How do you implement caching in Web API?
+
+Security
+
+Difference between OAuth, JWT, and API Key authentication?
+
+How do you secure APIs for public vs internal consumption?
+
+3. jQuery & Frontend Integration
+
+Difference between $(document).ready() and window.onload?
+
+How does event delegation work in jQuery?
+
+How do you handle AJAX error handling?
+
+What are common performance issues with jQuery?
+
+How do you avoid DOM reflow issues?
+
+How do you call Web APIs using jQuery AJAX?
+
+Difference between $.ajax(), $.get(), $.post()?
+
+4. Entity Framework (4 Years – Strong Intermediate)
+Core Concepts
+
+Difference between EF and EF Core?
+
+What is DbContext lifecycle?
+
+Explain Code First, Database First, and Model First approaches.
+
+Difference between IQueryable and IEnumerable?
+
+What is Lazy Loading, Eager Loading, and Explicit Loading?
+
+Performance & Optimization
+
+How do you identify and fix N+1 query problems?
+
+What are compiled queries?
+
+How do you optimize EF performance?
+
+How do tracking and no-tracking queries work?
+
+Difference between First(), FirstOrDefault(), Single(), SingleOrDefault()?
+
+Transactions & Migrations
+
+How do transactions work in EF?
+
+How do you handle concurrency conflicts?
+
+Explain EF migrations and rollback strategy.
+
+5. SQL Server (Advanced)
+Querying & Design
+
+Difference between Clustered and Non-Clustered indexes?
+
+What is an execution plan?
+
+How do you identify slow-running queries?
+
+Difference between CTE, Temp Table, and Table Variable?
+
+What are normalization and denormalization?
+
+How do you handle deadlocks?
+
+Performance
+
+What causes index fragmentation?
+
+Explain parameter sniffing.
+
+When should you use stored procedures vs inline queries?
+
+Difference between ROW_NUMBER(), RANK(), DENSE_RANK()?
+
+6. Azure (1 Year – Expected Practical Knowledge)
+App Services
+
+What is Azure App Service?
+
+Difference between App Service Plan and App Service?
+
+How do you deploy an MVC/Web API app to Azure?
+
+How do slots work in App Services?
+
+How do you configure scaling?
+
+Azure Functions
+
+What are Azure Functions?
+
+Difference between Consumption and App Service Plan?
+
+What are Triggers and Bindings?
+
+When would you use Functions instead of Web APIs?
+
+Azure Storage
+
+Difference between Blob, Queue, Table, and File storage?
+
+What are Blob containers and access tiers?
+
+How do you secure Blob Storage?
+
+How do you upload/download large files efficiently?
+
+Service Bus
+
+Difference between Queue and Topic?
+
+What is dead-letter queue?
+
+Difference between Service Bus and Storage Queue?
+
+How do you handle message retries and failures?
+
+Explain at-least-once vs exactly-once delivery.
+
+7. System Design & Scenario-Based (Senior Level)
+
+Design a high-traffic Web API for an e-commerce site.
+
+How would you design a background processing system using Azure?
+
+How do you handle logging and monitoring in production?
+
+How would you implement rate limiting?
+
+How do you ensure high availability and fault tolerance?
+
+How do you handle large file uploads in Azure?
+
+How would you migrate an on-prem MVC app to Azure?
+
+8. Behavioral / Experience-Based
+
+Describe a production issue you solved.
+
+How do you handle legacy code?
+
+How do you ensure code quality?
+
+Have you done code reviews? What do you look for?
+
+How do you mentor junior developers?
+
+A time you improved application performance significantly.
+
+ASP.NET Core MVC Interview Questions (2 Years Experience)
+1. Fundamentals & Architecture
+
+What are the key differences between ASP.NET MVC and ASP.NET Core MVC?
+
+Explain the ASP.NET Core request processing pipeline.
+
+What is Kestrel? How does it work with IIS?
+
+Explain the role of Program.cs and Startup.cs (or minimal hosting model).
+
+What is Middleware? How is it different from MVC filters?
+
+How does dependency injection work in ASP.NET Core?
+
+What are the service lifetimes (Transient, Scoped, Singleton)?
+
+2. Routing & Controllers
+
+Difference between conventional routing and attribute routing in ASP.NET Core?
+
+What is endpoint routing?
+
+How do you implement API-style controllers vs MVC controllers?
+
+What is [ApiController] attribute? Benefits?
+
+How does model binding work in ASP.NET Core?
+
+How do you validate models using Data Annotations?
+
+Difference between FromBody, FromQuery, FromRoute, FromForm?
+
+3. Configuration & Environment
+
+How does appsettings.json work?
+
+How do you manage environment-specific settings?
+
+How do you read configuration values in controllers/services?
+
+What is IOptions, IOptionsSnapshot, and IOptionsMonitor?
+
+How do you store secrets securely in ASP.NET Core?
+
+4. Middleware, Filters & Pipeline
+
+Explain the order of middleware execution.
+
+What happens if middleware does not call next()?
+
+Difference between Middleware and Filters?
+
+Types of filters in ASP.NET Core MVC?
+
+How do you implement custom middleware?
+
+How do you implement global exception handling?
+
+What is UseExceptionHandler vs DeveloperExceptionPage?
+
+5. Security
+
+How is authentication implemented in ASP.NET Core?
+
+Difference between Cookie authentication and JWT authentication?
+
+How does authorization policy work?
+
+What is role-based vs policy-based authorization?
+
+How do you protect against CSRF in ASP.NET Core MVC?
+
+How do you secure configuration secrets?
+
+6. Dependency Injection & Services
+
+How do you register services in ConfigureServices?
+
+Why is Scoped lifetime recommended for DbContext?
+
+What issues can occur with Singleton services?
+
+How do you inject services into middleware?
+
+How do you implement loosely coupled architecture?
+
+7. Logging, Error Handling & Diagnostics
+
+What logging providers are available in ASP.NET Core?
+
+How do you implement structured logging?
+
+Difference between ILogger, ILoggerFactory?
+
+How do you handle unhandled exceptions globally?
+
+How do you log requests and responses?
+
+8. Performance & Optimization
+
+What is response caching?
+
+How do you enable compression?
+
+Difference between in-memory cache and distributed cache?
+
+What is async/await best practice in ASP.NET Core?
+
+How do you avoid thread blocking?
+
+What is IHostedService?
+
+9. ASP.NET Core MVC with EF Core
+
+Differences between EF and EF Core?
+
+How does DbContext pooling improve performance?
+
+What is AsNoTracking() and when should you use it?
+
+How do you handle migrations in ASP.NET Core?
+
+How do you handle multiple environments for DB connections?
+
+10. Deployment & Hosting
+
+How do you deploy ASP.NET Core MVC to Azure App Service?
+
+Difference between In-Process and Out-Of-Process hosting?
+
+What are health checks?
+
+How do you configure HTTPS redirection?
+
+How do you configure CORS?
+
+11. Real-World Scenario Questions
+
+How would you migrate an ASP.NET MVC app to ASP.NET Core MVC?
+
+How do you structure a large ASP.NET Core MVC project?
+
+How do you handle versioning in APIs?
+
+How do you implement background tasks?
+
+How do you handle file uploads in ASP.NET Core?
+
+How do you secure Web APIs exposed to frontend apps?
+
+12. Experience-Based (What Interviewers Look For)
+
+What challenges did you face while moving to ASP.NET Core?
+
+What features of ASP.NET Core do you use most?
+
+How do you debug middleware issues?
+
+How do you troubleshoot performance issues?
+
+How do you ensure backward compatibility?
+
+What improvements did ASP.NET Core bring compared to classic MVC?
