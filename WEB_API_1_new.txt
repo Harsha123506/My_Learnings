@@ -212,3 +212,15 @@ ConsumingAPI ::
 ========================
 
 RESTAPI 
+
+
+
+1>> <Nullable>enable</Nullable> in csproj allows null reference types in proj 
+enable, disable , annotations, warnings 
+annotations :: ? check if it can be nullable 
+warnings :: throws warnings at the compile time.
+
+right click on project --> add docker support --> windows
+
+
+
