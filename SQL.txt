@@ -49,6 +49,7 @@ STRING Operations :::
 CONCAT(a,b,c) ==> abc
 CONCAT_WS('separator',a, b,c) ==> aseparatorbseperatorc
 
-
-
-
+substring Operations ::
+substring(string, start, Length); ==> in ssms 
+substring(string , from length); ==> in mysql
+charindex(char,string) ==> return index of character

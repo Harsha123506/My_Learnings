@@ -2,30 +2,138 @@
 Core & Architecture
 
 Explain the MVC request lifecycle in ASP.NET MVC.
+requests sends to mvc pipeline ,
+mvc handler 
+routing 
+controllerfactory instance creation
+model Binding 
+model Validation 
+View rendering 
+html response
 
 What are filters in MVC? Difference between Authorization, Action, Result, and Exception filters?
+allows u to execute certain Logic before r after certain stage of request pipeline.
+[Authorize(Roles = "Admin")]
+public class LogActionFilter : ActionFilterAttribute
+{
+    public override void OnActionExecuting(ActionExecutingContext filterContext)
+    {
+        // Code before action executes
+    }
+
+    public override void OnActionExecuted(ActionExecutedContext filterContext)
+    {
+        // Code after action executes
+    }
+}
+
+public class ResultFilter : ActionFilterAttribute
+{
+    public override void OnResultExecuting(ResultExecutingContext filterContext)
+    {
+        // Before view rendering
+    }
+
+    public override void OnResultExecuted(ResultExecutedContext filterContext)
+    {
+        // After view rendering
+    }
+}
+
+[HandleError]
+public class HomeController : Controller
+{
+}
 
 How does Model Binding work internally?
+value providers -- collect json data and breakdown into specific provided format
+Default Model Binders -- read data from value providers and Bind it to request Model
+Type Conversion -- 
+Model Validation --
+ModelState.AddModelError("Age", "Age must be greater than 18"); ==> to raise the Model errors 
 
 Difference between TempData, ViewBag, ViewData, and Session?
+TempData -- Used to send the data between different action Methods.
+View Bag  -- Used to send the data between view and controller in attribute format
+View Data -- Used to send the data between View and controller in attribute dictionary format
+Session  -- Used to store the data for entire usersession
 
 How do you handle global exception handling in MVC?
+in filterconfig --> add customerror filter 
+public static void RegisterGlobalFilters(GlobalFilterCollection filters)
+{
+    filters.Add(new HandleErrorAttribute());
+}
+
+in web.config --> enable custome error mode
+<system.web>
+  <customErrors mode="On" defaultRedirect="Error">
+  </customErrors>
+</system.web>
+
+2> custom filter attribute 
+3> add logic in Application_error -- global.asax
 
 What is attribute routing? When would you prefer it over conventional routing?
+routes.MapRoute(
+    name: "Default",
+    url: "{controller}/{action}/{id}",
+    defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }  // conventional
+);
+
+[Route("Home/Index/{id}")] ==> Attribute  
+
+Attribute is highly considered if both are implemented.
 
 Explain dependency injection in MVC. Have you implemented custom DI?
+getting the dependencies from external resource instead initiating within same class.
+
+in unityConfig
+
+var container = new UnityContainer();
+
+        container.RegisterType<IProductService, ProductService>();
+
+        DependencyResolver.SetResolver(new UnityDependencyResolver(container));
+
 
 Performance & Security
 
 How do you improve MVC application performance?
+Caching 
+reduce db calls(N+1, selected columns, Unit of Work Pattern, stored proc or precompiled queries)
+optimise View rendering (avoid heavy view logic, more elements in HTML, Cache View, efficient Partial View render)
+Bundle and Minify static Files
+Asynchronous programming
+use dependency Injection properly
+compress requests and images
+client side rendering (use ajax , cdn , Lazy Loading)
+profiling and monitoring 
 
 What is Anti-Forgery Token? How does it prevent CSRF?
+used to avoid CSRF(Cross site request forgery) ==> from malicious sites hacker can able to send the request for already authorised site. site user 
+ @Html.AntiForgeryToken()
 
 How do you prevent over-posting attacks?
+proper model binding
+use bind()
+use viewmodels
+manual property assignment
+antiforgerytoken
 
 How would you secure an MVC app using authentication & authorization?
+in web.config ==> 
+<authentication mode="Forms">
+  <forms loginUrl="~/Account/Login" timeout="30"></forms>
+</authentication>
+
+FormAuthentication.setAuthCookie() // to set the key
+FormAuthentication.SignOut() // logout
 
 What are bundling and minification?
+in Bundles.config ==>
+bundles.Add(new ScriptBundle("~/bundles/jquery")
+    .Include("~/Scripts/jquery-3.4.1.js"));
 
 2. Web API (Advanced)
 Design & REST
@@ -33,12 +141,24 @@ Design & REST
 Difference between ASP.NET MVC and Web API?
 
 What makes an API RESTful?
+stateless
+httpVerbs
+Resource based Urls
+representation of resources ==> JSON , XML
 
 Which HTTP verbs are idempotent and why?
+get, put , delete , head , options ==> it wont change anything for multiple requests.
 
 How do you design versioning in Web APIs?
+url,
+query,
+header,
+mediatype  -- in Accept variable in header
 
 How do you handle pagination, filtering, and sorting in APIs?
+pagination --> skip, take
+filtering --> where
+sorting --> Ordering
 
 Internals & Performance
 
@@ -47,12 +167,19 @@ Explain Web API pipeline.
 How does content negotiation work?
 
 Difference between IActionResult vs HttpResponseMessage?
+used in older version low flexibility only limited to http
 
 How do you implement global exception handling in Web API?
 
 What are Delegating Handlers and Filters?
+delegating handler : will allow us to add code before and after the request reaches to controller
+in webapiconfig :: config.MessageHandlers.Add(new CustomHandler());
+filters :: allow to apply logic before r after the action method execution.
 
 How do you implement caching in Web API?
+[ResponseCache(Duration = 60, Location = ResponseCacheLocation.Client)] --> client caching 
+inmemory r distributed cache
+
 
 Security
 

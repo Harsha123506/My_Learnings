@@ -297,3 +297,13 @@ Azure Syorage accounts?
 container that stores all the storage services like , blob , queue , File , disc
 
 Azure Tech Stack ?
+
+
+Microsoft Azure, Azure Data Factory, Azure Synapse, Azure Functions, Azure Logic Apps
+Azure Event hub
+Azure Function App
+Azure Cosmos db
+Azure Application Sights
+Azure APIM
+Azure Storage Accounts 
+Azure tech stack
