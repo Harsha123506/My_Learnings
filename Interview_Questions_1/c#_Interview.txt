@@ -26,7 +26,7 @@ value type, Light Weight and fast, Used for to store simple Data. Stores in stac
 
 What is Span<T> and where is it useful?
 
-allows to store the part of collection data. Improves performance. 
+allows to store the part of collection data.v Improves performance. 
 
 What is IDisposable and how does using work internally?
 
@@ -35,7 +35,7 @@ Finalizer called when detructor is declared within the class.
 
 What is the difference between finalize and dispose?
 
-will call by GC to release unmanaged resources.
+finalize will call by GC to release unmanaged resources.
 
 How does Garbage Collection work in .NET (Generations 0,1,2)?
 
