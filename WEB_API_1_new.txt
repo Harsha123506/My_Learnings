@@ -224,3 +224,232 @@ right click on project --> add docker support --> windows
 
 
 
+
+Files ::
+program.cs
+
+using Asp.Versioning;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Microsoft.OpenApi.Models;
+using Serilog;
+using System.Text.Json;
+using VizInspectSvc.ConfigSettings;
+using VizInspectSvc.Controllers.AppVersions;
+using VizInspectSvc.Core.DomainServices;
+using VizInspectSvc.Core.DomainServices.Interfaces;
+using VizInspectSvc.Core.DomainServices.Interfaces.Queues;
+using VizInspectSvc.Core.DomainServices.Monitoring;
+using VizInspectSvc.Core.DomainServices.Queues;
+using VizInspectSvc.Core.DomainServices.Workers;
+using VizInspectSvc.Core.ExterenalServices;
+using VizInspectSvc.Core.ExterenalServices.Interfaces;
+using VizInspectSvc.Core.HealthCheck;
+using VizInspectSvc.Core.Middleware;
+using VizInspectSvc.Core.RealTime;
+using VizInspectSvc.Infrastructure.Repositories;
+using VizInspectSvc.Infrastructure.Repositories.Interfaces;
+using IQueueMonitor = VizInspectSvc.Core.DomainServices.Interfaces.IQueueMonitor;
+
+namespace VizInspectSvc
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            var builder = WebApplication.CreateBuilder(args);
+
+            // Load config settings
+            builder.Services.Configure<ExternalServiceOptions>(builder.Configuration.GetSection("ExternalServiceOptions"));
+            builder.Services.Configure<AppSettingsConfigModel>(builder.Configuration.GetSection("AppSettingsConfig"));
+
+            // CORS
+            var origins = builder.Configuration.GetSection("AllowedOrigins").Get<string[]>() ?? Array.Empty<string>();
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", policy => policy
+                    .AllowAnyOrigin()
+                    .WithOrigins(origins)
+                    .SetIsOriginAllowedToAllowWildcardSubdomains()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials()
+                );
+            });
+
+            // Controllers
+            builder.Services.AddControllers();
+            builder.Services.AddEndpointsApiExplorer();
+
+            // API Version Service
+            builder.Services.AddSingleton<IApiVersionService, ApiVersionService>();
+
+            // Update API Versioning configuration
+            var apiVersionService = new ApiVersionService(builder.Configuration);
+            var defaultVersion = apiVersionService.GetDefaultApiVersionObject();
+
+            builder.Services.AddApiVersioning(options =>
+            {
+                options.DefaultApiVersion = new ApiVersion(1, 0);
+                options.AssumeDefaultVersionWhenUnspecified = true;
+                options.ReportApiVersions = true;
+                options.ApiVersionReader = ApiVersionReader.Combine(
+                    new UrlSegmentApiVersionReader()
+                    //new QueryStringApiVersionReader("version"),
+                    //new HeaderApiVersionReader("X-Version")
+                    );
+            }).AddApiExplorer(options =>
+            {
+                options.GroupNameFormat = "'v'VVV";
+                options.SubstituteApiVersionInUrl = true;
+            });
+
+            // Simple Swagger configuration without versioning complexity
+            builder.Services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "VizInspectSvc",
+                    Version = "v1.0",
+                    Description = "VizInspect Service API - Supports both legacy (/api/capture) and versioned endpoints (/api/v1/, /api/v2/)"
+                });
+
+                c.SwaggerDoc("v2", new OpenApiInfo
+                {
+                    Title = "VizInspectSvc V2",
+                    Version = "v2.0",
+                    Description = "Version 2.0 - Enhanced API with additional features"
+                });
+            });
+
+            // Database
+            var connectionString = builder.Configuration.GetConnectionString("ShopFloorConnection");
+            builder.Services.AddDbContext<ShopFloorDbContext>(options =>
+                options.UseOracle(connectionString, oracleOptions => oracleOptions.UseOracleSQLCompatibility(OracleSQLCompatibility.DatabaseVersion23)));
+
+            builder.Services.AddSignalR();
+
+            // Domain Services
+            builder.Services.AddScoped<IDefectManagementService, DefectManagementService>();
+            builder.Services.AddScoped<ICaptureProcessService, CaptureProcessService>();
+            builder.Services.AddScoped<ICommonService, CommonService>();
+            builder.Services.AddScoped<IImageStorageService, ImageStorageService>();
+            builder.Services.AddScoped<ICameraStationService, CameraStationService>();
+            builder.Services.AddScoped<IDisplayStationService, DisplayStationService>();
+            builder.Services.AddScoped<IMasterDataService, MasterDataService>();
+            builder.Services.AddScoped<IAuthValidationService, AuthValidationService>();
+            builder.Services.AddScoped<INotificationService, NotificationService>();
+            builder.Services.AddScoped<IPtlServices, PtlServices>(); 
+            builder.Services.AddSingleton<IBackgroundTaskQueue, BackgroundTaskQueue>();
+            builder.Services.AddSingleton<IStorageQueue, StorageQueue>();
+            builder.Services.AddSingleton<IInferenceQueue, InferenceQueue>();
+            builder.Services.AddSingleton<IThumbnailQueue, ThumbnailQueue>();
+            builder.Services.AddSingleton<IDefectQueue, DefectQueue>();
+
+            builder.Services.AddHostedService<StorageWorker>();
+            builder.Services.AddHostedService<InferenceWorker>();
+            builder.Services.AddHostedService<ThumbnailWorker>();
+            builder.Services.AddHostedService<DefectWorker>();
+            builder.Services.AddHostedService<QueueMonitorService>();
+            builder.Services.AddSingleton<IQueueMonitor>(sp => (InferenceQueue)sp.GetRequiredService<IInferenceQueue>());
+
+            // Repositories
+            builder.Services.AddSingleton(new OracleConnectionFactory(connectionString));
+            builder.Services.AddScoped<IDefectManagementRepository, DefectManagementRepository>();
+            builder.Services.AddScoped<ICaptureProcessRepository, CaptureProcessRepository>();
+            builder.Services.AddScoped<ICommonRepository, CommonRepository>();
+            builder.Services.AddScoped<IImageStorageRepository, ImageStorageRepository>();
+            builder.Services.AddScoped<ICameraStationRepository, CameraStationRepository>();
+            builder.Services.AddScoped<IDisplayStationRepository, DisplayStationRepository>();
+            builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            builder.Services.AddScoped<IGenericRepositoryFactory, GenericRepositoryFactory>();
+            builder.Services.AddScoped<IAuthValidationRepository, AuthValidationRepository>();
+            builder.Services.AddScoped<IDbPollingRepository, DbPollingRepository>();
+            builder.Services.AddScoped<IPtlRepository, PtlRepository>();
+
+            builder.Services.AddSingleton<DbPollingService>();
+
+            builder.Services.AddHostedService(provider =>
+                provider.GetRequiredService<DbPollingService>());
+
+            builder.Services.AddHealthChecks()
+                .AddCheck<DbPollingHealthCheck>("db_polling_service")
+                .AddCheck<SignalRHealthCheck>("SignalR_Status");
+
+            // External Services
+            builder.Services.AddHttpClient("HttpClient_UserContext", client =>
+                client.Timeout = TimeSpan.FromSeconds(200));
+            builder.Services.AddScoped<ICaptureService, CaptureService>();
+            builder.Services.AddScoped<IVisionAIService, VisionAIService>();
+
+            // AutoMapper
+            builder.Services.AddAutoMapper(typeof(Program));
+
+            // Clear default logging providers and configure Serilog
+            builder.Logging.ClearProviders();
+            builder.Host.UseSerilog((context, services, configuration) =>
+                    configuration.ReadFrom.Configuration(context.Configuration));
+
+            // Build app
+            var app = builder.Build();
+
+            // Swagger setup
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "VizInspectSvc API");
+                    c.RoutePrefix = string.Empty;
+                });
+            }
+            else
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "VizInspectSvc API");
+                    c.RoutePrefix = "swagger";
+                });
+            }
+
+            app.MapHealthChecks("/health", new HealthCheckOptions
+            {
+                ResponseWriter = async (context, report) =>
+                {
+                    context.Response.ContentType = "application/json";
+                    var result = JsonSerializer.Serialize(new
+                    {
+                        status = report.Status.ToString(),
+                        checks = report.Entries.Select(e => new
+                        {
+                            name = e.Key,
+                            status = e.Value.Status.ToString(),
+                            description = e.Value.Description
+                        })
+                    });
+                    await context.Response.WriteAsync(result);
+                }
+            });
+
+            app.UseCors("CorsPolicy");
+            app.UseRouting();
+            app.UseEndpoints(endpoint =>
+            {
+                endpoint.MapControllers();
+                endpoint.MapHub<NotificationHub>("/notificationHub");
+            });
+
+            app.UseExceptionHandling();
+            app.UseHttpsRedirection();
+            app.UseAuthorization();
+            app.MapControllers();
+
+            app.Run();
+        }
+    }
+}
+
+
