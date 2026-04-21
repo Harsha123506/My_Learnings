@@ -18,5 +18,4 @@ WithOrigins("http://localhost:5289") ==> to allow specific origin
 .AllowAnyHeader() ==> to allow any header (normally it allows only default headers));
 .AllowAnyMethod() ==> to allow any method like get, post, put, delete
 
-
-
+Use Generics:: 

@@ -1,0 +1,4 @@
+z-index :: 
+scenario 1 : if parent has z-index 15 and child has z-index 10 then still child will be on top of parent
+scenario 2 : if parent has z-index 1 and child has z-index -1 then child will be behind of parent
+stop propogation  :: to stop the event bubbling up to the parent element

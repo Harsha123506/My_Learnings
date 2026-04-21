@@ -53,3 +53,27 @@ substring Operations ::
 substring(string, start, Length); ==> in ssms 
 substring(string , from length); ==> in mysql
 charindex(char,string) ==> return index of character
+replace(string, from, to) ==> replace the from with to in string
+reverse(string) ==> reverse the string
+len(string) ==> return the length of string without counting the trailing spaces in ssms
+datalength(string) ==> return the length of bytes used to store the string in ssms include the trailing spaces
+upper(string) ==> convert the string to upper case
+lower(string) ==> convert the string to lower case
+STUFF('Quadratic', 3, 4, 'What');
+Left(string, number) ==> return the leftmost number of characters from string
+right(string, number) ==> return the rightmost number of characters from string
+replicate(string, number) ==> repeat the string for number times in ssms
+trim(string) ==> remove the leading and trailing spaces from string in ssms
+trim(both 'char' from string) ==> remove the leading and trailing char from string in mysql
+trim(leading 'char' from string) ==> remove the leading char from string in mysql
+trim(trailing 'char' from string) ==> remove the trailing char from string in mysql
+
+
+my sql string functions :::
+char_length(string) ==> return the length of string
+length(string) ==> return the length of string(bits to store)
+ucase(string) ==> convert the string to upper case
+lcase(string) ==> convert the string to lower case
+insert(string, position, length, newstring) ==> replace the string with newstring from position and for length characters
+repeat(string, number) ==> repeat the string for number times
+
